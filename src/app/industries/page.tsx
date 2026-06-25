@@ -31,11 +31,11 @@ export default function IndustriesPage() {
       <section className="relative py-20 md:py-24 bg-section overflow-hidden border-b border-border">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-section/90 z-10" />
-          <Image 
-            src={IMAGES.hero} 
-            alt="Premium architectural systems for industries" 
-            fill 
-            className="object-cover" 
+          <Image
+            src={IMAGES.hero}
+            alt="Premium architectural systems for industries"
+            fill
+            className="object-cover"
             sizes="100vw"
             priority
           />
@@ -70,8 +70,8 @@ export default function IndustriesPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {sectors.map((sector, i) => (
-            <div 
-              key={i} 
+            <div
+              key={i}
               id={sector.id}
               className="bg-card p-6 md:p-8 rounded-3xl border border-border hover:border-accent/40 transition-all duration-300 flex flex-col justify-between scroll-mt-28 shadow-lg hover:shadow-2xl hover:-translate-y-1"
             >
@@ -88,11 +88,11 @@ export default function IndustriesPage() {
       {/* Split Feature: Residential Focus (Light section) */}
       <section className="relative flex flex-col lg:flex-row bg-section text-body min-h-[480px] border-t border-b border-border">
         <div className="w-full lg:w-1/2 relative h-[280px] lg:h-auto">
-          <Image 
-            src={IMAGES.villa} 
-            alt="Residential luxury villa architectural glazing details" 
-            fill 
-            className="object-cover" 
+          <Image
+            src={IMAGES.villa}
+            alt="Residential luxury villa architectural glazing details"
+            fill
+            className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
           <div className="absolute inset-0 bg-[#001518]/5" />
@@ -129,11 +129,11 @@ export default function IndustriesPage() {
       {/* Split Feature: Commercial Focus (Light section) */}
       <section className="relative flex flex-col lg:flex-row-reverse bg-white text-body min-h-[480px] border-b border-border">
         <div className="w-full lg:w-1/2 relative h-[280px] lg:h-auto">
-          <Image 
-            src={IMAGES.commercial} 
-            alt="Commercial building envelope details" 
-            fill 
-            className="object-cover" 
+          <Image
+            src={IMAGES.commercial}
+            alt="Commercial building envelope details"
+            fill
+            className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
           <div className="absolute inset-0 bg-primary/20" />

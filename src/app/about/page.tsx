@@ -39,11 +39,11 @@ export default function AboutPage() {
       <section className="relative py-28 md:py-36 bg-section overflow-hidden border-b border-border">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-section/90 z-10" />
-          <Image 
-            src={IMAGES.hero} 
-            alt="Luxury modern villa facade" 
-            fill 
-            className="object-cover" 
+          <Image
+            src={IMAGES.hero}
+            alt="Luxury modern villa facade"
+            fill
+            className="object-cover"
             sizes="100vw"
             priority
           />
@@ -142,11 +142,11 @@ export default function AboutPage() {
       {/* Manufacturing Excellence Section (Split features, Cream background) */}
       <section className="relative flex flex-col lg:flex-row bg-section text-body min-h-[550px] border-t border-b border-border">
         <div className="w-full lg:w-1/2 relative h-[350px] lg:h-auto">
-          <Image 
-            src={IMAGES.commercial} 
-            alt="Precision manufacturing facility details" 
-            fill 
-            className="object-cover" 
+          <Image
+            src={IMAGES.commercial}
+            alt="Precision manufacturing facility details"
+            fill
+            className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
           <div className="absolute inset-0 bg-[#001518]/5" />

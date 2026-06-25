@@ -18,19 +18,18 @@ import {
   Ruler,
   Thermometer,
   Eye,
+  MessageSquare,
+  Maximize2,
+  Compass,
+  Cpu,
+  CheckSquare,
+  Wrench,
+  Award,
+  Phone,
 } from "lucide-react";
-import { Cormorant_Garamond } from "next/font/google";
 import Button from "@/components/ui/Button";
 
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-cormorant",
-  display: "swap",
-});
-
-/* ─────────────────────────────────────────────────── DATA ─────────────────── */
+/* --------------------------------------------------- DATA ------------------- */
 
 interface SystemItem {
   num: string;
@@ -55,6 +54,7 @@ const categories = [
     icon: Layers,
     color: "#C28B45",
     description: "Ultra-slim profile frames and glass wall facades for unobstructed viewscapes",
+    href: "/services/glazing-facades",
   },
   {
     id: "openings",
@@ -62,6 +62,7 @@ const categories = [
     icon: DoorOpen,
     color: "#00515C",
     description: "Bi-folding systems, hinged doors, pivot entrances, and motorized profiles",
+    href: "/services/doors-windows",
   },
   {
     id: "partitions",
@@ -69,6 +70,7 @@ const categories = [
     icon: LayoutGrid,
     color: "#6B4226",
     description: "Acoustic glass dividers, telescopic tracks, and synchronized room partitions",
+    href: "/services/interior-partitions",
   },
   {
     id: "outdoor",
@@ -76,6 +78,7 @@ const categories = [
     icon: Sun,
     color: "#2E7D32",
     description: "Motorized pergolas, retractable roofs, screens, and custom architectural solutions",
+    href: "/services/outdoor-shading",
   },
 ];
 
@@ -330,7 +333,118 @@ const allSystems: Record<string, SystemItem[]> = {
   ],
 };
 
-/* ───────────────────────────── ANIMATION VARIANTS ─────────────────────────── */
+const processSteps = [
+  {
+    num: "01",
+    title: "Consultation",
+    icon: MessageSquare,
+    desc: "We align with your architect's blueprints, discuss sightline preferences, and draft initial budget scopes.",
+    img: "/services/brochure-img-2.jpg",
+    specs: [
+      { label: "Methodology", val: "Architectural Brief Review" },
+      { label: "Engineering Focus", val: "Sightline configurations & Wind limits" },
+      { label: "Key Deliverables", val: "System proposals & preliminary estimate" },
+    ],
+  },
+  {
+    num: "02",
+    title: "Site Survey",
+    icon: Maximize2,
+    desc: "Our engineers scan structural openings using high-precision digital measuring tools to secure an absolute fit.",
+    img: "/services/brochure-img-11.jpg",
+    specs: [
+      { label: "Equipment", val: "3D Laser Scanners & Digital Levels" },
+      { label: "Accuracy standard", val: "Tolerance of ±1.0 mm" },
+      { label: "Inspection points", val: "Slab deflections & column alignments" },
+    ],
+  },
+  {
+    num: "03",
+    title: "Design & Engineering",
+    icon: Compass,
+    desc: "Drafting detailed CAD shop drawings, glass thickness schedules, and custom anchor bracket calculations.",
+    img: "/services/brochure-img-13.jpg",
+    specs: [
+      { label: "CAD Platforms", val: "AutoCAD & Finite Element Stress Analysis" },
+      { label: "Wind load specs", val: "IS 875 Part 3 Standard Calculations" },
+      { label: "Clearance", val: "Structural Stability Certification" },
+    ],
+  },
+  {
+    num: "04",
+    title: "Material Selection",
+    icon: Layers,
+    desc: "Sourcing certified T6 temper aluminium alloys, high-performance thermal barriers, and custom glazing specs.",
+    img: "/services/brochure-img-15.jpg",
+    specs: [
+      { label: "Alloy Grade", val: "6063-T6 Structural Grade Extrusions" },
+      { label: "Thermal Barriers", val: "Polyamide insulating struts & EPDM gaskets" },
+      { label: "Glazing Types", val: "Double Laminated Low-E acoustic pane sashes" },
+    ],
+  },
+  {
+    num: "05",
+    title: "Fabrication",
+    icon: Cpu,
+    desc: "Precision CNC profile cutting, double-miter joint corner crimping, and automated lock machining at our plant.",
+    img: "/services/brochure-img-16.jpg",
+    specs: [
+      { label: "Profile Cutting", val: "CNC double-miter automated cutting" },
+      { label: "Corner Joining", val: "Pneumatic glue-injected corner crimping" },
+      { label: "Hardware fitting", val: "Premium concealed sills & locking tracks" },
+    ],
+  },
+  {
+    num: "06",
+    title: "Quality Inspection",
+    icon: CheckSquare,
+    desc: "Rigorous quality audits checking dimensional tolerances, gasket seals, and hardware cycle operations.",
+    img: "/services/brochure-img-17.jpg",
+    specs: [
+      { label: "Tolerance audits", val: "Tolerances held within +0.5mm / -0.0mm" },
+      { label: "Water tight test", val: "EPDM compression & drainage seal checks" },
+      { label: "Hardware cycles", val: "Opening/closing friction testing audits" },
+    ],
+  },
+  {
+    num: "07",
+    title: "Installation",
+    icon: Wrench,
+    desc: "Anchor bracket fixing, structural hoisting of glass sashes, and high-performance weather silicone sealing.",
+    img: "/services/brochure-img-18.jpg",
+    specs: [
+      { label: "Sash Anchoring", val: "Heavy galvanized steel anchor plates" },
+      { label: "Weather sealing", val: "Dow Corning structural silicone jointing" },
+      { label: "Sash hoisting", val: "Suction-cup crane hoist for oversized panels" },
+    ],
+  },
+  {
+    num: "08",
+    title: "Project Handover",
+    icon: Award,
+    desc: "Fine calibration of rollers and pivots, deep cleaning of profiles, and handover of keys & warranty packs.",
+    img: "/services/brochure-img-24.jpg",
+    specs: [
+      { label: "Calibration", val: "Glide operation force check under 15N" },
+      { label: "Profile cleaning", val: "Alkaline-free neutral profile wash" },
+      { label: "Warranty packs", val: "10-Year structural integrity certificate handover" },
+    ],
+  },
+  {
+    num: "09",
+    title: "After-Sales Support",
+    icon: Phone,
+    desc: "Dedicated customer service for annual checks, weather gasket lubrication, and quick hardware adjustments.",
+    img: "/services/brochure-img-12.jpg",
+    specs: [
+      { label: "Response SLA", val: "Engineering site visit within 24 hours" },
+      { label: "Maintenance checks", val: "Annual profile alignment & track cleaning" },
+      { label: "Warranty coverage", val: "Replacement parts support on gaskets & locks" },
+    ],
+  },
+];
+
+/* ----------------------------- ANIMATION VARIANTS --------------------------- */
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -348,7 +462,7 @@ const scaleIn = {
   },
 };
 
-/* ─────────────────────────────── STAT COUNTER ─────────────────────────────── */
+/* ------------------------------- STAT COUNTER ------------------------------- */
 
 function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -385,136 +499,90 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
-/* ─────────────────────────────── MAIN COMPONENT ──────────────────────────── */
+/* ------------------------------- MAIN COMPONENT ---------------------------- */
 
 export default function ServicesPage() {
-  const [activeCategory, setActiveCategory] = useState("glazing");
-  const [modalSystem, setModalSystem] = useState<SystemItem | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const [activeStep, setActiveStep] = useState(0);
 
-  // Hash routing support
+  // Hash routing support for scrolling to categories on mount or hash changes
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const hash = window.location.hash.replace("#", "");
-      if (hash) {
-        for (const [catId, systems] of Object.entries(allSystems)) {
-          const found = systems.find(s => s.id === hash);
-          if (found) {
-            setActiveCategory(catId);
+      const handleHashChange = () => {
+        const hash = window.location.hash.replace("#", "");
+        if (hash) {
+          const element = document.getElementById(hash);
+          if (element) {
             setTimeout(() => {
-              document.getElementById("services-grid")?.scrollIntoView({ behavior: "smooth" });
+              element.scrollIntoView({ behavior: "smooth", block: "start" });
             }, 200);
-            break;
           }
         }
-      }
+      };
+
+      // Run on initial load
+      handleHashChange();
+
+      // Listen for hash changes
+      window.addEventListener("hashchange", handleHashChange);
+      return () => window.removeEventListener("hashchange", handleHashChange);
     }
   }, []);
 
-  // Prevent body scroll when modal is open
-  useEffect(() => {
-    document.body.style.overflow = isModalOpen ? "hidden" : "unset";
-    return () => { document.body.style.overflow = "unset"; };
-  }, [isModalOpen]);
-
-  const openModal = useCallback((system: SystemItem) => {
-    setModalSystem(system);
-    setIsModalOpen(true);
-  }, []);
-
-  const closeModal = useCallback(() => {
-    setIsModalOpen(false);
-    setTimeout(() => setModalSystem(null), 300);
-  }, []);
-
-  const currentSystems = allSystems[activeCategory] || [];
-  const activeCategoryData = categories.find(c => c.id === activeCategory)!;
-
   return (
-    <div className={`bg-[#FAFAF8] min-h-screen ${cormorant.variable}`}>
+    <div className="bg-[#FAFAF8] min-h-screen">
 
-      {/* ═══════════════════ IMMERSIVE HERO SECTION ═══════════════════ */}
-      <section ref={heroRef} className="relative h-[85vh] min-h-[600px] overflow-hidden">
-        {/* Background image with parallax */}
-        <motion.div className="absolute inset-0" style={{ y: heroY }}>
+      {/* Page Hero */}
+      <section className="relative py-20 md:py-24 bg-section overflow-hidden border-b border-border">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-section/90 z-10" />
           <Image
             src="/services/brochure-img-2.jpg"
-            alt="Premium architectural aluminium systems"
+            alt="Premium architectural systems catalog"
             fill
-            className="object-cover"
+            className="object-cover animate-[pulse-slow]"
             sizes="100vw"
             priority
+            loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#00373E]/70 via-[#00373E]/50 to-[#00373E]/90" />
-        </motion.div>
+        </div>
+        <div className="container mx-auto px-6 md:px-12 relative z-20 max-w-7xl">
+          <div className="breadcrumbs text-xs text-body/70 mb-4 flex items-center gap-2 font-heading uppercase tracking-widest font-bold">
+            <Link href="/" className="hover:text-accent transition-colors">Home</Link>
+            <ChevronRight className="w-3 h-3 text-accent" />
+            <span className="text-heading">Services</span>
+          </div>
+          
+          <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">
+            System Catalog
+          </span>
+          
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold text-heading mb-4 leading-[1.1] max-w-4xl tracking-tight">
+            Precision Crafted Aluminium Systems.
+          </h1>
+          
+          <p className="text-base md:text-lg text-body/90 max-w-2xl leading-relaxed font-light mb-8">
+            From panoramic glass facades to motorized pergolas, explore our comprehensive collection of custom-engineered architectural solutions.
+          </p>
 
-        {/* Floating geometric accents */}
-        <div className="absolute top-20 right-20 w-72 h-72 border border-[#C28B45]/20 rounded-full animate-[spin_60s_linear_infinite] pointer-events-none hidden lg:block" />
-        <div className="absolute bottom-32 left-16 w-40 h-40 border border-white/10 rotate-45 pointer-events-none hidden lg:block" />
-
-        {/* Hero Content */}
-        <motion.div
-          style={{ opacity: heroOpacity }}
-          className="relative z-10 h-full flex flex-col justify-center container mx-auto px-6 md:px-12 max-w-7xl"
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="max-w-3xl"
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-px w-12 bg-[#C28B45]" />
-              <span className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#C28B45] uppercase">
-                20 Elite Architectural Systems
-              </span>
-            </div>
-
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-white leading-[1.1] mb-6" style={{ fontFamily: "var(--font-cormorant)" }}>
-              Precision Crafted
-              <br />
-              <span className="italic font-normal text-[#C28B45]">Aluminium</span> Systems
-            </h1>
-
-            <p className="text-base md:text-lg text-white/70 font-light max-w-xl leading-relaxed mb-10">
-              From panoramic glass walls to motorized outdoor roofs — discover our complete 
-              catalog of architectural aluminium solutions engineered for the extraordinary.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                href="/request-quote"
-                variant="accent"
-                className="shadow-xl shadow-[#C28B45]/20"
-              >
-                Request Project Quote
-              </Button>
-              <button
-                onClick={() => document.getElementById("services-grid")?.scrollIntoView({ behavior: "smooth" })}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/30 text-white text-sm font-medium hover:bg-white/10 transition-all cursor-pointer"
-              >
-                Explore Systems <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          </motion.div>
-
-          {/* Scroll down indicator */}
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-          >
-            <span className="text-[9px] font-mono tracking-[0.2em] text-white/40 uppercase">Scroll</span>
-            <div className="w-px h-8 bg-gradient-to-b from-[#C28B45] to-transparent" />
-          </motion.div>
-        </motion.div>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button
+              href="/request-quote"
+              variant="accent"
+              className="shadow-xl shadow-[#C28B45]/20 hover:scale-105 transition-transform duration-300"
+            >
+              Request Project Quote
+            </Button>
+            <button
+              onClick={() => document.getElementById("services-catalog")?.scrollIntoView({ behavior: "smooth" })}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-primary/20 text-primary text-sm font-semibold hover:bg-primary/5 transition-all cursor-pointer bg-white/50 backdrop-blur-sm"
+            >
+              Explore Systems <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
       </section>
 
-      {/* ═══════════════════ FLOATING STAT COUNTERS ═══════════════════ */}
+      {/* ===================== FLOATING STAT COUNTERS ===================== */}
       <section className="relative z-20 -mt-16">
         <div className="container mx-auto px-6 md:px-12 max-w-6xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -532,7 +600,7 @@ export default function ServicesPage() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="bg-white rounded-2xl p-6 text-center shadow-xl shadow-black/5 border border-[#C28B45]/10 hover:border-[#C28B45]/30 transition-all group"
               >
-                <div className="text-3xl md:text-4xl font-light text-primary mb-1" style={{ fontFamily: "var(--font-cormorant)" }}>
+                <div className="text-3xl md:text-4xl font-heading font-bold text-primary mb-1">
                   <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                 </div>
                 <span className="text-[10px] font-mono tracking-wider text-secondary/60 uppercase">{stat.label}</span>
@@ -542,166 +610,219 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ═══════════════════ CATEGORY TABS + GRID ═══════════════════ */}
-      <section id="services-grid" className="pt-24 pb-32">
-        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
+      {/* ===================== DIVISION CATALOGUE (SPLIT-FEATURE SECTIONS) ===================== */}
+      <div id="services-grid" className="scroll-mt-32">
+        {categories.map((cat, idx) => {
+          const isEven = idx % 2 === 0;
+          const systems = allSystems[cat.id] || [];
+          
+          // Image selected for this division
+          const divisionImage = systems[0]?.img || "/services/brochure-img-2.jpg";
 
-          {/* Section heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <span className="text-[10px] font-mono font-bold tracking-[0.25em] text-[#C28B45] uppercase block mb-4">
-              Our Catalog
-            </span>
-            <h2 className="text-3xl md:text-5xl font-light text-primary leading-tight mb-4" style={{ fontFamily: "var(--font-cormorant)" }}>
-              Explore by <span className="italic font-normal">Category</span>
+          return (
+            <section
+              key={cat.id}
+              id={cat.id}
+              className={`relative flex flex-col min-h-[480px] border-b border-primary/5 scroll-mt-28 ${
+                isEven ? "lg:flex-row bg-white" : "lg:flex-row-reverse bg-[#FAF9F5]"
+              }`}
+            >
+              {/* Image Column */}
+              <div className="w-full lg:w-1/2 relative h-[320px] lg:h-auto">
+                <Image
+                  src={divisionImage}
+                  alt={cat.label}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-[#001518]/5 pointer-events-none" />
+              </div>
+
+              {/* Content Column */}
+              <div className="w-full lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center space-y-5">
+                <span className="text-[#C28B45] font-heading font-bold uppercase tracking-widest text-xs md:text-sm">
+                  DIVISION 0{idx + 1} // {cat.label}
+                </span>
+                
+                <h2 className="text-2xl md:text-4xl font-heading font-bold text-primary leading-tight tracking-tight">
+                  {cat.label}
+                </h2>
+                
+                <p className="text-secondary/80 leading-relaxed text-xs md:text-sm font-light">
+                  {cat.description}
+                </p>
+
+                {/* Systems checklist */}
+                <ul className="space-y-2">
+                  {systems.map((system) => (
+                    <li key={system.id} className="flex items-center text-xs md:text-sm font-semibold text-primary">
+                      <CheckCircle2 className="w-4.5 h-4.5 text-[#C28B45] mr-3 flex-shrink-0" />
+                      {system.title}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="pt-2">
+                  <Button 
+                    href={cat.href} 
+                    variant="accent" 
+                    className="gold-glow hover:scale-105 transition-transform duration-300"
+                  >
+                    Explore Division Systems &rarr;
+                  </Button>
+                </div>
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      {/* ===================== OUR PROCESS SECTION ===================== */}
+      <section id="process" className="py-24 border-t border-primary/5 bg-[#FAF9F5]/40">
+        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
+          
+          <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
+            <span className="text-[10px] font-mono font-bold tracking-[0.25em] text-[#C28B45] uppercase block mb-4">How We Work</span>
+            <h2 className="text-3xl md:text-5xl font-bold font-heading text-primary leading-tight mb-4">
+              Our Facade Engineering <span className="italic font-light">Process</span>
             </h2>
             <p className="text-sm text-secondary/70 font-light max-w-lg mx-auto">
-              Select a category below to browse our curated collection of precision-engineered aluminium systems.
+              From initial blueprints to after-sales maintenance support, we check every millimeter of your custom glazing.
             </p>
-          </motion.div>
-
-          {/* Category Tab Navigation */}
-          <div className="flex flex-wrap justify-center gap-3 mb-16">
-            {categories.map((cat) => {
-              const isActive = activeCategory === cat.id;
-              const Icon = cat.icon;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`group relative flex items-center gap-2.5 px-6 py-3.5 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
-                    isActive
-                      ? "bg-primary text-white shadow-lg shadow-primary/20"
-                      : "bg-white text-secondary border border-primary/10 hover:border-[#C28B45]/40 hover:shadow-md"
-                  }`}
-                >
-                  <Icon className={`w-4 h-4 transition-colors ${isActive ? "text-[#C28B45]" : "text-secondary/50 group-hover:text-[#C28B45]"}`} />
-                  {cat.label}
-                  {isActive && (
-                    <motion.span
-                      layoutId="active-pill"
-                      className="absolute inset-0 bg-primary rounded-full -z-10"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                </button>
-              );
-            })}
           </div>
 
-          {/* Active Category Description */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="flex items-center justify-center gap-3 mb-12"
-            >
-              <Sparkles className="w-4 h-4 text-[#C28B45]" />
-              <p className="text-sm text-secondary/70 font-light italic">{activeCategoryData.description}</p>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Systems Card Grid */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {currentSystems.map((system, idx) => (
-                <motion.div
-                  key={system.id}
-                  custom={idx}
-                  variants={fadeUp}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-50px" }}
-                  className="group relative bg-white rounded-2xl overflow-hidden border border-primary/5 hover:border-[#C28B45]/30 shadow-sm hover:shadow-2xl hover:shadow-[#C28B45]/10 transition-all duration-500 cursor-pointer"
-                  onClick={() => openModal(system)}
-                >
-                  {/* Card Image */}
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={system.img}
-                      alt={system.consumerTitle}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
-
-                    {/* System number badge */}
-                    <div className="absolute top-4 left-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center border border-[#C28B45]/20">
-                      <span className="text-[11px] font-mono font-bold text-primary">{system.num}</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            
+            {/* Left timeline rail: Step list */}
+            <div className="lg:col-span-5 space-y-3 max-h-[580px] overflow-y-auto pr-2 custom-scrollbar">
+              {processSteps.map((step, idx) => {
+                const StepIcon = step.icon;
+                const isActive = activeStep === idx;
+                return (
+                  <button
+                    key={step.num}
+                    onClick={() => setActiveStep(idx)}
+                    className={`w-full text-left p-4 rounded-2xl flex items-center gap-5 border transition-all duration-300 cursor-pointer ${
+                      isActive 
+                        ? "bg-[#C28B45]/10 border-[#C28B45]/40 shadow-lg shadow-[#C28B45]/5" 
+                        : "bg-white text-secondary border border-primary/10 hover:border-[#C28B45]/20"
+                    }`}
+                  >
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
+                      isActive ? "bg-[#C28B45] text-white" : "bg-primary/5 text-primary/60"
+                    }`}>
+                      <StepIcon className="w-5 h-5" />
                     </div>
-
-                    {/* CAD Reference tag */}
-                    <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
-                      <span className="text-[9px] font-mono font-bold tracking-wider text-[#C28B45]">{system.dwgRef}</span>
-                    </div>
-
-                    {/* Bottom overlay on hover */}
-                    <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-3 group-hover:translate-y-0">
-                      <div className="flex flex-wrap gap-1.5">
-                        {system.apps.split(" · ").map((app, i) => (
-                          <span key={i} className="text-[9px] font-medium px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white border border-white/10">
-                            {app}
-                          </span>
-                        ))}
+                    
+                    <div className="flex-grow min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-[9px] text-[#C28B45] font-bold tracking-widest">PHASE {step.num}</span>
+                        {isActive && <span className="w-2 h-2 rounded-full bg-[#C28B45] animate-pulse" />}
                       </div>
+                      <h4 className={`text-base font-bold tracking-tight truncate font-heading ${isActive ? "text-[#C28B45]" : "text-primary"}`}>
+                        {step.title}
+                      </h4>
                     </div>
-                  </div>
+                  </button>
+                );
+              })}
+            </div>
 
-                  {/* Card Content */}
-                  <div className="p-5 space-y-3">
-                    <h3 className="text-base font-bold text-primary leading-snug group-hover:text-[#C28B45] transition-colors">
-                      {system.consumerTitle}
+            {/* Right detailed board */}
+            <div className="lg:col-span-7 bg-white rounded-3xl p-6 md:p-10 shadow-2xl border border-[#C28B45]/15 relative overflow-hidden min-h-[520px] flex flex-col justify-between">
+              {/* Background gradient backdrop */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(194,139,69,0.04),transparent_50%)] pointer-events-none" />
+              
+              <div className="space-y-8">
+                {/* Header info */}
+                <div className="flex items-start justify-between border-b border-[#C28B45]/10 pb-6 font-heading">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-mono tracking-widest text-[#C28B45] uppercase font-bold">
+                      Process Details / Step {processSteps[activeStep].num}
+                    </span>
+                    <h3 className="text-3xl font-heading font-bold text-primary">
+                      {processSteps[activeStep].title}
                     </h3>
-                    <p className="text-xs text-secondary/70 font-light leading-relaxed line-clamp-2">
-                      {system.simpleDesc}
+                  </div>
+                  <div className="text-6xl font-mono font-extrabold text-primary/5 tracking-tighter pointer-events-none select-none">
+                    {processSteps[activeStep].num}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                  {/* Left sub-col: Description & Specs */}
+                  <div className="md:col-span-7 space-y-6">
+                    <p className="text-sm text-secondary/80 leading-relaxed font-sans font-light">
+                      {processSteps[activeStep].desc}
                     </p>
 
-                    {/* Feature pills */}
-                    <div className="flex items-center gap-3 pt-1">
-                      <div className="flex items-center gap-1.5 text-[10px] text-secondary/60">
-                        <Shield className="w-3 h-3 text-[#C28B45]" />
-                        <span>{system.alloy.split(" ")[1]}</span>
-                      </div>
-                      <div className="w-px h-3 bg-primary/10" />
-                      <div className="flex items-center gap-1.5 text-[10px] text-secondary/60">
-                        <Thermometer className="w-3 h-3 text-[#C28B45]" />
-                        <span>Thermal Break</span>
-                      </div>
-                    </div>
-
-                    {/* View details link */}
-                    <div className="flex items-center justify-between pt-2 border-t border-primary/5">
-                      <span className="text-[10px] font-mono font-bold tracking-wider text-[#C28B45] uppercase group-hover:tracking-[0.2em] transition-all">
-                        View Details
-                      </span>
-                      <div className="w-8 h-8 rounded-full bg-[#C28B45]/10 flex items-center justify-center group-hover:bg-[#C28B45] transition-all duration-300">
-                        <ArrowRight className="w-3.5 h-3.5 text-[#C28B45] group-hover:text-white transition-colors" />
-                      </div>
+                    {/* Specifications list */}
+                    <div className="rounded-2xl border border-primary/5 overflow-hidden text-xs font-sans">
+                      {processSteps[activeStep].specs.map((spec, i) => (
+                        <div 
+                          key={spec.label} 
+                          className={`grid grid-cols-[110px_1fr] gap-3 p-3.5 ${
+                            i % 2 === 0 ? "bg-[#FAF9F5]" : "bg-white"
+                          } ${i < 2 ? "border-b border-primary/5" : ""}`}
+                        >
+                          <span className="text-[9px] font-mono text-secondary/50 uppercase tracking-wider">{spec.label}</span>
+                          <span className="font-bold text-primary">{spec.val}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
+
+                  {/* Right sub-col: Graphic/Photo frame */}
+                  <div className="md:col-span-5 flex justify-center">
+                    <div className="relative w-full aspect-[4/5] max-w-[200px] rounded-2xl overflow-hidden border border-[#C28B45]/20 shadow-lg luxury-ticks bg-[#FAF9F5]">
+                      <Image
+                        src={processSteps[activeStep].img}
+                        alt={processSteps[activeStep].title}
+                        fill
+                        className="object-cover opacity-90"
+                        sizes="200px"
+                      />
+                      <div className="absolute inset-0 bg-[#001518]/5 pointer-events-none" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action buttons footer */}
+              <div className="border-t border-primary/5 pt-6 mt-8 flex flex-col sm:flex-row items-center gap-4 justify-between font-sans">
+                <span className="text-[10px] font-mono text-secondary/45 uppercase">
+                  SHREE HARI ALU CORPORATION // WORKFLOW
+                </span>
+                
+                <div className="flex gap-3">
+                  {activeStep > 0 && (
+                    <button
+                      onClick={() => setActiveStep((p) => p - 1)}
+                      className="px-4 py-2 rounded-xl border border-[#C28B45]/20 hover:bg-[#FAF9F5] text-xs font-bold transition-all cursor-pointer text-primary"
+                    >
+                      &larr; Previous
+                    </button>
+                  )}
+                  {activeStep < processSteps.length - 1 && (
+                    <button
+                      onClick={() => setActiveStep((p) => p + 1)}
+                      className="px-4 py-2 rounded-xl bg-[#C28B45] text-white hover:scale-105 text-xs font-bold transition-all cursor-pointer"
+                    >
+                      Next Phase &rarr;
+                    </button>
+                  )}
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
       </section>
 
-      {/* ═══════════════════ PREMIUM CONSULTATION CTA ═══════════════════ */}
+      {/* ===================== PREMIUM CONSULTATION CTA ===================== */}
       <section className="py-28 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(194,139,69,0.15),transparent_50%)]" />
@@ -726,10 +847,10 @@ export default function ServicesPage() {
               </span>
             </div>
 
-            <h2 className="text-3xl md:text-5xl font-light text-white leading-tight mb-6" style={{ fontFamily: "var(--font-cormorant)" }}>
+            <h2 className="text-3xl md:text-5xl font-bold font-heading text-white leading-tight mb-6">
               Have architectural blueprints?
               <br />
-              <span className="italic font-normal text-[#C28B45]">Let us engineer the perfect match.</span>
+              <span className="italic font-light text-[#C28B45]">Let us engineer the perfect match.</span>
             </h2>
 
             <p className="text-base text-white/50 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -757,150 +878,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ═══════════════════ FULLSCREEN MODAL ═══════════════════ */}
-      <AnimatePresence>
-        {isModalOpen && modalSystem && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={closeModal}
-              className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm"
-            />
-
-            {/* Modal Panel */}
-            <motion.div
-              initial={{ opacity: 0, y: 50, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 50, scale: 0.95 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-4 md:inset-8 lg:inset-12 z-50 bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col"
-            >
-              {/* Modal Header */}
-              <div className="flex items-center justify-between p-5 md:p-6 border-b border-primary/5 bg-[#FAFAF8]">
-                <div className="flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-xl bg-primary flex items-center justify-center">
-                    <span className="text-sm font-mono font-bold text-[#C28B45]">{modalSystem.num}</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-primary">{modalSystem.consumerTitle}</h3>
-                    <span className="text-[10px] font-mono tracking-wider text-secondary/60">{modalSystem.dwgRef} · {modalSystem.title}</span>
-                  </div>
-                </div>
-                <button
-                  onClick={closeModal}
-                  className="w-10 h-10 rounded-full border border-primary/10 flex items-center justify-center text-primary hover:text-[#C28B45] hover:border-[#C28B45] transition-all cursor-pointer bg-white"
-                  aria-label="Close details"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Modal Body */}
-              <div className="flex-grow overflow-y-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-2 min-h-full">
-
-                  {/* Left: Full-bleed Image */}
-                  <div className="relative min-h-[300px] lg:min-h-full bg-stone-100">
-                    <Image
-                      src={modalSystem.img}
-                      alt={modalSystem.consumerTitle}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-black/10" />
-
-                    {/* Application tags on image */}
-                    <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-1.5">
-                      {modalSystem.apps.split(" · ").map((app, i) => (
-                        <span key={i} className="text-[10px] font-medium px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-md text-white border border-white/20">
-                          {app}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Right: Details Content */}
-                  <div className="p-6 md:p-10 space-y-8">
-
-                    {/* Description */}
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <Eye className="w-4 h-4 text-[#C28B45]" />
-                        <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-secondary/60 uppercase">Overview</span>
-                      </div>
-                      <p className="text-sm text-secondary leading-relaxed">
-                        {modalSystem.simpleDesc}
-                      </p>
-                      <p className="text-sm text-primary font-medium leading-relaxed">
-                        {modalSystem.benefits}
-                      </p>
-                    </div>
-
-                    {/* Features */}
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-[#C28B45]" />
-                        <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-secondary/60 uppercase">Key Features</span>
-                      </div>
-                      <div className="space-y-2">
-                        {modalSystem.features.map((feat, i) => (
-                          <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-[#FAFAF8] border border-primary/5">
-                            <CheckCircle2 className="w-4 h-4 text-[#C28B45] flex-shrink-0 mt-0.5" />
-                            <span className="text-sm text-secondary">{feat}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Technical Specs Table */}
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <Ruler className="w-4 h-4 text-[#C28B45]" />
-                        <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-secondary/60 uppercase">Technical Specifications</span>
-                      </div>
-                      <div className="rounded-xl border border-primary/5 overflow-hidden text-sm">
-                        {[
-                          { label: "Aluminium Alloy", value: modalSystem.alloy },
-                          { label: "Thermal Insulation", value: modalSystem.thermalBreak },
-                          { label: "Glazing Capacity", value: modalSystem.glassCap },
-                          { label: "Drawing Reference", value: modalSystem.dwgRef },
-                        ].map((spec, i) => (
-                          <div key={spec.label} className={`grid grid-cols-[140px_1fr] gap-4 p-3.5 ${i % 2 === 0 ? "bg-[#FAFAF8]" : "bg-white"} ${i < 3 ? "border-b border-primary/5" : ""}`}>
-                            <span className="text-xs font-mono text-secondary/60">{spec.label}</span>
-                            <span className="text-xs font-medium text-primary">{spec.value}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Modal Footer */}
-              <div className="p-5 md:p-6 border-t border-primary/5 bg-[#FAFAF8] flex flex-col sm:flex-row gap-3">
-                <Button
-                  href={`/request-quote?system=${encodeURIComponent(modalSystem.consumerTitle)}`}
-                  variant="accent"
-                  className="flex-1 shadow-md"
-                >
-                  Request Quote for This System
-                </Button>
-                <Button
-                  href="/contact"
-                  variant="outline"
-                  className="flex-1"
-                >
-                  Talk to Engineer →
-                </Button>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

@@ -48,11 +48,11 @@ export default function WhyChooseUsPage() {
       <section className="relative py-20 md:py-24 bg-section overflow-hidden border-b border-border">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-section/90 z-10" />
-          <Image 
-            src={IMAGES.hero} 
-            alt="The Shree Hari standard" 
-            fill 
-            className="object-cover" 
+          <Image
+            src={IMAGES.hero}
+            alt="The Shree Hari standard"
+            fill
+            className="object-cover"
             sizes="100vw"
             priority
           />
@@ -164,11 +164,11 @@ export default function WhyChooseUsPage() {
           </div>
           <div className="lg:col-span-5 relative">
             <div className="relative h-[320px] w-full rounded-2xl overflow-hidden shadow-2xl premium-border gold-glow">
-              <Image 
-                src={IMAGES.pergola} 
-                alt="Weather-ready aluminium pergola and glazing system" 
-                fill 
-                className="object-cover" 
+              <Image
+                src={IMAGES.pergola}
+                alt="Weather-ready aluminium pergola and glazing system"
+                fill
+                className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
             </div>

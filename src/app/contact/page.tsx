@@ -47,11 +47,11 @@ export default function ContactPage() {
       <section className="relative py-20 md:py-24 bg-section overflow-hidden border-b border-border">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-section/90 z-10" />
-          <Image 
-            src={IMAGES.hero} 
-            alt="Contact Shree Hari Alu" 
-            fill 
-            className="object-cover" 
+          <Image
+            src={IMAGES.hero}
+            alt="Contact Shree Hari Alu"
+            fill
+            className="object-cover"
             sizes="100vw"
             priority
           />
@@ -75,13 +75,13 @@ export default function ContactPage() {
       {/* Contact Layout Section */}
       <Section background="main">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-5xl mx-auto items-start">
-                   {/* Left Column: Contact Card Aside */}
+          {/* Left Column: Contact Card Aside */}
           <aside className="lg:col-span-5 bg-card p-8 md:p-10 rounded-3xl border border-border hover:border-accent/40 transition-all duration-500 shadow-xl space-y-6">
             <div>
               <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs mb-2 block">Contact studio</span>
               <h3 className="text-xl md:text-2xl font-heading font-bold text-heading tracking-tight">Speak with our project team.</h3>
             </div>
- 
+
             <div className="space-y-5">
               {[
                 { num: "01", title: "Call", value: <a href="tel:+919876543210" className="hover:text-accent transition-colors text-heading font-semibold">+91 98765 43210</a> },
@@ -120,7 +120,7 @@ export default function ContactPage() {
                   id="contact-name"
                   required
                   value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all font-medium"
                   placeholder="Enter your full name"
                 />
@@ -132,7 +132,7 @@ export default function ContactPage() {
                   id="contact-phone"
                   required
                   value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all font-medium"
                   placeholder="+91 98765 43210"
                 />
@@ -144,7 +144,7 @@ export default function ContactPage() {
                   id="contact-email"
                   required
                   value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all font-medium"
                   placeholder="name@example.com"
                 />
@@ -156,7 +156,7 @@ export default function ContactPage() {
                   id="contact-city"
                   required
                   value={formData.city}
-                  onChange={(e) => setFormData({...formData, city: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all font-medium"
                   placeholder="e.g. Ahmedabad"
                 />
@@ -167,7 +167,7 @@ export default function ContactPage() {
                   <select
                     id="contact-service"
                     value={formData.service}
-                    onChange={(e) => setFormData({...formData, service: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                     className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all font-medium appearance-none"
                   >
                     <option className="bg-white text-heading">Premium aluminium windows</option>
@@ -186,7 +186,7 @@ export default function ContactPage() {
                   id="contact-message"
                   rows={3}
                   value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all resize-none font-medium text-heading"
                   placeholder="Tell us about your project, stage and timeline"
                 />
@@ -210,11 +210,11 @@ export default function ContactPage() {
       <section className="py-12 bg-section border-t border-b border-border">
         <div className="container mx-auto px-4 md:px-8 max-w-5xl">
           <div className="rounded-3xl overflow-hidden shadow-2xl border border-accent/15 h-[360px] relative bg-card gold-glow">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.6979262104523!2d72.54045861542452!3d23.034856372332356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84e5482390a7%3A0x6bfe76e0cd673a38!2sAhmedabad%2C%20Gujarat%2C%20India!5e0!3m2!1sen!2sin!4v1625050000000!5m2!1sen!2sin" 
-              className="absolute inset-0 w-full h-full border-0" 
-              allowFullScreen 
-              loading="lazy" 
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.6979262104523!2d72.54045861542452!3d23.034856372332356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84e5482390a7%3A0x6bfe76e0cd673a38!2sAhmedabad%2C%20Gujarat%2C%20India!5e0!3m2!1sen!2sin!4v1625050000000!5m2!1sen!2sin"
+              className="absolute inset-0 w-full h-full border-0"
+              allowFullScreen
+              loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Office Location Map"
             ></iframe>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, CheckCircle2, ArrowUpRight, HelpCircle, X, Phone, ChevronRight, Home as HomeIcon, Building2, Factory } from "lucide-react";
+import { ArrowRight, CheckCircle2, ArrowUpRight, HelpCircle, X, Phone, ChevronRight, Home as HomeIcon, Building2, Factory, MessageSquare, Maximize2, Compass, Cpu, CheckSquare, Wrench, Layers, Award } from "lucide-react";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 
@@ -54,6 +54,117 @@ const faqs = [
   }
 ];
 
+const processSteps = [
+  {
+    num: "01",
+    title: "Consultation",
+    icon: MessageSquare,
+    desc: "We align with your architect's blueprints, discuss sightline preferences, and draft initial budget scopes.",
+    img: "/services/brochure-img-2.jpg",
+    specs: [
+      { label: "Methodology", val: "Architectural Brief Review" },
+      { label: "Engineering Focus", val: "Sightline configurations & Wind limits" },
+      { label: "Key Deliverables", val: "System proposals & preliminary estimate" },
+    ],
+  },
+  {
+    num: "02",
+    title: "Site Survey",
+    icon: Maximize2,
+    desc: "Our engineers scan structural openings using high-precision digital measuring tools to secure an absolute fit.",
+    img: "/services/brochure-img-11.jpg",
+    specs: [
+      { label: "Equipment", val: "3D Laser Scanners & Digital Levels" },
+      { label: "Accuracy standard", val: "Tolerance of ±1.0 mm" },
+      { label: "Inspection points", val: "Slab deflections & column alignments" },
+    ],
+  },
+  {
+    num: "03",
+    title: "Design & Engineering",
+    icon: Compass,
+    desc: "Drafting detailed CAD shop drawings, glass thickness schedules, and custom anchor bracket calculations.",
+    img: "/services/brochure-img-13.jpg",
+    specs: [
+      { label: "CAD Platforms", val: "AutoCAD & Finite Element Stress Analysis" },
+      { label: "Wind load specs", val: "IS 875 Part 3 Standard Calculations" },
+      { label: "Clearance", val: "Structural Stability Certification" },
+    ],
+  },
+  {
+    num: "04",
+    title: "Material Selection",
+    icon: Layers,
+    desc: "Sourcing certified T6 temper aluminium alloys, high-performance thermal barriers, and custom glazing specs.",
+    img: "/services/brochure-img-15.jpg",
+    specs: [
+      { label: "Alloy Grade", val: "6063-T6 Structural Grade Extrusions" },
+      { label: "Thermal Barriers", val: "Polyamide insulating struts & EPDM gaskets" },
+      { label: "Glazing Types", val: "Double Laminated Low-E acoustic pane sashes" },
+    ],
+  },
+  {
+    num: "05",
+    title: "Fabrication",
+    icon: Cpu,
+    desc: "Precision CNC profile cutting, double-miter joint corner crimping, and automated lock machining at our plant.",
+    img: "/services/brochure-img-16.jpg",
+    specs: [
+      { label: "Profile Cutting", val: "CNC double-miter automated cutting" },
+      { label: "Corner Joining", val: "Pneumatic glue-injected corner crimping" },
+      { label: "Hardware fitting", val: "Premium concealed sills & locking tracks" },
+    ],
+  },
+  {
+    num: "06",
+    title: "Quality Inspection",
+    icon: CheckSquare,
+    desc: "Rigorous quality audits checking dimensional tolerances, gasket seals, and hardware cycle operations.",
+    img: "/services/brochure-img-17.jpg",
+    specs: [
+      { label: "Tolerance audits", val: "Tolerances held within +0.5mm / -0.0mm" },
+      { label: "Water tight test", val: "EPDM compression & drainage seal checks" },
+      { label: "Hardware cycles", val: "Opening/closing friction testing audits" },
+    ],
+  },
+  {
+    num: "07",
+    title: "Installation",
+    icon: Wrench,
+    desc: "Anchor bracket fixing, structural hoisting of glass sashes, and high-performance weather silicone sealing.",
+    img: "/services/brochure-img-18.jpg",
+    specs: [
+      { label: "Sash Anchoring", val: "Heavy galvanized steel anchor plates" },
+      { label: "Weather sealing", val: "Dow Corning structural silicone jointing" },
+      { label: "Sash hoisting", val: "Suction-cup crane hoist for oversized panels" },
+    ],
+  },
+  {
+    num: "08",
+    title: "Project Handover",
+    icon: Award,
+    desc: "Fine calibration of rollers and pivots, deep cleaning of profiles, and handover of keys & warranty packs.",
+    img: "/services/brochure-img-24.jpg",
+    specs: [
+      { label: "Calibration", val: "Glide operation force check under 15N" },
+      { label: "Profile cleaning", val: "Alkaline-free neutral profile wash" },
+      { label: "Warranty packs", val: "10-Year structural integrity certificate handover" },
+    ],
+  },
+  {
+    num: "09",
+    title: "After-Sales Support",
+    icon: Phone,
+    desc: "Dedicated customer service for annual checks, weather gasket lubrication, and quick hardware adjustments.",
+    img: "/services/brochure-img-12.jpg",
+    specs: [
+      { label: "Response SLA", val: "Engineering site visit within 24 hours" },
+      { label: "Maintenance checks", val: "Annual profile alignment & track cleaning" },
+      { label: "Warranty coverage", val: "Replacement parts support on gaskets & locks" },
+    ],
+  },
+];
+
 export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -61,6 +172,7 @@ export default function Home() {
   const [inquiryProduct, setInquiryProduct] = useState("");
   const [inquirySubmitted, setInquirySubmitted] = useState(false);
   const [sliderPosition, setSliderPosition] = useState(50);
+  const [activeStep, setActiveStep] = useState(0);
 
   // Auto slider for testimonials
   useEffect(() => {
@@ -99,7 +211,7 @@ export default function Home() {
         {/* Content Container */}
         <div className="container mx-auto px-4 md:px-8 relative z-20 pt-28 pb-12 lg:pt-36 lg:pb-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+
             {/* Left Column: Text Content */}
             <div className="lg:col-span-7 space-y-8 text-left">
               <motion.div
@@ -111,8 +223,8 @@ export default function Home() {
                 <span className="w-8 h-[1px] bg-accent" />
                 <span>The Standard of Luxury Architectural Systems</span>
               </motion.div>
-              
-              <motion.h1 
+
+              <motion.h1
                 initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.15 }}
@@ -121,7 +233,7 @@ export default function Home() {
                 Engineering <span className="gold-shimmer-text">Elegance</span> in Every Opening.
               </motion.h1>
 
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
@@ -130,7 +242,7 @@ export default function Home() {
                 Elevate your spaces with world-class aluminium windows, doors, and facade systems designed for uncompromised luxury and performance.
               </motion.p>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.45 }}
@@ -147,7 +259,7 @@ export default function Home() {
 
             {/* Right Column: Interactive Blueprints Glass Panel */}
             <div className="lg:col-span-5 flex justify-center">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
@@ -181,7 +293,7 @@ export default function Home() {
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-[#FDFDFD]">
                   {/* Grid overlay for Blueprint feel */}
                   <div className="absolute inset-0 cad-grid-light opacity-50" />
-                  
+
                   {/* Vector SVG Blueprint of Window Frame */}
                   <svg className="w-44 h-44 text-accent/60 opacity-80 mb-2" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.85">
                     {/* Outer Frame */}
@@ -206,22 +318,22 @@ export default function Home() {
                 </div>
 
                 {/* Top Slide Layer: Completed Photo */}
-                <div 
+                <div
                   className="absolute inset-y-0 left-0 overflow-hidden z-10 transition-all duration-75 pointer-events-none"
                   style={{ width: `${sliderPosition}%` }}
                 >
                   <div className="absolute inset-y-0 left-0 w-[380px] h-[380px]">
-                    <Image 
-                      src={IMAGES.hero} 
-                      alt="Villa output rendering" 
-                      fill 
+                    <Image
+                      src={IMAGES.hero}
+                      alt="Villa output rendering"
+                      fill
                       className="object-cover"
                       sizes="380px"
                       priority
                     />
                     {/* Dark gradient overlay at the bottom of the photo */}
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
-                    
+
                     <div className="absolute bottom-6 left-6 w-[320px] text-left">
                       <span className="text-accent text-[9px] font-heading font-bold uppercase tracking-widest block mb-1">Concept Realized</span>
                       <h4 className="text-xs font-heading font-bold text-white tracking-tight leading-snug">The Courtyard Villa, Ahmedabad</h4>
@@ -231,7 +343,7 @@ export default function Home() {
                 </div>
 
                 {/* Drag Handle Divider */}
-                <div 
+                <div
                   className="absolute inset-y-0 z-20 w-[2px] bg-accent pointer-events-none flex items-center justify-center shadow-lg"
                   style={{ left: `${sliderPosition}%` }}
                 >
@@ -259,7 +371,7 @@ export default function Home() {
       <Section id="about-intro" background="section" className="relative overflow-hidden">
         {/* Glow Element */}
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2"></div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
           {/* Asymmetrical visual framing */}
           <div className="lg:col-span-6 relative">
@@ -294,7 +406,7 @@ export default function Home() {
             <p className="text-body/80 leading-relaxed text-sm">
               Whether you are an architect designing a modern skyscraper, a developer building luxury villas, or a homeowner looking for premium window and door solutions, we have the expertise to bring your vision to life.
             </p>
-            
+
             {/* Luxury checklist with custom grids */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-4">
               {[
@@ -334,10 +446,10 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
-            { 
-              title: "Windows & Doors", 
-              desc: "Premium sliding, casement, and bi-fold systems for residential and commercial spaces.", 
-              img: IMAGES.servicesWin, 
+            {
+              title: "Windows & Doors",
+              desc: "Premium sliding, casement, and bi-fold systems for residential and commercial spaces.",
+              img: IMAGES.servicesWin,
               href: "/services",
               specs: ["28mm - 45mm Interlock", "Up to 48dB Sound Reduction", "Class A4 Water Sealing"],
               blueprint: (
@@ -350,10 +462,10 @@ export default function Home() {
                 </svg>
               )
             },
-            { 
-              title: "Structural Glazing", 
-              desc: "State-of-the-art structural glazing and glass facades for modern architectural masterpieces.", 
-              img: IMAGES.servicesGlazing, 
+            {
+              title: "Structural Glazing",
+              desc: "State-of-the-art structural glazing and glass facades for modern architectural masterpieces.",
+              img: IMAGES.servicesGlazing,
               href: "/services#structural-glazing",
               specs: ["Pressure Equalized Drainage", "Concealed Sash Integration", "Wind Load Class A4 Max"],
               blueprint: (
@@ -366,10 +478,10 @@ export default function Home() {
                 </svg>
               )
             },
-            { 
-              title: "Architectural Systems", 
-              desc: "Skylights, pergolas, glass railings, and office partitions customized to your needs.", 
-              img: IMAGES.servicesArch, 
+            {
+              title: "Architectural Systems",
+              desc: "Skylights, pergolas, glass railings, and office partitions customized to your needs.",
+              img: IMAGES.servicesArch,
               href: "/services#pergolas",
               specs: ["Motorized Louver Rotation", "Concealed Perimeter Guttering", "Stainless Steel Anchor Fixings"],
               blueprint: (
@@ -389,14 +501,14 @@ export default function Home() {
                 <div className="relative h-64 w-full overflow-hidden bg-section">
                   {/* Subtle mask gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10 opacity-70" />
-                  <Image 
-                    src={service.img} 
-                    alt={service.title} 
-                    fill 
+                  <Image
+                    src={service.img}
+                    alt={service.title}
+                    fill
                     className="object-cover group-hover:scale-110 group-hover:opacity-20 transition-all duration-700"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  
+
                   {/* Interactive CAD drawing on hover */}
                   {service.blueprint}
                 </div>
@@ -405,7 +517,7 @@ export default function Home() {
                     <h3 className="text-xl font-heading font-bold text-heading tracking-tight group-hover:text-accent transition-colors duration-300">{service.title}</h3>
                     <p className="text-body text-xs sm:text-sm leading-relaxed font-light">{service.desc}</p>
                   </div>
-                  
+
                   {/* Specification tags */}
                   <div className="flex flex-wrap gap-1.5 pt-2 border-t border-border opacity-60 group-hover:opacity-100 transition-opacity duration-300">
                     {service.specs.map((spec, sIdx) => (
@@ -457,14 +569,14 @@ export default function Home() {
             <div key={i} className="bg-[#0a2327] rounded-2xl overflow-hidden border border-accent/15 hover:border-accent/40 transition-all duration-500 group flex flex-col justify-between shadow-2xl">
               <div className="relative h-60 w-full overflow-hidden">
                 <div className="absolute inset-0 bg-primary/20 z-10" />
-                <Image 
-                  src={prod.img} 
-                  alt={prod.title} 
-                  fill 
+                <Image
+                  src={prod.img}
+                  alt={prod.title}
+                  fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
-                <button 
+                <button
                   onClick={() => openInquiryModal(prod.title)}
                   className="absolute top-4 right-4 bg-primary/80 backdrop-blur-md text-white hover:bg-accent hover:text-white w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 shadow-2xl border border-accent/30 z-20"
                   aria-label={`Inquire about ${prod.title}`}
@@ -482,41 +594,157 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Industries We Serve - clean glowing grids */}
-      <Section id="industries" background="section" className="">
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">Sector Expertise</span>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading">Expertise across Sectors</h2>
-          <p className="text-body max-w-xl mx-auto text-sm md:text-base leading-relaxed mt-4 font-light">
-            Providing tailored, high-performance aluminium solutions across diverse architectural sectors.
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { icon: <HomeIcon className="w-8 h-8" />, title: "Luxury Villas", href: "/industries#residential", num: "01" },
-            { icon: <Building2 className="w-8 h-8" />, title: "Commercial Offices", href: "/industries#commercial", num: "02" },
-            { icon: <Factory className="w-8 h-8" />, title: "Industrial Projects", href: "/industries#industrial", num: "03" },
-            { icon: <Building2 className="w-8 h-8" />, title: "Hotels & Resorts", href: "/industries", num: "04" }
-          ].map((industry, i) => (
-            <Link key={i} href={industry.href} className="bg-card p-10 rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl hover:border-accent/40 border border-border transition-all duration-300 text-left flex flex-col justify-between min-h-[220px] group relative overflow-hidden">
-              <span className="absolute top-6 right-6 text-accent/20 text-4xl font-heading font-bold">{industry.num}</span>
-              <div className="w-14 h-14 bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
-                {industry.icon}
+      {/* Our Process Section */}
+      <Section id="process" background="section" className="border-t border-[#C28B45]/15">
+        <div className="container mx-auto max-w-7xl">
+          
+          <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
+            <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">How We Work</span>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading">
+              Our Facade Engineering Process
+            </h2>
+            <p className="text-body max-w-xl mx-auto text-sm md:text-base leading-relaxed mt-4 font-light">
+              From initial blueprints to after-sales maintenance support, we check every millimeter of your custom glazing.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            
+            {/* Left timeline rail: Step list */}
+            <div className="lg:col-span-5 space-y-3 max-h-[580px] overflow-y-auto pr-2 custom-scrollbar">
+              {processSteps.map((step, idx) => {
+                const StepIcon = step.icon;
+                const isActive = activeStep === idx;
+                return (
+                  <button
+                    key={step.num}
+                    onClick={() => setActiveStep(idx)}
+                    className={`w-full text-left p-4 rounded-2xl flex items-center gap-5 border transition-all duration-300 cursor-pointer ${
+                      isActive 
+                        ? "bg-[#C28B45]/10 border-[#C28B45]/40 shadow-lg shadow-[#C28B45]/5" 
+                        : "bg-white/[0.03] border-border hover:bg-white/[0.08] hover:border-accent/20"
+                    }`}
+                  >
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
+                      isActive ? "bg-[#C28B45] text-white" : "bg-primary/5 text-primary/60"
+                    }`}>
+                      <StepIcon className="w-5 h-5" />
+                    </div>
+                    
+                    <div className="flex-grow min-w-0">
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-[9px] text-accent font-bold tracking-widest">PHASE {step.num}</span>
+                        {isActive && <span className="w-2 h-2 rounded-full bg-[#C28B45] animate-pulse" />}
+                      </div>
+                      <h4 className={`text-base font-bold tracking-tight truncate font-heading ${isActive ? "text-[#C28B45]" : "text-heading"}`}>
+                        {step.title}
+                      </h4>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Right detailed board */}
+            <div className="lg:col-span-7 bg-white rounded-3xl p-6 md:p-10 shadow-2xl border border-[#C28B45]/15 relative overflow-hidden min-h-[520px] flex flex-col justify-between">
+              {/* Background gradient backdrop */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(194,139,69,0.04),transparent_50%)] pointer-events-none" />
+              
+              <div className="space-y-8">
+                {/* Header info */}
+                <div className="flex items-start justify-between border-b border-[#C28B45]/10 pb-6 font-heading">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-mono tracking-widest text-accent uppercase font-bold">
+                      Process Details / Step {processSteps[activeStep].num}
+                    </span>
+                    <h3 className="text-3xl font-heading font-bold text-heading">
+                      {processSteps[activeStep].title}
+                    </h3>
+                  </div>
+                  <div className="text-6xl font-mono font-extrabold text-heading/5 tracking-tighter pointer-events-none select-none">
+                    {processSteps[activeStep].num}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                  {/* Left sub-col: Description & Specs */}
+                  <div className="md:col-span-7 space-y-6">
+                    <p className="text-sm text-body leading-relaxed font-sans font-light">
+                      {processSteps[activeStep].desc}
+                    </p>
+
+                    {/* Specifications list */}
+                    <div className="rounded-2xl border border-border overflow-hidden text-xs font-sans">
+                      {processSteps[activeStep].specs.map((spec, i) => (
+                        <div 
+                          key={spec.label} 
+                          className={`grid grid-cols-[110px_1fr] gap-3 p-3.5 ${
+                            i % 2 === 0 ? "bg-[#FAF9F5]" : "bg-white"
+                          } ${i < 2 ? "border-b border-border" : ""}`}
+                        >
+                          <span className="text-[9px] font-mono text-body/55 uppercase tracking-wider">{spec.label}</span>
+                          <span className="font-bold text-heading">{spec.val}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Right sub-col: Graphic/Photo frame */}
+                  <div className="md:col-span-5 flex justify-center">
+                    <div className="relative w-full aspect-[4/5] max-w-[200px] rounded-2xl overflow-hidden border border-[#C28B45]/20 shadow-lg luxury-ticks bg-[#FAF9F5]">
+                      <Image
+                        src={processSteps[activeStep].img}
+                        alt={processSteps[activeStep].title}
+                        fill
+                        className="object-cover opacity-90"
+                        sizes="200px"
+                      />
+                      <div className="absolute inset-0 bg-[#001518]/5 pointer-events-none" />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3 className="font-heading font-bold text-heading text-lg group-hover:text-accent transition-colors">{industry.title}</h3>
-            </Link>
-          ))}
+
+              {/* Action buttons footer */}
+              <div className="border-t border-border pt-6 mt-8 flex flex-col sm:flex-row items-center gap-4 justify-between font-sans">
+                <span className="text-[10px] font-mono text-body/45 uppercase">
+                  SHREE HARI ALU CORPORATION // WORKFLOW
+                </span>
+                
+                <div className="flex gap-3">
+                  {activeStep > 0 && (
+                    <button
+                      onClick={() => setActiveStep((p) => p - 1)}
+                      className="px-4 py-2 rounded-xl border border-[#C28B45]/20 hover:bg-[#FAF9F5] text-xs font-bold transition-all cursor-pointer text-heading"
+                    >
+                      ← Previous
+                    </button>
+                  )}
+                  {activeStep < processSteps.length - 1 && (
+                    <button
+                      onClick={() => setActiveStep((p) => p + 1)}
+                      className="px-4 py-2 rounded-xl bg-[#C28B45] text-white hover:scale-105 text-xs font-bold transition-all cursor-pointer"
+                    >
+                      Next Phase →
+                    </button>
+                  )}
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
       </Section>
 
       {/* Why Shree Hari Alu (Split Feature, Dark background) */}
       <section className="relative flex flex-col lg:flex-row bg-primary text-white min-h-[580px] border-t border-accent/15">
         <div className="w-full lg:w-1/2 relative h-[380px] lg:h-auto">
-          <Image 
-            src={IMAGES.commercial} 
-            alt="Precision building facade details" 
-            fill 
+          <Image
+            src={IMAGES.commercial}
+            alt="Precision building facade details"
+            fill
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
@@ -605,10 +833,10 @@ export default function Home() {
               <div>
                 <div className="relative h-[480px] w-full overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent z-10 opacity-70" />
-                  <Image 
-                    src={project.img} 
-                    alt={project.title} 
-                    fill 
+                  <Image
+                    src={project.img}
+                    alt={project.title}
+                    fill
                     className="object-cover group-hover:scale-105 transition-transform duration-[1.5s]"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
@@ -631,7 +859,7 @@ export default function Home() {
       <Section id="testimonials" background="main" className="">
         <div className="max-w-4xl mx-auto text-center px-4 space-y-12">
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Client Perspectives</span>
-          
+
           <div className="relative h-[250px] md:h-[200px] flex items-center justify-center overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.div
@@ -657,9 +885,8 @@ export default function Home() {
               <button
                 key={idx}
                 onClick={() => setActiveTestimonial(idx)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  activeTestimonial === idx ? "bg-accent w-6" : "bg-primary/20 hover:bg-primary/45"
-                }`}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeTestimonial === idx ? "bg-accent w-6" : "bg-primary/20 hover:bg-primary/45"
+                  }`}
                 aria-label={`Show testimonial ${idx + 1}`}
               />
             ))}
@@ -728,10 +955,10 @@ export default function Home() {
           ].map((blog, idx) => (
             <div key={idx} className="bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-border flex flex-col justify-between group">
               <div className="relative h-60 w-full overflow-hidden">
-                <Image 
-                  src={blog.img} 
-                  alt={blog.title} 
-                  fill 
+                <Image
+                  src={blog.img}
+                  alt={blog.title}
+                  fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
@@ -808,7 +1035,7 @@ export default function Home() {
               <Button href="/request-quote" variant="accent" size="lg" className="gold-glow hover:scale-105 transition-transform duration-300">
                 Get Free Consultation
               </Button>
-              <button 
+              <button
                 onClick={() => openInquiryModal("General project consultation")}
                 className="px-8 py-4 rounded-full font-heading font-bold text-xs uppercase tracking-widest bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/50 transition-all shadow-lg hover:scale-105 duration-350"
               >
@@ -824,7 +1051,7 @@ export default function Home() {
         {isInquiryModalOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
             {/* Backdrop */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -838,7 +1065,7 @@ export default function Home() {
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
               className="bg-card w-full max-w-lg rounded-2xl p-8 relative z-10 shadow-2xl border border-border"
             >
-              <button 
+              <button
                 onClick={() => setIsInquiryModalOpen(false)}
                 className="absolute top-4 right-4 text-body hover:text-accent transition-colors"
                 aria-label="Close modal"

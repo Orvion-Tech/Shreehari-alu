@@ -7,14 +7,10 @@ import { ChevronDown, Phone, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const services = [
-  { name: "Aluminium Sliding Windows", href: "/services#sliding-windows" },
-  { name: "Aluminium Casement Windows", href: "/services#casement-windows" },
-  { name: "Aluminium Doors", href: "/services#aluminium-doors" },
-  { name: "Bi-Fold Doors", href: "/services#bi-fold-doors" },
-  { name: "Slimline Sliding Systems", href: "/services#slimline" },
-  { name: "Structural Glazing", href: "/services#structural-glazing" },
-  { name: "Curtain Wall Systems", href: "/services#curtain-wall" },
-  { name: "Glass Facades", href: "/services#glass-facades" },
+  { name: "Glazing & Facades", href: "/services/glazing-facades" },
+  { name: "Doors & Windows", href: "/services/doors-windows" },
+  { name: "Interior Partitions", href: "/services/interior-partitions" },
+  { name: "Outdoor & Shading", href: "/services/outdoor-shading" },
 ];
 
 const companyLinks = [
@@ -87,18 +83,18 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 15 }}
                     transition={{ duration: 0.25, ease: "easeOut" }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[580px] bg-white/98 backdrop-blur-lg rounded-2xl shadow-2xl border border-accent/20 p-5 grid grid-cols-2 gap-3"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-72 bg-white/98 backdrop-blur-lg rounded-xl shadow-2xl border border-accent/20 p-4 flex flex-col space-y-1"
                   >
                     {services.map((service, index) => (
                       <Link 
                         key={index} 
                         href={service.href}
-                        className="text-body hover:text-accent hover:bg-accent-light p-2.5 rounded-lg transition-colors text-[13px] lg:text-sm font-semibold uppercase tracking-wider"
+                        className="text-body hover:text-accent hover:bg-accent-light p-2 rounded-lg transition-colors text-[13px] lg:text-sm font-semibold uppercase tracking-wider"
                       >
                         {service.name}
                       </Link>
                     ))}
-                    <div className="col-span-2 pt-3 mt-1 border-t border-border flex justify-center">
+                    <div className="pt-2 mt-1 border-t border-border flex justify-center">
                       <Link href="/services" className="text-primary font-heading font-bold text-xs lg:text-sm uppercase tracking-widest hover:text-accent flex items-center">
                         View All Services &rarr;
                       </Link>
