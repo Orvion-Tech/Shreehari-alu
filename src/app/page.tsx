@@ -4,9 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, CheckCircle2, ArrowUpRight, HelpCircle, X, Phone, ChevronRight, Home as HomeIcon, Building2, Factory, MessageSquare, Maximize2, Compass, Cpu, CheckSquare, Wrench, Layers, Award } from "lucide-react";
+import { ArrowRight, CheckCircle2, ArrowUpRight, HelpCircle, X, Phone, ChevronRight, Home as HomeIcon, Building2, Factory } from "lucide-react";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
+import ProcessSection from "@/components/ui/ProcessSection";
 
 // Premium Unsplash images matching the architecture theme
 const IMAGES = {
@@ -54,115 +55,87 @@ const faqs = [
   }
 ];
 
-const processSteps = [
+const HERO_SLIDES = [
   {
-    num: "01",
-    title: "Consultation",
-    icon: MessageSquare,
-    desc: "We align with your architect's blueprints, discuss sightline preferences, and draft initial budget scopes.",
-    img: "/services/brochure-img-2.jpg",
+    project: "The Courtyard Villa, Ahmedabad",
+    scope: "Minimal Slim Sliding Windows",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
+    tagline: "01 // MINIMAL GLIDING",
+    titlePart1: "Engineering",
+    titlePart2: "Elegance",
+    titlePart3: "in Every Opening.",
+    description: "Elevate your spaces with world-class aluminium windows, doors, and facade systems designed for uncompromised luxury and performance.",
     specs: [
-      { label: "Methodology", val: "Architectural Brief Review" },
-      { label: "Engineering Focus", val: "Sightline configurations & Wind limits" },
-      { label: "Key Deliverables", val: "System proposals & preliminary estimate" },
+      { label: "Sightline", value: "28mm Slim Profile" },
+      { label: "Water Sealing", value: "Class A4 (450 Pa)" },
+      { label: "Glass Tech", value: "Acoustic Double Glazed" }
     ],
+    blueprintPath: (
+      <svg className="w-full h-full text-accent/60 opacity-80" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.85">
+        <rect x="10" y="10" width="80" height="80" rx="3" />
+        <rect x="14" y="14" width="72" height="72" rx="2" strokeDasharray="2,2" />
+        <line x1="50" y1="10" x2="50" y2="90" />
+        <circle cx="50" cy="50" r="1.5" fill="currentColor" />
+        <rect x="20" y="20" width="24" height="60" />
+        <rect x="56" y="20" width="24" height="60" />
+        <line x1="10" y1="5" x2="90" y2="5" stroke="currentColor" strokeWidth="0.5" />
+        <text x="50" y="4" textAnchor="middle" fontSize="3.5" fill="currentColor" stroke="none" className="font-heading tracking-widest font-bold">W: 3200mm</text>
+        <text x="7" y="50" textAnchor="middle" fontSize="3.5" transform="rotate(-90 7 50)" fill="currentColor" stroke="none" className="font-heading tracking-widest font-bold">H: 2400mm</text>
+      </svg>
+    )
   },
   {
-    num: "02",
-    title: "Site Survey",
-    icon: Maximize2,
-    desc: "Our engineers scan structural openings using high-precision digital measuring tools to secure an absolute fit.",
-    img: "/services/brochure-img-11.jpg",
+    project: "Meridian Business House, Surat",
+    scope: "Structural Glazing & Curtain Walls",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
+    tagline: "02 // FACADE ENGINEERING",
+    titlePart1: "Sculpting",
+    titlePart2: "Light & Space",
+    titlePart3: "with Facades.",
+    description: "State-of-the-art curtain walls and structural glazing systems that create iconic, energy-efficient commercial landmarks.",
     specs: [
-      { label: "Equipment", val: "3D Laser Scanners & Digital Levels" },
-      { label: "Accuracy standard", val: "Tolerance of ±1.0 mm" },
-      { label: "Inspection points", val: "Slab deflections & column alignments" },
+      { label: "U-Value", value: "Thermal < 1.4 W/m²K" },
+      { label: "Wind Load", value: "A4 Max (3.5 kPa)" },
+      { label: "Concealed Sash", value: "Fully Integrated" }
     ],
+    blueprintPath: (
+      <svg className="w-full h-full text-accent/60 opacity-80" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.85">
+        <rect x="15" y="15" width="70" height="70" />
+        <line x1="15" y1="50" x2="85" y2="50" />
+        <line x1="50" y1="15" x2="50" y2="85" />
+        <line x1="15" y1="15" x2="85" y2="85" strokeDasharray="2,2" />
+        <line x1="85" y1="15" x2="15" y2="85" strokeDasharray="2,2" />
+        <circle cx="50" cy="50" r="10" />
+        <text x="50" y="9" textAnchor="middle" fontSize="3.5" fill="currentColor" stroke="none" className="font-heading tracking-widest font-bold">GRID TYPE: UNITIZED</text>
+      </svg>
+    )
   },
   {
-    num: "03",
-    title: "Design & Engineering",
-    icon: Compass,
-    desc: "Drafting detailed CAD shop drawings, glass thickness schedules, and custom anchor bracket calculations.",
-    img: "/services/brochure-img-13.jpg",
+    project: "Private Villa Shading, Vadodara",
+    scope: "Motorized Louvered Pergolas",
+    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop",
+    tagline: "03 // CLIMATE CONTROL",
+    titlePart1: "Redefining",
+    titlePart2: "Outdoor Living",
+    titlePart3: "Seamlessly.",
+    description: "Motorized louver rotation and automated climate shielding systems that transform terraces into high-luxury outdoor living areas.",
     specs: [
-      { label: "CAD Platforms", val: "AutoCAD & Finite Element Stress Analysis" },
-      { label: "Wind load specs", val: "IS 875 Part 3 Standard Calculations" },
-      { label: "Clearance", val: "Structural Stability Certification" },
+      { label: "Louver Range", value: "0° - 135° Motorized" },
+      { label: "Drainage", value: "100% Concealed Gutter" },
+      { label: "System Smart", value: "Somfy Automation" }
     ],
-  },
-  {
-    num: "04",
-    title: "Material Selection",
-    icon: Layers,
-    desc: "Sourcing certified T6 temper aluminium alloys, high-performance thermal barriers, and custom glazing specs.",
-    img: "/services/brochure-img-15.jpg",
-    specs: [
-      { label: "Alloy Grade", val: "6063-T6 Structural Grade Extrusions" },
-      { label: "Thermal Barriers", val: "Polyamide insulating struts & EPDM gaskets" },
-      { label: "Glazing Types", val: "Double Laminated Low-E acoustic pane sashes" },
-    ],
-  },
-  {
-    num: "05",
-    title: "Fabrication",
-    icon: Cpu,
-    desc: "Precision CNC profile cutting, double-miter joint corner crimping, and automated lock machining at our plant.",
-    img: "/services/brochure-img-16.jpg",
-    specs: [
-      { label: "Profile Cutting", val: "CNC double-miter automated cutting" },
-      { label: "Corner Joining", val: "Pneumatic glue-injected corner crimping" },
-      { label: "Hardware fitting", val: "Premium concealed sills & locking tracks" },
-    ],
-  },
-  {
-    num: "06",
-    title: "Quality Inspection",
-    icon: CheckSquare,
-    desc: "Rigorous quality audits checking dimensional tolerances, gasket seals, and hardware cycle operations.",
-    img: "/services/brochure-img-17.jpg",
-    specs: [
-      { label: "Tolerance audits", val: "Tolerances held within +0.5mm / -0.0mm" },
-      { label: "Water tight test", val: "EPDM compression & drainage seal checks" },
-      { label: "Hardware cycles", val: "Opening/closing friction testing audits" },
-    ],
-  },
-  {
-    num: "07",
-    title: "Installation",
-    icon: Wrench,
-    desc: "Anchor bracket fixing, structural hoisting of glass sashes, and high-performance weather silicone sealing.",
-    img: "/services/brochure-img-18.jpg",
-    specs: [
-      { label: "Sash Anchoring", val: "Heavy galvanized steel anchor plates" },
-      { label: "Weather sealing", val: "Dow Corning structural silicone jointing" },
-      { label: "Sash hoisting", val: "Suction-cup crane hoist for oversized panels" },
-    ],
-  },
-  {
-    num: "08",
-    title: "Project Handover",
-    icon: Award,
-    desc: "Fine calibration of rollers and pivots, deep cleaning of profiles, and handover of keys & warranty packs.",
-    img: "/services/brochure-img-24.jpg",
-    specs: [
-      { label: "Calibration", val: "Glide operation force check under 15N" },
-      { label: "Profile cleaning", val: "Alkaline-free neutral profile wash" },
-      { label: "Warranty packs", val: "10-Year structural integrity certificate handover" },
-    ],
-  },
-  {
-    num: "09",
-    title: "After-Sales Support",
-    icon: Phone,
-    desc: "Dedicated customer service for annual checks, weather gasket lubrication, and quick hardware adjustments.",
-    img: "/services/brochure-img-12.jpg",
-    specs: [
-      { label: "Response SLA", val: "Engineering site visit within 24 hours" },
-      { label: "Maintenance checks", val: "Annual profile alignment & track cleaning" },
-      { label: "Warranty coverage", val: "Replacement parts support on gaskets & locks" },
-    ],
-  },
+    blueprintPath: (
+      <svg className="w-full h-full text-accent/60 opacity-80" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.85">
+        <rect x="10" y="30" width="80" height="40" rx="3" />
+        <line x1="20" y1="35" x2="30" y2="65" />
+        <line x1="35" y1="35" x2="45" y2="65" />
+        <line x1="50" y1="35" x2="60" y2="65" />
+        <line x1="65" y1="35" x2="75" y2="65" />
+        <rect x="15" y="32" width="70" height="36" strokeDasharray="2,2" />
+        <text x="50" y="24" textAnchor="middle" fontSize="3.5" fill="currentColor" stroke="none" className="font-heading tracking-widest font-bold">SPAN LIMIT: 6500mm</text>
+      </svg>
+    )
+  }
 ];
 
 export default function Home() {
@@ -172,7 +145,8 @@ export default function Home() {
   const [inquiryProduct, setInquiryProduct] = useState("");
   const [inquirySubmitted, setInquirySubmitted] = useState(false);
   const [sliderPosition, setSliderPosition] = useState(50);
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isScannerHovered, setIsScannerHovered] = useState(false);
 
   // Auto slider for testimonials
   useEffect(() => {
@@ -181,6 +155,37 @@ export default function Home() {
     }, 8000);
     return () => clearInterval(timer);
   }, []);
+
+  // Auto slider for hero section
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Auto scanning sweep when not hovered
+  useEffect(() => {
+    if (isScannerHovered) return;
+    
+    let direction = 1;
+    const interval = setInterval(() => {
+      setSliderPosition((prev) => {
+        let next = prev + 0.4 * direction;
+        if (next >= 92) {
+          direction = -1;
+          return 92;
+        }
+        if (next <= 8) {
+          direction = 1;
+          return 8;
+        }
+        return next;
+      });
+    }, 20); // ~50fps
+    
+    return () => clearInterval(interval);
+  }, [isScannerHovered]);
 
   const openInquiryModal = (product: string) => {
     setInquiryProduct(product);
@@ -200,61 +205,123 @@ export default function Home() {
   return (
     <>
       {/* Cinematic Fullscreen Widescreen Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background py-24">
-        {/* Background Visual Layer */}
-        <div className="absolute inset-0 z-0 cad-grid-light opacity-60 pointer-events-none" />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#02181B] text-white">
+        
+        {/* Fullscreen Slideshow Background */}
+        <div className="absolute inset-0 z-0">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeSlide}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 0.35, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={HERO_SLIDES[activeSlide].image}
+                alt={HERO_SLIDES[activeSlide].project}
+                fill
+                className="object-cover"
+                priority
+              />
+            </motion.div>
+          </AnimatePresence>
+          
+          {/* Blueprint Grid Overlay */}
+          <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,rgba(2,24,27,0.4)_0%,#02181B_100%)]" />
+          <div className="absolute inset-0 z-10 cad-grid opacity-[0.12] pointer-events-none" />
+        </div>
 
-        {/* Floating Ambient Glow */}
-        <div className="absolute top-1/4 left-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl z-10 pointer-events-none"></div>
-        <div className="absolute bottom-1/4 right-10 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl z-10 pointer-events-none"></div>
+        {/* Ambient Moving Glow Orbs */}
+        <div className="absolute top-1/4 left-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl z-10 pointer-events-none animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 right-10 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl z-10 pointer-events-none animate-pulse-slow"></div>
 
         {/* Content Container */}
-        <div className="container mx-auto px-4 md:px-8 relative z-20 pt-28 pb-12 lg:pt-36 lg:pb-24">
+        <div className="container mx-auto px-4 md:px-8 relative z-20 pt-24 pb-12 lg:pt-28 lg:pb-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
             {/* Left Column: Text Content */}
             <div className="lg:col-span-7 space-y-8 text-left">
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="flex items-center space-x-3 text-accent font-heading font-bold text-xs uppercase tracking-widest"
-              >
-                <span className="w-8 h-[1px] bg-accent" />
-                <span>The Standard of Luxury Architectural Systems</span>
-              </motion.div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeSlide}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="space-y-8"
+                >
+                  <div className="space-y-4">
+                    {/* Slide Tagline */}
+                    <div className="flex items-center space-x-3 text-accent font-heading font-bold text-[10px] md:text-xs uppercase tracking-[0.2em]">
+                      <span className="w-8 h-[1px] bg-accent" />
+                      <span>{HERO_SLIDES[activeSlide].tagline}</span>
+                    </div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.15 }}
-                className="text-4xl sm:text-6xl lg:text-7xl font-heading font-bold text-heading tracking-tight leading-[1.05]"
-              >
-                Engineering <span className="gold-shimmer-text">Elegance</span> in Every Opening.
-              </motion.h1>
+                    {/* Heading */}
+                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight leading-[1.05]">
+                      {HERO_SLIDES[activeSlide].titlePart1}{" "}
+                      <span className="text-gradient-gold">{HERO_SLIDES[activeSlide].titlePart2}</span>{" "}
+                      {HERO_SLIDES[activeSlide].titlePart3}
+                    </h1>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-base sm:text-lg text-body font-sans font-light max-w-xl leading-relaxed"
-              >
-                Elevate your spaces with world-class aluminium windows, doors, and facade systems designed for uncompromised luxury and performance.
-              </motion.p>
+                    {/* Description */}
+                    <p className="text-sm sm:text-base text-gray-300 font-sans font-light max-w-xl leading-relaxed">
+                      {HERO_SLIDES[activeSlide].description}
+                    </p>
+                  </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.45 }}
-                className="flex flex-col sm:flex-row gap-4 pt-4"
-              >
-                <Button href="/request-quote" variant="accent" size="md" className="gold-glow hover:scale-105 transition-transform duration-300" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
-                  Request Free Consultation
-                </Button>
-                <Button href="/projects" variant="outline" size="md" className="hover:scale-105 transition-transform duration-300 bg-white">
-                  View Our Portfolio
-                </Button>
-              </motion.div>
+                  {/* Specifications Panel */}
+                  <div className="bg-white/[0.04] backdrop-blur-md border border-white/10 rounded-2xl p-5 shadow-2xl max-w-xl relative overflow-hidden">
+                    <div className="absolute inset-0 cad-grid opacity-[0.03] pointer-events-none" />
+                    <div className="relative z-10 flex flex-col md:flex-row gap-6 justify-between items-start md:items-center">
+                      <div>
+                        <span className="text-[8px] font-mono text-accent uppercase tracking-widest block mb-0.5">Project Scope</span>
+                        <h4 className="text-xs font-heading font-bold uppercase text-white tracking-wider">{HERO_SLIDES[activeSlide].project}</h4>
+                        <p className="text-[10px] text-gray-400 font-light mt-0.5">{HERO_SLIDES[activeSlide].scope}</p>
+                      </div>
+                      <div className="flex flex-wrap gap-4 md:gap-6 border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-6 w-full md:w-auto">
+                        {HERO_SLIDES[activeSlide].specs.map((spec, sIdx) => (
+                          <div key={sIdx} className="min-w-[90px]">
+                            <span className="text-[7px] font-mono text-gray-500 uppercase tracking-widest block">{spec.label}</span>
+                            <span className="text-[10px] font-bold text-accent uppercase tracking-wider">{spec.value}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Action Buttons & Slide Controls */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-4">
+                <div className="flex gap-4">
+                  <Button href="/request-quote" variant="accent" size="md" className="gold-glow hover:scale-[1.03] transition-transform duration-300" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
+                    Free Consultation
+                  </Button>
+                  <Button href="/projects" variant="outline" size="md" className="hover:scale-[1.03] transition-transform duration-300 border-white/20 hover:border-white/50 text-white bg-transparent">
+                    View Our Portfolio
+                  </Button>
+                </div>
+                
+                {/* Slideshow Controls */}
+                <div className="flex items-center space-x-4 border-l border-white/10 pl-6 h-10 w-full sm:w-auto justify-between sm:justify-start">
+                  <div className="flex items-center space-x-2">
+                    {HERO_SLIDES.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setActiveSlide(idx)}
+                        className={`h-1.5 rounded-full transition-all duration-300 ${activeSlide === idx ? "bg-accent w-6" : "bg-white/20 hover:bg-white/40 w-1.5"}`}
+                        aria-label={`Go to slide ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+                  <div className="text-[10px] font-mono text-gray-400 tracking-wider">
+                    0{activeSlide + 1} // 0{HERO_SLIDES.length}
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Right Column: Interactive Blueprints Glass Panel */}
@@ -263,7 +330,9 @@ export default function Home() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="relative w-full max-w-[380px] aspect-square rounded-3xl overflow-hidden luxury-ticks border border-accent/30 bg-white shadow-2xl transition-all duration-500 hover:border-accent/50 cursor-ew-resize select-none"
+                className="relative w-full max-w-[380px] aspect-square rounded-3xl overflow-hidden luxury-ticks border border-accent/30 bg-[#02181B] shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 hover:border-accent/60 cursor-ew-resize select-none group"
+                onMouseEnter={() => setIsScannerHovered(true)}
+                onMouseLeave={() => setIsScannerHovered(false)}
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
                   const x = e.clientX - rect.left;
@@ -283,38 +352,25 @@ export default function Home() {
                 <div className="absolute top-4 left-4 z-30 flex items-center space-x-1.5 text-[8px] font-heading font-bold text-accent/80 tracking-wider">
                   <span>23.03° N, 72.54° E</span>
                   <span>/</span>
-                  <span className="animate-pulse">INTERACTIVE STUDIO</span>
+                  <span className="animate-pulse">AUTO SCANNER</span>
                 </div>
                 <div className="absolute top-4 right-4 z-30 text-[8px] font-heading font-bold text-accent/80">
                   <span>SEC.01</span>
                 </div>
 
                 {/* Base Layer: Blueprint (Shows when slider pulls back) */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-[#FDFDFD]">
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-[#011214] z-0">
                   {/* Grid overlay for Blueprint feel */}
-                  <div className="absolute inset-0 cad-grid-light opacity-50" />
+                  <div className="absolute inset-0 cad-grid opacity-[0.15]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#011214_90%)]" />
 
-                  {/* Vector SVG Blueprint of Window Frame */}
-                  <svg className="w-44 h-44 text-accent/60 opacity-80 mb-2" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.85">
-                    {/* Outer Frame */}
-                    <rect x="10" y="10" width="80" height="80" rx="3" />
-                    <rect x="14" y="14" width="72" height="72" rx="2" strokeDasharray="2,2" />
-                    {/* Inner Profile details */}
-                    <line x1="50" y1="10" x2="50" y2="90" />
-                    <circle cx="50" cy="50" r="1.5" fill="currentColor" />
-                    {/* Glass sash lines */}
-                    <rect x="20" y="20" width="24" height="60" />
-                    <rect x="56" y="20" width="24" height="60" />
-                    {/* Dimension callouts */}
-                    <line x1="10" y1="5" x2="90" y2="5" stroke="currentColor" strokeWidth="0.5" />
-                    <line x1="10" y1="2" x2="10" y2="8" stroke="currentColor" strokeWidth="0.5" />
-                    <line x1="90" y1="2" x2="90" y2="8" stroke="currentColor" strokeWidth="0.5" />
-                    {/* Text labels inside SVG */}
-                    <text x="50" y="4" textAnchor="middle" fontSize="3.5" fill="currentColor" stroke="none" className="font-heading tracking-widest font-bold">W: 3200mm</text>
-                    <text x="7" y="50" textAnchor="middle" fontSize="3.5" transform="rotate(-90 7 50)" fill="currentColor" stroke="none" className="font-heading tracking-widest font-bold">H: 2400mm</text>
-                  </svg>
-                  <h4 className="text-xs font-heading font-bold text-heading uppercase tracking-wider mb-1">Slimline Frame Section</h4>
-                  <p className="text-[10px] text-body/70 font-light max-w-[200px]">Move cursor to sweep blueprint and reveal reality.</p>
+                  {/* Dynamic SVG Blueprint from Slide Data */}
+                  <div className="w-44 h-44 mb-2 flex items-center justify-center">
+                    {HERO_SLIDES[activeSlide].blueprintPath}
+                  </div>
+                  
+                  <h4 className="text-xs font-heading font-bold text-accent uppercase tracking-wider mb-1">Slimline Frame Section</h4>
+                  <p className="text-[10px] text-gray-400 font-light max-w-[200px]">Sweep cursor or touch to slide-reveal architectural finish.</p>
                 </div>
 
                 {/* Top Slide Layer: Completed Photo */}
@@ -323,31 +379,42 @@ export default function Home() {
                   style={{ width: `${sliderPosition}%` }}
                 >
                   <div className="absolute inset-y-0 left-0 w-[380px] h-[380px]">
-                    <Image
-                      src={IMAGES.hero}
-                      alt="Villa output rendering"
-                      fill
-                      className="object-cover"
-                      sizes="380px"
-                      priority
-                    />
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={activeSlide}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="w-full h-full relative"
+                      >
+                        <Image
+                          src={HERO_SLIDES[activeSlide].image}
+                          alt="Architectural execution"
+                          fill
+                          className="object-cover"
+                          sizes="380px"
+                          priority
+                        />
+                      </motion.div>
+                    </AnimatePresence>
                     {/* Dark gradient overlay at the bottom of the photo */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#011214]/90 via-transparent to-transparent" />
 
                     <div className="absolute bottom-6 left-6 w-[320px] text-left">
-                      <span className="text-accent text-[9px] font-heading font-bold uppercase tracking-widest block mb-1">Concept Realized</span>
-                      <h4 className="text-xs font-heading font-bold text-white tracking-tight leading-snug">The Courtyard Villa, Ahmedabad</h4>
-                      <p className="text-[9px] text-gray-200 font-light mt-0.5">Featuring 28mm sightline sliding glass profiles.</p>
+                      <span className="text-accent text-[9px] font-heading font-bold uppercase tracking-widest block mb-1">Reality Realized</span>
+                      <h4 className="text-xs font-heading font-bold text-white tracking-tight leading-snug">{HERO_SLIDES[activeSlide].project}</h4>
+                      <p className="text-[9px] text-gray-300 font-light mt-0.5">{HERO_SLIDES[activeSlide].scope}</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Drag Handle Divider */}
                 <div
-                  className="absolute inset-y-0 z-20 w-[2px] bg-accent pointer-events-none flex items-center justify-center shadow-lg"
+                  className="absolute inset-y-0 z-20 w-[1.5px] bg-accent pointer-events-none flex items-center justify-center shadow-lg"
                   style={{ left: `${sliderPosition}%` }}
                 >
-                  <div className="w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center text-[10px] border border-white font-bold shadow-xl">
+                  <div className="w-7 h-7 rounded-full bg-accent text-white flex items-center justify-center text-[10px] border border-white/20 font-bold shadow-2xl hover:scale-110 transition-transform">
                     ↔
                   </div>
                 </div>
@@ -594,146 +661,20 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Our Process Section */}
-      <Section id="process" background="section" className="border-t border-[#C28B45]/15">
+      <Section id="process" background="section" className="border-t border-[#C28B45]/15 !py-8 md:!py-16">
         <div className="container mx-auto max-w-7xl">
           
-          <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
+          <div className="text-center max-w-3xl mx-auto mb-6 md:mb-10 space-y-3">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">How We Work</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading">
               Our Facade Engineering Process
             </h2>
-            <p className="text-body max-w-xl mx-auto text-sm md:text-base leading-relaxed mt-4 font-light">
+            <p className="text-body max-w-xl mx-auto text-xs md:text-sm leading-relaxed mt-2.5 font-light">
               From initial blueprints to after-sales maintenance support, we check every millimeter of your custom glazing.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            
-            {/* Left timeline rail: Step list */}
-            <div className="lg:col-span-5 space-y-3 max-h-[580px] overflow-y-auto pr-2 custom-scrollbar">
-              {processSteps.map((step, idx) => {
-                const StepIcon = step.icon;
-                const isActive = activeStep === idx;
-                return (
-                  <button
-                    key={step.num}
-                    onClick={() => setActiveStep(idx)}
-                    className={`w-full text-left p-4 rounded-2xl flex items-center gap-5 border transition-all duration-300 cursor-pointer ${
-                      isActive 
-                        ? "bg-[#C28B45]/10 border-[#C28B45]/40 shadow-lg shadow-[#C28B45]/5" 
-                        : "bg-white/[0.03] border-border hover:bg-white/[0.08] hover:border-accent/20"
-                    }`}
-                  >
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-                      isActive ? "bg-[#C28B45] text-white" : "bg-primary/5 text-primary/60"
-                    }`}>
-                      <StepIcon className="w-5 h-5" />
-                    </div>
-                    
-                    <div className="flex-grow min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-[9px] text-accent font-bold tracking-widest">PHASE {step.num}</span>
-                        {isActive && <span className="w-2 h-2 rounded-full bg-[#C28B45] animate-pulse" />}
-                      </div>
-                      <h4 className={`text-base font-bold tracking-tight truncate font-heading ${isActive ? "text-[#C28B45]" : "text-heading"}`}>
-                        {step.title}
-                      </h4>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Right detailed board */}
-            <div className="lg:col-span-7 bg-white rounded-3xl p-6 md:p-10 shadow-2xl border border-[#C28B45]/15 relative overflow-hidden min-h-[520px] flex flex-col justify-between">
-              {/* Background gradient backdrop */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(194,139,69,0.04),transparent_50%)] pointer-events-none" />
-              
-              <div className="space-y-8">
-                {/* Header info */}
-                <div className="flex items-start justify-between border-b border-[#C28B45]/10 pb-6 font-heading">
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-mono tracking-widest text-accent uppercase font-bold">
-                      Process Details / Step {processSteps[activeStep].num}
-                    </span>
-                    <h3 className="text-3xl font-heading font-bold text-heading">
-                      {processSteps[activeStep].title}
-                    </h3>
-                  </div>
-                  <div className="text-6xl font-mono font-extrabold text-heading/5 tracking-tighter pointer-events-none select-none">
-                    {processSteps[activeStep].num}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                  {/* Left sub-col: Description & Specs */}
-                  <div className="md:col-span-7 space-y-6">
-                    <p className="text-sm text-body leading-relaxed font-sans font-light">
-                      {processSteps[activeStep].desc}
-                    </p>
-
-                    {/* Specifications list */}
-                    <div className="rounded-2xl border border-border overflow-hidden text-xs font-sans">
-                      {processSteps[activeStep].specs.map((spec, i) => (
-                        <div 
-                          key={spec.label} 
-                          className={`grid grid-cols-[110px_1fr] gap-3 p-3.5 ${
-                            i % 2 === 0 ? "bg-[#FAF9F5]" : "bg-white"
-                          } ${i < 2 ? "border-b border-border" : ""}`}
-                        >
-                          <span className="text-[9px] font-mono text-body/55 uppercase tracking-wider">{spec.label}</span>
-                          <span className="font-bold text-heading">{spec.val}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Right sub-col: Graphic/Photo frame */}
-                  <div className="md:col-span-5 flex justify-center">
-                    <div className="relative w-full aspect-[4/5] max-w-[200px] rounded-2xl overflow-hidden border border-[#C28B45]/20 shadow-lg luxury-ticks bg-[#FAF9F5]">
-                      <Image
-                        src={processSteps[activeStep].img}
-                        alt={processSteps[activeStep].title}
-                        fill
-                        className="object-cover opacity-90"
-                        sizes="200px"
-                      />
-                      <div className="absolute inset-0 bg-[#001518]/5 pointer-events-none" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action buttons footer */}
-              <div className="border-t border-border pt-6 mt-8 flex flex-col sm:flex-row items-center gap-4 justify-between font-sans">
-                <span className="text-[10px] font-mono text-body/45 uppercase">
-                  SHREE HARI ALU CORPORATION // WORKFLOW
-                </span>
-                
-                <div className="flex gap-3">
-                  {activeStep > 0 && (
-                    <button
-                      onClick={() => setActiveStep((p) => p - 1)}
-                      className="px-4 py-2 rounded-xl border border-[#C28B45]/20 hover:bg-[#FAF9F5] text-xs font-bold transition-all cursor-pointer text-heading"
-                    >
-                      ← Previous
-                    </button>
-                  )}
-                  {activeStep < processSteps.length - 1 && (
-                    <button
-                      onClick={() => setActiveStep((p) => p + 1)}
-                      className="px-4 py-2 rounded-xl bg-[#C28B45] text-white hover:scale-105 text-xs font-bold transition-all cursor-pointer"
-                    >
-                      Next Phase →
-                    </button>
-                  )}
-                </div>
-              </div>
-
-            </div>
-
-          </div>
+          <ProcessSection />
 
         </div>
       </Section>

@@ -28,6 +28,7 @@ import {
   Phone,
 } from "lucide-react";
 import Button from "@/components/ui/Button";
+import ProcessSection from "@/components/ui/ProcessSection";
 
 /* --------------------------------------------------- DATA ------------------- */
 
@@ -333,116 +334,7 @@ const allSystems: Record<string, SystemItem[]> = {
   ],
 };
 
-const processSteps = [
-  {
-    num: "01",
-    title: "Consultation",
-    icon: MessageSquare,
-    desc: "We align with your architect's blueprints, discuss sightline preferences, and draft initial budget scopes.",
-    img: "/services/brochure-img-2.jpg",
-    specs: [
-      { label: "Methodology", val: "Architectural Brief Review" },
-      { label: "Engineering Focus", val: "Sightline configurations & Wind limits" },
-      { label: "Key Deliverables", val: "System proposals & preliminary estimate" },
-    ],
-  },
-  {
-    num: "02",
-    title: "Site Survey",
-    icon: Maximize2,
-    desc: "Our engineers scan structural openings using high-precision digital measuring tools to secure an absolute fit.",
-    img: "/services/brochure-img-11.jpg",
-    specs: [
-      { label: "Equipment", val: "3D Laser Scanners & Digital Levels" },
-      { label: "Accuracy standard", val: "Tolerance of ±1.0 mm" },
-      { label: "Inspection points", val: "Slab deflections & column alignments" },
-    ],
-  },
-  {
-    num: "03",
-    title: "Design & Engineering",
-    icon: Compass,
-    desc: "Drafting detailed CAD shop drawings, glass thickness schedules, and custom anchor bracket calculations.",
-    img: "/services/brochure-img-13.jpg",
-    specs: [
-      { label: "CAD Platforms", val: "AutoCAD & Finite Element Stress Analysis" },
-      { label: "Wind load specs", val: "IS 875 Part 3 Standard Calculations" },
-      { label: "Clearance", val: "Structural Stability Certification" },
-    ],
-  },
-  {
-    num: "04",
-    title: "Material Selection",
-    icon: Layers,
-    desc: "Sourcing certified T6 temper aluminium alloys, high-performance thermal barriers, and custom glazing specs.",
-    img: "/services/brochure-img-15.jpg",
-    specs: [
-      { label: "Alloy Grade", val: "6063-T6 Structural Grade Extrusions" },
-      { label: "Thermal Barriers", val: "Polyamide insulating struts & EPDM gaskets" },
-      { label: "Glazing Types", val: "Double Laminated Low-E acoustic pane sashes" },
-    ],
-  },
-  {
-    num: "05",
-    title: "Fabrication",
-    icon: Cpu,
-    desc: "Precision CNC profile cutting, double-miter joint corner crimping, and automated lock machining at our plant.",
-    img: "/services/brochure-img-16.jpg",
-    specs: [
-      { label: "Profile Cutting", val: "CNC double-miter automated cutting" },
-      { label: "Corner Joining", val: "Pneumatic glue-injected corner crimping" },
-      { label: "Hardware fitting", val: "Premium concealed sills & locking tracks" },
-    ],
-  },
-  {
-    num: "06",
-    title: "Quality Inspection",
-    icon: CheckSquare,
-    desc: "Rigorous quality audits checking dimensional tolerances, gasket seals, and hardware cycle operations.",
-    img: "/services/brochure-img-17.jpg",
-    specs: [
-      { label: "Tolerance audits", val: "Tolerances held within +0.5mm / -0.0mm" },
-      { label: "Water tight test", val: "EPDM compression & drainage seal checks" },
-      { label: "Hardware cycles", val: "Opening/closing friction testing audits" },
-    ],
-  },
-  {
-    num: "07",
-    title: "Installation",
-    icon: Wrench,
-    desc: "Anchor bracket fixing, structural hoisting of glass sashes, and high-performance weather silicone sealing.",
-    img: "/services/brochure-img-18.jpg",
-    specs: [
-      { label: "Sash Anchoring", val: "Heavy galvanized steel anchor plates" },
-      { label: "Weather sealing", val: "Dow Corning structural silicone jointing" },
-      { label: "Sash hoisting", val: "Suction-cup crane hoist for oversized panels" },
-    ],
-  },
-  {
-    num: "08",
-    title: "Project Handover",
-    icon: Award,
-    desc: "Fine calibration of rollers and pivots, deep cleaning of profiles, and handover of keys & warranty packs.",
-    img: "/services/brochure-img-24.jpg",
-    specs: [
-      { label: "Calibration", val: "Glide operation force check under 15N" },
-      { label: "Profile cleaning", val: "Alkaline-free neutral profile wash" },
-      { label: "Warranty packs", val: "10-Year structural integrity certificate handover" },
-    ],
-  },
-  {
-    num: "09",
-    title: "After-Sales Support",
-    icon: Phone,
-    desc: "Dedicated customer service for annual checks, weather gasket lubrication, and quick hardware adjustments.",
-    img: "/services/brochure-img-12.jpg",
-    specs: [
-      { label: "Response SLA", val: "Engineering site visit within 24 hours" },
-      { label: "Maintenance checks", val: "Annual profile alignment & track cleaning" },
-      { label: "Warranty coverage", val: "Replacement parts support on gaskets & locks" },
-    ],
-  },
-];
+
 
 /* ----------------------------- ANIMATION VARIANTS --------------------------- */
 
@@ -502,7 +394,7 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
 /* ------------------------------- MAIN COMPONENT ---------------------------- */
 
 export default function ServicesPage() {
-  const [activeStep, setActiveStep] = useState(0);
+
 
   // Hash routing support for scrolling to categories on mount or hash changes
   useEffect(() => {
@@ -679,145 +571,20 @@ export default function ServicesPage() {
       </div>
 
       {/* ===================== OUR PROCESS SECTION ===================== */}
-      <section id="process" className="py-24 border-t border-primary/5 bg-[#FAF9F5]/40">
+      <section id="process" className="py-8 md:py-16 border-t border-primary/5 bg-[#FAF9F5]/40">
         <div className="container mx-auto px-6 md:px-12 max-w-7xl">
           
-          <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
+          <div className="text-center max-w-3xl mx-auto mb-6 md:mb-10 space-y-3">
             <span className="text-[10px] font-mono font-bold tracking-[0.25em] text-[#C28B45] uppercase block mb-4">How We Work</span>
             <h2 className="text-3xl md:text-5xl font-bold font-heading text-primary leading-tight mb-4">
               Our Facade Engineering <span className="italic font-light">Process</span>
             </h2>
-            <p className="text-sm text-secondary/70 font-light max-w-lg mx-auto">
+            <p className="text-xs md:text-sm text-secondary/70 font-light max-w-lg mx-auto">
               From initial blueprints to after-sales maintenance support, we check every millimeter of your custom glazing.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            
-            {/* Left timeline rail: Step list */}
-            <div className="lg:col-span-5 space-y-3 max-h-[580px] overflow-y-auto pr-2 custom-scrollbar">
-              {processSteps.map((step, idx) => {
-                const StepIcon = step.icon;
-                const isActive = activeStep === idx;
-                return (
-                  <button
-                    key={step.num}
-                    onClick={() => setActiveStep(idx)}
-                    className={`w-full text-left p-4 rounded-2xl flex items-center gap-5 border transition-all duration-300 cursor-pointer ${
-                      isActive 
-                        ? "bg-[#C28B45]/10 border-[#C28B45]/40 shadow-lg shadow-[#C28B45]/5" 
-                        : "bg-white text-secondary border border-primary/10 hover:border-[#C28B45]/20"
-                    }`}
-                  >
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-                      isActive ? "bg-[#C28B45] text-white" : "bg-primary/5 text-primary/60"
-                    }`}>
-                      <StepIcon className="w-5 h-5" />
-                    </div>
-                    
-                    <div className="flex-grow min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-[9px] text-[#C28B45] font-bold tracking-widest">PHASE {step.num}</span>
-                        {isActive && <span className="w-2 h-2 rounded-full bg-[#C28B45] animate-pulse" />}
-                      </div>
-                      <h4 className={`text-base font-bold tracking-tight truncate font-heading ${isActive ? "text-[#C28B45]" : "text-primary"}`}>
-                        {step.title}
-                      </h4>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Right detailed board */}
-            <div className="lg:col-span-7 bg-white rounded-3xl p-6 md:p-10 shadow-2xl border border-[#C28B45]/15 relative overflow-hidden min-h-[520px] flex flex-col justify-between">
-              {/* Background gradient backdrop */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(194,139,69,0.04),transparent_50%)] pointer-events-none" />
-              
-              <div className="space-y-8">
-                {/* Header info */}
-                <div className="flex items-start justify-between border-b border-[#C28B45]/10 pb-6 font-heading">
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-mono tracking-widest text-[#C28B45] uppercase font-bold">
-                      Process Details / Step {processSteps[activeStep].num}
-                    </span>
-                    <h3 className="text-3xl font-heading font-bold text-primary">
-                      {processSteps[activeStep].title}
-                    </h3>
-                  </div>
-                  <div className="text-6xl font-mono font-extrabold text-primary/5 tracking-tighter pointer-events-none select-none">
-                    {processSteps[activeStep].num}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                  {/* Left sub-col: Description & Specs */}
-                  <div className="md:col-span-7 space-y-6">
-                    <p className="text-sm text-secondary/80 leading-relaxed font-sans font-light">
-                      {processSteps[activeStep].desc}
-                    </p>
-
-                    {/* Specifications list */}
-                    <div className="rounded-2xl border border-primary/5 overflow-hidden text-xs font-sans">
-                      {processSteps[activeStep].specs.map((spec, i) => (
-                        <div 
-                          key={spec.label} 
-                          className={`grid grid-cols-[110px_1fr] gap-3 p-3.5 ${
-                            i % 2 === 0 ? "bg-[#FAF9F5]" : "bg-white"
-                          } ${i < 2 ? "border-b border-primary/5" : ""}`}
-                        >
-                          <span className="text-[9px] font-mono text-secondary/50 uppercase tracking-wider">{spec.label}</span>
-                          <span className="font-bold text-primary">{spec.val}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Right sub-col: Graphic/Photo frame */}
-                  <div className="md:col-span-5 flex justify-center">
-                    <div className="relative w-full aspect-[4/5] max-w-[200px] rounded-2xl overflow-hidden border border-[#C28B45]/20 shadow-lg luxury-ticks bg-[#FAF9F5]">
-                      <Image
-                        src={processSteps[activeStep].img}
-                        alt={processSteps[activeStep].title}
-                        fill
-                        className="object-cover opacity-90"
-                        sizes="200px"
-                      />
-                      <div className="absolute inset-0 bg-[#001518]/5 pointer-events-none" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action buttons footer */}
-              <div className="border-t border-primary/5 pt-6 mt-8 flex flex-col sm:flex-row items-center gap-4 justify-between font-sans">
-                <span className="text-[10px] font-mono text-secondary/45 uppercase">
-                  SHREE HARI ALU CORPORATION // WORKFLOW
-                </span>
-                
-                <div className="flex gap-3">
-                  {activeStep > 0 && (
-                    <button
-                      onClick={() => setActiveStep((p) => p - 1)}
-                      className="px-4 py-2 rounded-xl border border-[#C28B45]/20 hover:bg-[#FAF9F5] text-xs font-bold transition-all cursor-pointer text-primary"
-                    >
-                      &larr; Previous
-                    </button>
-                  )}
-                  {activeStep < processSteps.length - 1 && (
-                    <button
-                      onClick={() => setActiveStep((p) => p + 1)}
-                      className="px-4 py-2 rounded-xl bg-[#C28B45] text-white hover:scale-105 text-xs font-bold transition-all cursor-pointer"
-                    >
-                      Next Phase &rarr;
-                    </button>
-                  )}
-                </div>
-              </div>
-
-            </div>
-
-          </div>
+          <ProcessSection />
 
         </div>
       </section>
