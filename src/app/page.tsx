@@ -204,8 +204,8 @@ export default function Home() {
 
   return (
     <>
-      {/* Cinematic Fullscreen Widescreen Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#02181B] text-white">
+      {/* Panoramic Fullscreen Visual Hero Section (Minimalist Image-First Edition) */}
+      <section className="relative min-h-screen w-full flex items-center justify-start overflow-hidden bg-[#FCFBFA] text-body">
         
         {/* Fullscreen Slideshow Background */}
         <div className="absolute inset-0 z-0">
@@ -213,8 +213,8 @@ export default function Home() {
             <motion.div
               key={activeSlide}
               initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 0.35, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 1.2, ease: "easeInOut" }}
               className="absolute inset-0"
             >
@@ -228,209 +228,103 @@ export default function Home() {
             </motion.div>
           </AnimatePresence>
           
-          {/* Blueprint Grid Overlay */}
-          <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,rgba(2,24,27,0.4)_0%,#02181B_100%)]" />
-          <div className="absolute inset-0 z-10 cad-grid opacity-[0.12] pointer-events-none" />
+          {/* Light horizontal vignette gradient for text readability */}
+          <div className="absolute inset-y-0 left-0 w-full lg:w-2/3 bg-gradient-to-r from-[#FCFBFA] via-[#FCFBFA]/90 to-transparent z-10 pointer-events-none" />
+          {/* Fallback bottom vignette for mobile devices where screen width is narrow */}
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#FCFBFA] via-[#FCFBFA]/40 to-transparent lg:hidden z-10 pointer-events-none" />
+          
+          {/* Very subtle grid lines to keep the architectural draftsman texture */}
+          <div className="absolute inset-0 z-10 cad-grid opacity-[0.04] pointer-events-none" />
         </div>
 
-        {/* Ambient Moving Glow Orbs */}
-        <div className="absolute top-1/4 left-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl z-10 pointer-events-none animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 right-10 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl z-10 pointer-events-none animate-pulse-slow"></div>
-
-        {/* Content Container */}
-        <div className="container mx-auto px-4 md:px-8 relative z-20 pt-24 pb-12 lg:pt-28 lg:pb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-
-            {/* Left Column: Text Content */}
-            <div className="lg:col-span-7 space-y-8 text-left">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeSlide}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className="space-y-8"
-                >
-                  <div className="space-y-4">
-                    {/* Slide Tagline */}
-                    <div className="flex items-center space-x-3 text-accent font-heading font-bold text-[10px] md:text-xs uppercase tracking-[0.2em]">
-                      <span className="w-8 h-[1px] bg-accent" />
-                      <span>{HERO_SLIDES[activeSlide].tagline}</span>
-                    </div>
-
-                    {/* Heading */}
-                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-heading font-bold text-white tracking-tight leading-[1.05]">
-                      {HERO_SLIDES[activeSlide].titlePart1}{" "}
-                      <span className="text-gradient-gold">{HERO_SLIDES[activeSlide].titlePart2}</span>{" "}
-                      {HERO_SLIDES[activeSlide].titlePart3}
-                    </h1>
-
-                    {/* Description */}
-                    <p className="text-sm sm:text-base text-gray-300 font-sans font-light max-w-xl leading-relaxed">
-                      {HERO_SLIDES[activeSlide].description}
-                    </p>
-                  </div>
-
-                  {/* Specifications Panel */}
-                  <div className="bg-white/[0.04] backdrop-blur-md border border-white/10 rounded-2xl p-5 shadow-2xl max-w-xl relative overflow-hidden">
-                    <div className="absolute inset-0 cad-grid opacity-[0.03] pointer-events-none" />
-                    <div className="relative z-10 flex flex-col md:flex-row gap-6 justify-between items-start md:items-center">
-                      <div>
-                        <span className="text-[8px] font-mono text-accent uppercase tracking-widest block mb-0.5">Project Scope</span>
-                        <h4 className="text-xs font-heading font-bold uppercase text-white tracking-wider">{HERO_SLIDES[activeSlide].project}</h4>
-                        <p className="text-[10px] text-gray-400 font-light mt-0.5">{HERO_SLIDES[activeSlide].scope}</p>
-                      </div>
-                      <div className="flex flex-wrap gap-4 md:gap-6 border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-6 w-full md:w-auto">
-                        {HERO_SLIDES[activeSlide].specs.map((spec, sIdx) => (
-                          <div key={sIdx} className="min-w-[90px]">
-                            <span className="text-[7px] font-mono text-gray-500 uppercase tracking-widest block">{spec.label}</span>
-                            <span className="text-[10px] font-bold text-accent uppercase tracking-wider">{spec.value}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Action Buttons & Slide Controls */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-4">
-                <div className="flex gap-4">
-                  <Button href="/request-quote" variant="accent" size="md" className="gold-glow hover:scale-[1.03] transition-transform duration-300" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
-                    Free Consultation
-                  </Button>
-                  <Button href="/projects" variant="outline" size="md" className="hover:scale-[1.03] transition-transform duration-300 border-white/20 hover:border-white/50 text-white bg-transparent">
-                    View Our Portfolio
-                  </Button>
-                </div>
-                
-                {/* Slideshow Controls */}
-                <div className="flex items-center space-x-4 border-l border-white/10 pl-6 h-10 w-full sm:w-auto justify-between sm:justify-start">
-                  <div className="flex items-center space-x-2">
-                    {HERO_SLIDES.map((_, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => setActiveSlide(idx)}
-                        className={`h-1.5 rounded-full transition-all duration-300 ${activeSlide === idx ? "bg-accent w-6" : "bg-white/20 hover:bg-white/40 w-1.5"}`}
-                        aria-label={`Go to slide ${idx + 1}`}
-                      />
-                    ))}
-                  </div>
-                  <div className="text-[10px] font-mono text-gray-400 tracking-wider">
-                    0{activeSlide + 1} // 0{HERO_SLIDES.length}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column: Interactive Blueprints Glass Panel */}
-            <div className="lg:col-span-5 flex justify-center">
+        {/* Content Container (Overlay) */}
+        <div className="container mx-auto px-4 md:px-8 relative z-20 pt-28 pb-20 h-full flex flex-col justify-center">
+          <div className="max-w-2xl space-y-10 text-left">
+            <AnimatePresence mode="wait">
               <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="relative w-full max-w-[380px] aspect-square rounded-3xl overflow-hidden luxury-ticks border border-accent/30 bg-[#02181B] shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-500 hover:border-accent/60 cursor-ew-resize select-none group"
-                onMouseEnter={() => setIsScannerHovered(true)}
-                onMouseLeave={() => setIsScannerHovered(false)}
-                onMouseMove={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  const x = e.clientX - rect.left;
-                  const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
-                  setSliderPosition(percentage);
-                }}
-                onTouchMove={(e) => {
-                  if (e.touches[0]) {
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    const x = e.touches[0].clientX - rect.left;
-                    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
-                    setSliderPosition(percentage);
-                  }
-                }}
+                key={activeSlide}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="space-y-6"
               >
-                {/* CAD Coordinates */}
-                <div className="absolute top-4 left-4 z-30 flex items-center space-x-1.5 text-[8px] font-heading font-bold text-accent/80 tracking-wider">
-                  <span>23.03° N, 72.54° E</span>
-                  <span>/</span>
-                  <span className="animate-pulse">AUTO SCANNER</span>
-                </div>
-                <div className="absolute top-4 right-4 z-30 text-[8px] font-heading font-bold text-accent/80">
-                  <span>SEC.01</span>
+                {/* Tagline */}
+                <div className="flex items-center space-x-3 text-accent font-heading font-extrabold text-[10px] md:text-xs uppercase tracking-[0.25em]">
+                  <span className="w-8 h-[1.5px] bg-accent" />
+                  <span>{HERO_SLIDES[activeSlide].tagline}</span>
                 </div>
 
-                {/* Base Layer: Blueprint (Shows when slider pulls back) */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-[#011214] z-0">
-                  {/* Grid overlay for Blueprint feel */}
-                  <div className="absolute inset-0 cad-grid opacity-[0.15]" />
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#011214_90%)]" />
+                {/* Heading */}
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7.5xl font-heading font-extrabold text-heading tracking-tight leading-[1.08]">
+                  {HERO_SLIDES[activeSlide].titlePart1}{" "}
+                  <span className="text-gradient-gold">{HERO_SLIDES[activeSlide].titlePart2}</span>{" "}
+                  {HERO_SLIDES[activeSlide].titlePart3}
+                </h1>
 
-                  {/* Dynamic SVG Blueprint from Slide Data */}
-                  <div className="w-44 h-44 mb-2 flex items-center justify-center">
-                    {HERO_SLIDES[activeSlide].blueprintPath}
+                {/* Description */}
+                <p className="text-sm sm:text-base text-body font-sans font-light max-w-xl leading-relaxed">
+                  {HERO_SLIDES[activeSlide].description}
+                </p>
+
+                {/* Subtle spec details list */}
+                <div className="flex flex-wrap gap-x-8 gap-y-3 pt-4 border-t border-gray-200/60 max-w-lg">
+                  <div>
+                    <span className="text-[7px] font-mono text-gray-400 uppercase tracking-widest block">Project scope</span>
+                    <span className="text-[10px] font-extrabold text-heading uppercase tracking-wide">{HERO_SLIDES[activeSlide].project}</span>
                   </div>
-                  
-                  <h4 className="text-xs font-heading font-bold text-accent uppercase tracking-wider mb-1">Slimline Frame Section</h4>
-                  <p className="text-[10px] text-gray-400 font-light max-w-[200px]">Sweep cursor or touch to slide-reveal architectural finish.</p>
-                </div>
-
-                {/* Top Slide Layer: Completed Photo */}
-                <div
-                  className="absolute inset-y-0 left-0 overflow-hidden z-10 transition-all duration-75 pointer-events-none"
-                  style={{ width: `${sliderPosition}%` }}
-                >
-                  <div className="absolute inset-y-0 left-0 w-[380px] h-[380px]">
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={activeSlide}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="w-full h-full relative"
-                      >
-                        <Image
-                          src={HERO_SLIDES[activeSlide].image}
-                          alt="Architectural execution"
-                          fill
-                          className="object-cover"
-                          sizes="380px"
-                          priority
-                        />
-                      </motion.div>
-                    </AnimatePresence>
-                    {/* Dark gradient overlay at the bottom of the photo */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#011214]/90 via-transparent to-transparent" />
-
-                    <div className="absolute bottom-6 left-6 w-[320px] text-left">
-                      <span className="text-accent text-[9px] font-heading font-bold uppercase tracking-widest block mb-1">Reality Realized</span>
-                      <h4 className="text-xs font-heading font-bold text-white tracking-tight leading-snug">{HERO_SLIDES[activeSlide].project}</h4>
-                      <p className="text-[9px] text-gray-300 font-light mt-0.5">{HERO_SLIDES[activeSlide].scope}</p>
+                  {HERO_SLIDES[activeSlide].specs.slice(0, 2).map((spec, sIdx) => (
+                    <div key={sIdx}>
+                      <span className="text-[7px] font-mono text-gray-400 uppercase tracking-widest block">{spec.label}</span>
+                      <span className="text-[10px] font-extrabold text-accent uppercase tracking-wider">{spec.value}</span>
                     </div>
-                  </div>
+                  ))}
                 </div>
-
-                {/* Drag Handle Divider */}
-                <div
-                  className="absolute inset-y-0 z-20 w-[1.5px] bg-accent pointer-events-none flex items-center justify-center shadow-lg"
-                  style={{ left: `${sliderPosition}%` }}
-                >
-                  <div className="w-7 h-7 rounded-full bg-accent text-white flex items-center justify-center text-[10px] border border-white/20 font-bold shadow-2xl hover:scale-110 transition-transform">
-                    ↔
-                  </div>
-                </div>
-
               </motion.div>
-            </div>
+            </AnimatePresence>
 
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-4">
+              <Button href="/request-quote" variant="accent" size="md" className="gold-glow hover:scale-[1.03] transition-transform duration-300" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
+                Free Consultation
+              </Button>
+              <Button href="/projects" variant="outline" size="md" className="hover:scale-[1.03] transition-transform duration-300 border-gray-300 hover:border-primary/50 text-primary bg-transparent">
+                View Our Portfolio
+              </Button>
+            </div>
           </div>
+        </div>
+
+        {/* Floating Navigation Pill (Bottom Right Corner) */}
+        <div className="absolute bottom-8 right-8 md:right-12 z-30 flex items-center space-x-4 bg-white/80 backdrop-blur-md py-3 px-6 rounded-full border border-gray-200/50 shadow-2xl">
+          {HERO_SLIDES.map((slide, idx) => {
+            const isActive = activeSlide === idx;
+            return (
+              <button
+                key={idx}
+                onClick={() => setActiveSlide(idx)}
+                className="flex items-center space-x-2 group focus:outline-none cursor-pointer"
+              >
+                <span className={`text-[10px] font-mono transition-colors duration-300 ${isActive ? "text-accent font-extrabold" : "text-gray-400 group-hover:text-gray-600"}`}>
+                  0{idx + 1}
+                </span>
+                <span className={`text-[9px] font-heading font-extrabold uppercase tracking-widest transition-colors duration-300 ${isActive ? "text-heading scale-102" : "text-gray-400 group-hover:text-gray-600"}`}>
+                  {idx === 0 ? "Sliding" : idx === 1 ? "Facades" : "Louvers"}
+                </span>
+                {isActive && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                )}
+              </button>
+            );
+          })}
         </div>
 
         {/* Scroll Cue Line */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center cursor-pointer">
-          <span className="text-[10px] text-accent font-heading font-bold uppercase tracking-widest mb-3">Scroll</span>
-          <div className="w-[1.5px] h-16 bg-gradient-to-b from-accent to-transparent relative overflow-hidden">
+        <div className="absolute bottom-8 left-8 md:left-12 z-20 flex items-center gap-3 cursor-pointer">
+          <div className="w-[1px] h-10 bg-gradient-to-b from-accent to-transparent relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1/2 bg-accent animate-bounce"></div>
           </div>
+          <span className="text-[9px] text-gray-400 font-heading font-bold uppercase tracking-widest">Scroll</span>
         </div>
       </section>
 
@@ -797,40 +691,134 @@ export default function Home() {
       </Section>
 
       {/* Client Perspectives Testimonial Section */}
-      <Section id="testimonials" background="main" className="">
-        <div className="max-w-4xl mx-auto text-center px-4 space-y-12">
-          <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Client Perspectives</span>
+      <Section id="testimonials" background="section" className="relative overflow-hidden py-24">
+        {/* Decorative background details */}
+        <div className="absolute top-1/2 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+        <div className="absolute inset-0 cad-grid opacity-[0.03] pointer-events-none" />
 
-          <div className="relative h-[250px] md:h-[200px] flex items-center justify-center overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTestimonial}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.55 }}
-                className="space-y-6"
-              >
-                <blockquote className="text-2xl md:text-3xl lg:text-4xl font-heading italic font-light text-heading leading-relaxed">
-                  “{testimonials[activeTestimonial].quote}”
-                </blockquote>
-                <cite className="block text-accent font-bold text-xs md:text-sm font-sans uppercase tracking-widest not-italic">
-                  {testimonials[activeTestimonial].author}
-                </cite>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+        <div className="container mx-auto px-4 md:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Column (7 cols): Editorial Quote & Navigation */}
+            <div className="lg:col-span-7 space-y-10 text-left relative">
+              <div className="space-y-4">
+                <span className="text-accent font-heading font-extrabold uppercase tracking-widest text-[10px] md:text-xs block">Client Perspectives</span>
+                <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-heading tracking-tight leading-[1.1]">
+                  Voices of <span className="text-gradient">Partnership</span>.
+                </h2>
+              </div>
 
-          <div className="flex justify-center space-x-3">
-            {testimonials.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveTestimonial(idx)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeTestimonial === idx ? "bg-accent w-6" : "bg-primary/20 hover:bg-primary/45"
-                  }`}
-                aria-label={`Show testimonial ${idx + 1}`}
-              />
-            ))}
+              {/* Large quotation mark watermark */}
+              <div className="absolute -top-10 -left-6 text-accent/8 pointer-events-none select-none">
+                <span className="text-[12rem] font-heading font-light leading-none">“</span>
+              </div>
+
+              {/* Animated Testimonial Text */}
+              <div className="relative z-10 min-h-[180px] flex flex-col justify-center">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTestimonial}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="space-y-6"
+                  >
+                    <blockquote className="text-xl sm:text-2xl lg:text-3.5xl font-heading font-light text-heading leading-relaxed italic text-left">
+                      “{testimonials[activeTestimonial].quote}”
+                    </blockquote>
+
+                    <div>
+                      <cite className="block text-accent font-heading font-extrabold text-xs tracking-widest uppercase not-italic">
+                        {testimonials[activeTestimonial].author.split(" · ")[0]}
+                      </cite>
+                      <span className="block text-[10px] text-body font-sans font-light mt-0.5">
+                        {testimonials[activeTestimonial].author.split(" · ")[1] || ""}
+                      </span>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Location tabs switcher at bottom of left column */}
+              <div className="pt-6 border-t border-gray-200/80 flex flex-wrap gap-x-6 gap-y-3">
+                {testimonials.map((testimonial, idx) => {
+                  const locationFull = testimonial.author.split(" · ")[1] || "India";
+                  const cityName = locationFull.split(", ").pop()?.toUpperCase() || "PROJECT";
+                  const isActive = activeTestimonial === idx;
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveTestimonial(idx)}
+                      className="flex items-center space-x-2 focus:outline-none group cursor-pointer"
+                    >
+                      <span className={`text-[10px] font-mono transition-colors duration-300 ${isActive ? "text-accent font-extrabold" : "text-gray-400 group-hover:text-gray-600"}`}>
+                        [ {cityName} ]
+                      </span>
+                      {isActive && (
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Right Column (5 cols): Framed Visual Showcase */}
+            <div className="lg:col-span-5 flex flex-col items-center">
+              <div className="relative w-full aspect-[4/3] rounded-[2rem] bg-white p-3 border border-accent/25 shadow-2xl overflow-hidden group">
+                <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden bg-gray-50 border border-gray-100">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeTestimonial}
+                      initial={{ opacity: 0, scale: 1.05 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.6 }}
+                      className="w-full h-full relative"
+                    >
+                      <Image
+                        src={
+                          activeTestimonial === 0 ? IMAGES.hero :
+                          activeTestimonial === 1 ? IMAGES.commercial :
+                          IMAGES.villa
+                        }
+                        alt="Project showcase"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 400px"
+                      />
+                      {/* Vignette overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
+
+              {/* Specification Sheet */}
+              <div className="w-full mt-6 bg-white/70 border border-gray-100 rounded-2xl p-4 shadow-lg relative overflow-hidden">
+                <div className="absolute inset-0 cad-grid opacity-[0.02] pointer-events-none" />
+                <div className="relative z-10 flex justify-between items-center text-left">
+                  <div>
+                    <span className="text-[7px] font-mono text-accent uppercase tracking-widest block">System Installed</span>
+                    <h5 className="text-[10px] font-heading font-extrabold uppercase text-heading tracking-wider mt-0.5">
+                      {activeTestimonial === 0 ? "Minimal Sliding System" :
+                       activeTestimonial === 1 ? "Unitized Curtain Wall" :
+                       "Slim Gliding Door"}
+                    </h5>
+                  </div>
+                  <div className="border-l border-gray-200 pl-4 text-left">
+                    <span className="text-[7px] font-mono text-gray-400 uppercase tracking-widest block">Performance</span>
+                    <span className="text-[9px] font-heading font-extrabold text-accent uppercase tracking-wider block mt-0.5">
+                      {activeTestimonial === 0 ? "Class A4 Sealing" :
+                       activeTestimonial === 1 ? "3.5 kPa Windload" :
+                       "Silent Roller Tech"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </Section>

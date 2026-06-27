@@ -117,6 +117,7 @@ export default function Header() {
               height={50} 
               className="w-auto h-8 xl:h-9.5 transition-all duration-500"
               priority
+              loading="eager"
             />
           </LinkNext>
 
