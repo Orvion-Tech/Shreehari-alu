@@ -277,15 +277,15 @@ export default function OutdoorShadingPage() {
     <div className="bg-[#FAF9F5] min-h-screen text-[#1F2937] antialiased">
       
       {/* Hero Section */}
-      <section ref={heroRef} className="relative overflow-hidden bg-[#FAF9F5] pt-16 pb-16 md:pt-24 md:pb-28 border-b border-primary/5">
+      <section ref={heroRef} className="relative overflow-hidden bg-[#FAF9F5] pt-28 pb-12 md:pt-24 md:pb-28 border-b border-primary/5">
         {/* CAD Grid Backdrop */}
         <div className="absolute inset-0 z-0 bg-[radial-gradient(rgba(194,139,69,0.04)_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-75 pointer-events-none" />
 
         <div className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-center">
             
             {/* Left Column: Text content */}
-            <div className="lg:col-span-7 space-y-8 text-left">
+            <div className="lg:col-span-7 space-y-4 md:space-y-8 text-left">
               <div className="flex items-center gap-3">
                 <span className="w-8 h-px bg-[#C28B45]" />
                 <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-[#C28B45] uppercase">Division 04</span>
@@ -314,7 +314,7 @@ export default function OutdoorShadingPage() {
 
             {/* Right Column: Large Luxury Visual Frame */}
             <div className="lg:col-span-5 flex justify-center w-full">
-              <div className="relative w-full max-w-[420px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-[#C28B45]/20 luxury-ticks bg-white">
+              <div className="relative w-full max-w-[420px] aspect-[3/2] md:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-[#C28B45]/20 luxury-ticks bg-white">
                 <Image
                   src="/services/brochure-img-19.jpg"
                   alt="Outdoor & Shading showcase"

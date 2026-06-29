@@ -26,30 +26,18 @@ import {
 const processSteps = [
   {
     num: "01",
-    title: "Consultation",
+    title: "Consultation & Survey",
     icon: MessageSquare,
-    desc: "We review your home's layouts, discuss design and sightline preferences, and prepare initial project estimates.",
+    desc: "We review your blueprints, discuss design preferences, and perform a precise site survey with digital measurements.",
     img: "/services/brochure-img-2.jpg",
     specs: [
       { label: "Layout Review", val: "Understanding your vision & blueprints", icon: Ruler },
-      { label: "Design Options", val: "Matching window styles to your design", icon: Target },
+      { label: "Digital Survey", val: "Precision scanning of wall openings", icon: Target },
       { label: "Cost Planning", val: "Clear estimates & package proposals", icon: ShieldCheck },
     ],
   },
   {
     num: "02",
-    title: "Site Survey",
-    icon: Maximize2,
-    desc: "Our engineers inspect openings and take exact digital measurements to ensure your windows fit perfectly.",
-    img: "/services/brochure-img-11.jpg",
-    specs: [
-      { label: "Measurement", val: "Precision scanning for a perfect fit", icon: Ruler },
-      { label: "Fit Guarantee", val: "Perfect alignment with walls & slabs", icon: Target },
-      { label: "Site Check", val: "Verifying opening readiness & leveling", icon: ShieldCheck },
-    ],
-  },
-  {
-    num: "03",
     title: "Design & Engineering",
     icon: Compass,
     desc: "We create detailed shop drawings, wind-pressure calculations, and structural layouts for your approval.",
@@ -61,7 +49,7 @@ const processSteps = [
     ],
   },
   {
-    num: "04",
+    num: "03",
     title: "Material Selection",
     icon: Layers,
     desc: "Sourcing premium architectural-grade aluminium profiles, thermal insulation barriers, and high-performance glass.",
@@ -73,31 +61,19 @@ const processSteps = [
     ],
   },
   {
-    num: "05",
-    title: "Fabrication",
+    num: "04",
+    title: "Fabrication & QC",
     icon: Cpu,
-    desc: "Precision cutting, corner joining, and smooth lock assembly inside our advanced manufacturing facility.",
+    desc: "Precision cutting and lock assembly in our advanced facility, followed by rigorous testing of lock actions and rain seal compression.",
     img: "/services/brochure-img-16.jpg",
     specs: [
       { label: "Frame Cutting", val: "Laser-accurate profile sizing", icon: Ruler },
       { label: "Corner Joints", val: "Super-strong leak-proof joints", icon: Target },
-      { label: "Hardware Fitting", val: "Concealed locks & smooth handles", icon: ShieldCheck },
+      { label: "Quality Inspection", val: "Millimeter size & glide verification", icon: ShieldCheck },
     ],
   },
   {
-    num: "06",
-    title: "Quality Inspection",
-    icon: CheckSquare,
-    desc: "We test lock actions, rain seal compression, and alignment parameters before the windows leave our plant.",
-    img: "/services/brochure-img-17.jpg",
-    specs: [
-      { label: "Size Verification", val: "Checking sizes down to the millimeter", icon: Ruler },
-      { label: "Rain Seal Test", val: "Double-checked leak protection", icon: Target },
-      { label: "Glide Test", val: "Effortless sliding & latch movement", icon: ShieldCheck },
-    ],
-  },
-  {
-    num: "07",
+    num: "05",
     title: "Installation",
     icon: Wrench,
     desc: "Secure structural fixing at your site using heavy brackets, premium silicone, and professional hoisting.",
@@ -109,7 +85,7 @@ const processSteps = [
     ],
   },
   {
-    num: "08",
+    num: "06",
     title: "Project Handover",
     icon: Award,
     desc: "Final adjustments to rollers, deep cleaning of all frames and glass, and handing over keys and warranties.",
@@ -121,7 +97,7 @@ const processSteps = [
     ],
   },
   {
-    num: "09",
+    num: "07",
     title: "After-Sales Support",
     icon: Phone,
     desc: "Dedicated support team for annual lock checkups, seal inspections, and swift hardware adjustments.",
@@ -186,10 +162,10 @@ export default function ProcessSection() {
       {/* ================= STEPS NAVIGATION RAIL ================= */}
       <div className="hidden md:block relative mb-10 select-none">
         {/* Background track line */}
-        <div className="absolute left-6 right-6 top-7 h-[2px] bg-primary/5 pointer-events-none" />
+        <div className="absolute left-6 right-6 top-8 h-[2px] bg-primary/5 pointer-events-none" />
         
         {/* Active track filling line (Animated) */}
-        <div className="absolute left-6 right-6 top-7 h-[2px] pointer-events-none overflow-hidden">
+        <div className="absolute left-6 right-6 top-8 h-[2px] pointer-events-none overflow-hidden">
           <motion.div
             className="h-full bg-accent"
             animate={{ width: `${(activeStep / (processSteps.length - 1)) * 100}%` }}
@@ -200,7 +176,7 @@ export default function ProcessSection() {
         {/* Stepper buttons container */}
         <div 
           ref={stepperRef}
-          className="flex justify-between items-center w-full overflow-x-auto pb-4 pt-1 px-4 scrollbar-none gap-6 snap-x snap-mandatory"
+          className="flex justify-between items-center w-full overflow-x-auto pb-4 pt-4 px-4 scrollbar-none gap-6 snap-x snap-mandatory"
         >
           {processSteps.map((step, idx) => {
             const IconComponent = step.icon;
@@ -217,7 +193,7 @@ export default function ProcessSection() {
                 {/* Node bubble */}
                 <div className="relative">
                   <motion.div
-                    className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 border ${
+                    className={`w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 border ${
                       isActive
                         ? "bg-accent text-white border-accent shadow-lg shadow-accent/25 scale-110"
                         : isCompleted
@@ -225,11 +201,11 @@ export default function ProcessSection() {
                         : "bg-card text-primary/40 border-primary/10 hover:border-accent/50 hover:text-primary"
                     }`}
                   >
-                    <IconComponent className="w-5 h-5" />
+                    <IconComponent className="w-6 h-6" />
                   </motion.div>
 
                   {/* Absolute small phase number tag */}
-                  <span className={`absolute -top-1 -right-1 w-4 h-4 text-[8px] font-mono font-bold rounded-full flex items-center justify-center border transition-all duration-300 ${
+                  <span className={`absolute -top-1.5 -right-1.5 w-5.5 h-5.5 text-[10px] font-mono font-bold rounded-full flex items-center justify-center border transition-all duration-300 ${
                     isActive 
                       ? "bg-primary text-accent border-accent" 
                       : "bg-card text-primary/60 border-primary/15"
@@ -249,10 +225,10 @@ export default function ProcessSection() {
                 </div>
 
                 {/* Step Title text under node */}
-                <span className={`mt-3 block text-[9px] font-heading font-extrabold uppercase tracking-widest text-center transition-all duration-300 ${
+                <span className={`mt-3 block text-[10px] sm:text-xs font-heading font-extrabold uppercase tracking-widest text-center transition-all duration-300 ${
                   isActive 
                     ? "text-accent scale-105" 
-                    : "text-body/60 group-hover:text-primary"
+                    : "text-body/85 group-hover:text-primary"
                 }`}>
                   {step.title}
                 </span>
@@ -288,14 +264,14 @@ export default function ProcessSection() {
                 <div className="border-b border-primary/10 pb-3.5">
                   <div className="flex items-center gap-2 mb-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                    <span className="text-[8px] font-mono tracking-[0.25em] text-accent uppercase font-bold">
+                    <span className="text-[9px] font-mono tracking-[0.25em] text-accent uppercase font-bold">
                       Phase {currentStep.num} {"//"} Engineering Cycle
                     </span>
                   </div>
                   <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-primary tracking-tight">
                     {currentStep.title}
                   </h3>
-                  <p className="text-xs md:text-sm text-body/90 leading-relaxed mt-2 font-light max-w-2xl">
+                  <p className="text-xs md:text-sm text-body/95 leading-relaxed mt-2 font-light max-w-2xl">
                     {currentStep.desc}
                   </p>
                 </div>
@@ -312,12 +288,12 @@ export default function ProcessSection() {
                   <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-accent/30 pointer-events-none" />
 
                   {/* Telemetry info */}
-                  <div className="flex justify-between items-center text-[7px] font-mono text-accent/75 tracking-wider pb-1.5 border-b border-accent/10">
+                  <div className="flex justify-between items-center text-[8px] font-mono text-accent/90 tracking-wider pb-1.5 border-b border-accent/10">
                     <div className="flex items-center gap-1">
-                      <span className="w-1 h-1 rounded-full bg-[#00FF66] animate-ping" style={{ animationDuration: '3s' }} />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#00FF66] animate-ping" style={{ animationDuration: '3s' }} />
                       <span>VIEWPORT // DET_0{currentStep.num}</span>
                     </div>
-                    <span className="text-white/50">TOLERANCE: +/-0.5mm</span>
+                    <span className="text-white/70">TOLERANCE: +/-0.5mm</span>
                   </div>
 
                   {/* Mobile Image container */}
@@ -349,15 +325,15 @@ export default function ProcessSection() {
                   </div>
 
                   {/* Footer telemetry */}
-                  <div className="flex justify-between items-center text-[6px] font-mono text-accent/40 tracking-wider pt-1.5 border-t border-accent/10">
+                  <div className="flex justify-between items-center text-[7px] font-mono text-accent/50 tracking-wider pt-1.5 border-t border-accent/10">
                     <span>SHREE HARI GL-SYS V2.4</span>
-                    <span className="text-white/70 font-bold animate-pulse">X:{coords.x} Y:{coords.y}</span>
+                    <span className="text-white/85 font-bold animate-pulse">X:{coords.x} Y:{coords.y}</span>
                   </div>
                 </div>
 
                 {/* Telemetry Widgets Grid */}
                 <div>
-                  <h4 className="text-[8px] font-mono tracking-widest text-body/40 uppercase font-bold mb-2.5 flex items-center gap-1">
+                  <h4 className="text-[9px] font-mono tracking-widest text-body/50 uppercase font-bold mb-2.5 flex items-center gap-1">
                     <span>[ TECHNICAL TELEMETRY LOG ]</span>
                   </h4>
                   
@@ -371,7 +347,7 @@ export default function ProcessSection() {
                           className="bg-gradient-to-br from-[#FAF9F5] to-white rounded-xl p-3 border border-accent-light/50 hover:border-accent/35 hover:shadow-md hover:shadow-accent/5 hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between group"
                         >
                           <div className="flex items-center justify-between pb-1.5 border-b border-primary/[0.03]">
-                            <span className="text-[7px] font-mono text-body/55 uppercase tracking-wider block">
+                            <span className="text-[9px] font-mono text-body/80 uppercase tracking-wider block font-semibold">
                               {spec.label}
                             </span>
                             <div className="w-6 h-6 rounded-md bg-accent/5 flex items-center justify-center border border-accent/10 group-hover:bg-accent/10 transition-all">
@@ -380,7 +356,7 @@ export default function ProcessSection() {
                           </div>
                           
                           <div className="my-2 flex-grow">
-                            <span className="text-[11px] font-bold text-primary tracking-tight leading-snug line-clamp-2">
+                            <span className="text-xs font-bold text-primary tracking-tight leading-snug line-clamp-2">
                               {spec.val}
                             </span>
                           </div>
@@ -407,9 +383,9 @@ export default function ProcessSection() {
                         <div key={spec.label} className="flex items-center justify-between p-2.5 gap-3">
                           <div className="flex items-center gap-1.5 min-w-0">
                             <SpecIcon className="w-3.5 h-3.5 text-accent flex-shrink-0" />
-                            <span className="text-[7px] font-mono text-body/60 uppercase tracking-wider truncate">{spec.label}</span>
+                            <span className="text-[9px] font-mono text-body/80 uppercase tracking-wider truncate font-semibold">{spec.label}</span>
                           </div>
-                          <span className="text-[10px] font-bold text-primary text-right truncate min-w-0 flex-1">{spec.val}</span>
+                          <span className="text-xs font-bold text-primary text-right truncate min-w-0 flex-1">{spec.val}</span>
                         </div>
                       );
                     })}

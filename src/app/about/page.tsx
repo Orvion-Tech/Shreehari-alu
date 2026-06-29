@@ -36,7 +36,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Page Hero */}
-      <section className="relative py-16 md:py-36 bg-section overflow-hidden border-b border-border">
+      <section className="relative pt-28 pb-16 md:py-36 bg-section overflow-hidden border-b border-border">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-section/90 z-10" />
           <Image
@@ -66,24 +66,24 @@ export default function AboutPage() {
 
       {/* Story Grid Section */}
       <Section background="main" className="">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           <aside className="lg:col-span-5 space-y-4">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Company overview</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading leading-tight tracking-tight">
               Every view deserves a better frame.
             </h2>
           </aside>
-          <div className="lg:col-span-7 space-y-6">
-            <p className="text-body text-lg font-light leading-relaxed">
+          <div className="lg:col-span-7 space-y-4 md:space-y-6">
+            <p className="text-body/90 text-sm md:text-base leading-relaxed font-light">
               Shree Hari Alu was founded around a simple conviction: architectural aluminium should feel as considered as the spaces it defines.
             </p>
-            <p className="text-body/80 leading-relaxed text-sm md:text-base font-light">
+            <p className="text-body/90 text-sm md:text-base leading-relaxed font-light">
               We work across residential, commercial, hospitality, institutional and industrial projects, supporting teams from early product selection through fabrication, site coordination, installation and handover. Our role is not merely to supply a window, door or facade. It is to resolve the complete interface between structure, glass, hardware, weather and daily use.
             </p>
-            <p className="text-body/80 leading-relaxed text-sm md:text-base font-light">
+            <p className="text-body/90 text-sm md:text-base leading-relaxed font-light">
               That means asking better questions, documenting decisions clearly and respecting tolerances at every stage. The result is architecture that looks lighter, operates more smoothly and performs for the long term.
             </p>
-            <div className="border-l-4 border-accent pl-5 py-2 italic font-heading font-bold text-heading text-base md:text-lg my-8 bg-section/30 pr-4 rounded-r-lg">
+            <div className="border-l-4 border-accent pl-5 py-2 italic font-heading font-bold text-heading text-base md:text-lg my-5 md:my-8 bg-section/30 pr-4 rounded-r-lg">
               “Quality is not an inspection at the end. It is a decision repeated at every drawing, cut, corner and fixing.”
             </div>
           </div>
@@ -92,19 +92,19 @@ export default function AboutPage() {
 
       {/* Mission & Vision Section */}
       <Section background="section" className="relative overflow-hidden border-t border-b border-border">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
-          <div className="bg-card p-8 md:p-10 rounded-3xl border border-border hover:border-accent/45 transition-all duration-500 shadow-lg">
-            <span className="text-accent text-[10px] uppercase tracking-widest font-heading font-bold block mb-4">Our mission</span>
-            <h3 className="text-xl md:text-2xl font-heading font-bold text-heading mb-6 leading-snug tracking-tight">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 relative z-10">
+          <div className="bg-card p-6 md:p-10 rounded-3xl border border-border hover:border-accent/45 transition-all duration-500 shadow-lg">
+            <span className="text-accent text-[10px] uppercase tracking-widest font-heading font-bold block mb-2.5">Our mission</span>
+            <h3 className="text-xl md:text-2xl font-heading font-bold text-heading mb-3.5 leading-snug tracking-tight">
               Deliver world-class aluminium architectural systems with exceptional quality and innovation.
             </h3>
             <p className="text-body/90 text-sm leading-relaxed font-light">
               We make premium performance accessible through expert guidance, disciplined execution and transparent project ownership.
             </p>
           </div>
-          <div className="bg-card p-8 md:p-10 rounded-3xl border border-border hover:border-accent/45 transition-all duration-500 shadow-lg">
-            <span className="text-accent text-[10px] uppercase tracking-widest font-heading font-bold block mb-4">Our vision</span>
-            <h3 className="text-xl md:text-2xl font-heading font-bold text-heading mb-6 leading-snug tracking-tight">
+          <div className="bg-card p-6 md:p-10 rounded-3xl border border-border hover:border-accent/45 transition-all duration-500 shadow-lg">
+            <span className="text-accent text-[10px] uppercase tracking-widest font-heading font-bold block mb-2.5">Our vision</span>
+            <h3 className="text-xl md:text-2xl font-heading font-bold text-heading mb-3.5 leading-snug tracking-tight">
               Become India’s most trusted aluminium architectural solutions provider.
             </h3>
             <p className="text-body/90 text-sm leading-relaxed font-light">
@@ -116,7 +116,7 @@ export default function AboutPage() {
 
       {/* Core Values Section */}
       <Section background="main" className="">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">What guides us</span>
           <h2 className="text-2xl md:text-3xl font-heading font-bold text-heading">
             Values you can see in the finished work.
@@ -126,10 +126,10 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {values.map((v, i) => (
-            <div key={i} className="bg-card p-6 rounded-2xl shadow-lg border border-border hover:border-accent/40 transition-all duration-350 flex flex-col justify-between min-h-[180px]">
-              <span className="text-accent text-3xl font-heading font-bold block mb-4">{v.step}</span>
+            <div key={i} className="bg-card p-6 rounded-2xl shadow-lg border border-border hover:border-accent/40 transition-all duration-350 flex flex-col justify-start">
+              <span className="text-accent text-3xl font-heading font-bold block mb-2.5">{v.step}</span>
               <div className="space-y-2">
                 <h4 className="text-lg font-heading font-bold text-heading tracking-tight">{v.title}</h4>
                 <p className="text-xs text-body/85 leading-relaxed font-light">{v.desc}</p>
@@ -177,7 +177,7 @@ export default function AboutPage() {
 
       {/* Team Expertise Section */}
       <Section background="main" className="">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">Team expertise</span>
           <h2 className="text-2xl md:text-3xl font-heading font-bold text-heading">
             Specialists who understand the whole opening.
@@ -187,9 +187,9 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {expertise.map((exp, i) => (
-            <div key={i} className="bg-card p-6 rounded-2xl shadow-lg border border-border hover:border-accent/40 transition-all duration-300 space-y-3 min-h-[200px]">
+            <div key={i} className="bg-card p-6 rounded-2xl shadow-lg border border-border hover:border-accent/40 transition-all duration-300 space-y-3">
               <span className="text-accent text-[10px] font-heading font-bold tracking-widest uppercase block border-b border-border pb-2">{exp.step}</span>
               <h4 className="text-lg font-heading font-bold text-heading tracking-tight">{exp.title}</h4>
               <p className="text-xs text-body/80 leading-relaxed font-light">{exp.desc}</p>
@@ -200,7 +200,7 @@ export default function AboutPage() {
 
       {/* Quality Standards Section */}
       <Section background="section" className="">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start w-full">
           <div className="lg:col-span-5 space-y-4">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Quality standards</span>
             <h2 className="text-2xl md:text-3xl font-heading font-bold text-heading leading-tight tracking-tight">
@@ -211,7 +211,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="lg:col-span-7 space-y-6">
-            <div className="relative border-l border-accent/25 pl-6 md:pl-8 space-y-12 py-2">
+            <div className="relative border-l border-accent/25 pl-6 md:pl-8 space-y-6 md:space-y-10 py-2">
               {timeline.map((item, idx) => (
                 <div key={idx} className="relative space-y-2">
                   {/* Timeline Dot */}

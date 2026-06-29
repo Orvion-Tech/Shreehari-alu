@@ -371,8 +371,8 @@ export default function Home() {
                 <div key={idx} className="flex items-start space-x-3 bg-white p-4 rounded-xl border border-border shadow-sm">
                   <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
                   <div>
-                    <h4 className="text-xs md:text-sm font-heading font-bold text-heading">{item.title}</h4>
-                    <span className="text-[10px] text-body/75">{item.desc}</span>
+                    <h4 className="text-sm font-heading font-bold text-heading">{item.title}</h4>
+                    <span className="text-xs text-body/75 mt-0.5 block">{item.desc}</span>
                   </div>
                 </div>
               ))}
@@ -387,7 +387,7 @@ export default function Home() {
 
       {/* Services summary with custom premium overlay cards */}
       <Section id="services" background="main">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-20 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 md:mb-10 gap-6">
           <div className="max-w-xl space-y-3">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Our Capability</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading leading-tight">What We Do</h2>
@@ -465,7 +465,7 @@ export default function Home() {
                   {/* Interactive CAD drawing on hover */}
                   {service.blueprint}
                 </div>
-                <div className="p-6 space-y-4">
+                <div className="p-5 md:p-6 space-y-4">
                   <div className="space-y-2">
                     <h3 className="text-xl font-heading font-bold text-heading tracking-tight group-hover:text-accent transition-colors duration-300">{service.title}</h3>
                     <p className="text-body text-xs sm:text-sm leading-relaxed font-light">{service.desc}</p>
@@ -481,7 +481,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="px-6 pb-6">
+              <div className="px-5 pb-5 md:px-6 md:pb-6">
                 <Link href={service.href} className="text-primary font-heading font-bold text-xs uppercase tracking-widest flex items-center hover:text-accent transition-colors group/link">
                   Explore Systems <ChevronRight className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1.5 transition-transform duration-300" />
                 </Link>
@@ -490,7 +490,7 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
+        <div className="mt-6 md:mt-10 text-center">
           <Button href="/services" variant="outline" className="hover:scale-105 transition-transform duration-300">View All Services</Button>
         </div>
       </Section>
@@ -623,7 +623,7 @@ export default function Home() {
 
       {/* Selected Work Section (Cream Background) */}
       <Section id="portfolio-featured" background="section" className="">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-20 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-16 gap-6">
           <div className="max-w-xl space-y-3">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Selected Work</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading leading-tight">
@@ -654,7 +654,7 @@ export default function Home() {
           ].map((project, i) => (
             <div key={i} className="bg-card rounded-2xl overflow-hidden group shadow-2xl hover:shadow-3xl hover:border-accent/40 border border-border transition-all duration-500 flex flex-col justify-between luxury-ticks">
               <div>
-                <div className="relative h-[480px] w-full overflow-hidden">
+                <div className="relative h-64 sm:h-96 md:h-[480px] w-full overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent z-10 opacity-70" />
                   <Image
                     src={project.img}
@@ -667,7 +667,7 @@ export default function Home() {
                     {project.tag}
                   </span>
                 </div>
-                <div className="p-8 space-y-3">
+                <div className="p-5 md:p-8 space-y-3">
                   <span className="text-accent text-[10px] uppercase tracking-widest font-heading font-bold block">{project.meta}</span>
                   <h3 className="text-3xl font-heading font-bold text-heading tracking-tight">{project.title}</h3>
                   <div className="text-sm text-body/80 font-medium">Scope: {project.scope}</div>
@@ -679,7 +679,7 @@ export default function Home() {
       </Section>
 
       {/* Client Perspectives Testimonial Section */}
-      <Section id="testimonials" background="section" className="relative overflow-hidden py-12 md:py-24">
+      <Section id="testimonials" background="section" className="relative overflow-hidden py-8 md:py-14">
         {/* Decorative background details */}
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
         <div className="absolute inset-0 cad-grid opacity-[0.03] pointer-events-none" />
@@ -688,7 +688,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
 
             {/* Left Column (7 cols): Editorial Quote & Navigation */}
-            <div className="lg:col-span-7 space-y-10 text-left relative">
+            <div className="lg:col-span-7 space-y-6 md:space-y-10 text-left relative">
               <div className="space-y-4">
                 <span className="text-accent font-heading font-extrabold uppercase tracking-widest text-[10px] md:text-xs block">Client Perspectives</span>
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-heading tracking-tight leading-[1.1]">
@@ -702,7 +702,7 @@ export default function Home() {
               </div>
 
               {/* Animated Testimonial Text */}
-              <div className="relative z-10 min-h-[180px] flex flex-col justify-center">
+              <div className="relative z-10 min-h-[120px] sm:min-h-[150px] md:min-h-[180px] flex flex-col justify-center">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeTestimonial}
@@ -729,7 +729,7 @@ export default function Home() {
               </div>
 
               {/* Location tabs switcher at bottom of left column */}
-              <div className="pt-6 border-t border-gray-200/80 flex flex-wrap gap-x-6 gap-y-3">
+              <div className="pt-4 md:pt-6 border-t border-gray-200/80 flex flex-wrap gap-x-6 gap-y-3">
                 {testimonials.map((testimonial, idx) => {
                   const locationFull = testimonial.author.split(" · ")[1] || "India";
                   const cityName = locationFull.split(", ").pop()?.toUpperCase() || "PROJECT";
@@ -753,8 +753,8 @@ export default function Home() {
             </div>
 
             {/* Right Column (5 cols): Framed Visual Showcase */}
-            <div className="lg:col-span-5 flex flex-col items-center">
-              <div className="relative w-full aspect-[4/3] rounded-[2rem] bg-white p-3 border border-accent/25 shadow-2xl overflow-hidden group">
+            <div className="lg:col-span-5 flex flex-col items-center w-full">
+              <div className="relative w-full max-w-md lg:max-w-none aspect-[4/3] rounded-[2rem] bg-white p-0 border border-accent/25 overflow-hidden group">
                 <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden bg-gray-50 border border-gray-100">
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -836,7 +836,7 @@ export default function Home() {
 
       {/* Insights / Blog Section */}
       <Section id="insights" background="main" className="">
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-14">
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">Insights</span>
           <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading">
             Better decisions begin with better detail.
@@ -871,7 +871,7 @@ export default function Home() {
             }
           ].map((blog, idx) => (
             <div key={idx} className="bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-border flex flex-col justify-between group">
-              <div className="relative h-60 w-full overflow-hidden">
+              <div className="relative w-full aspect-[3/2] overflow-hidden">
                 <Image
                   src={blog.img}
                   alt={blog.title}
@@ -881,13 +881,13 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-black/10" />
               </div>
-              <div className="p-8 space-y-3 flex-grow">
+              <div className="p-5 md:p-6 space-y-1.5 md:space-y-2 flex-grow">
                 <span className="text-accent text-[10px] font-bold tracking-widest uppercase font-heading block">{blog.category}</span>
                 <h3 className="text-xl font-heading font-bold text-heading leading-snug tracking-tight">{blog.title}</h3>
                 <p className="text-body text-xs leading-relaxed font-light">{blog.desc}</p>
               </div>
-              <div className="p-8 pt-0 border-t border-border mt-4">
-                <Link href={blog.link} className="text-primary hover:text-accent font-bold text-xs uppercase tracking-widest font-heading pt-4 inline-block">
+              <div className="py-4 px-5 md:py-4.5 md:px-6 border-t border-border">
+                <Link href={blog.link} className="text-primary hover:text-accent font-bold text-xs uppercase tracking-widest font-heading inline-block">
                   Read Insight &rarr;
                 </Link>
               </div>
@@ -898,19 +898,19 @@ export default function Home() {
 
       <Section id="faqs" background="section" className="">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-20">
+          <div className="text-center mb-8 md:mb-14">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">Frequently asked</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading">
               Useful answers before we begin.
             </h2>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {faqs.map((faq, idx) => (
               <div key={idx} className="bg-card rounded-2xl border border-border overflow-hidden shadow-md">
                 <button
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                  className="w-full text-left p-6 md:p-8 font-heading font-bold text-heading flex justify-between items-center hover:text-accent transition-colors"
+                  className="w-full text-left p-4.5 md:p-6 font-heading font-bold text-heading flex justify-between items-center hover:text-accent transition-colors"
                 >
                   <span className="text-base md:text-lg">{faq.q}</span>
                   <ChevronRight className={`w-5 h-5 text-accent transform transition-transform duration-300 flex-shrink-0 ${openFaq === idx ? "rotate-90" : ""}`} />
@@ -923,7 +923,7 @@ export default function Home() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="p-8 pt-0 border-t border-border text-sm leading-relaxed bg-[#FAF9F5]/40 text-body/90 font-light">
+                      <div className="p-5 pt-0 md:p-6 md:pt-0 text-sm leading-relaxed bg-[#FAF9F5]/40 text-body/90 font-light">
                         {faq.a}
                       </div>
                     </motion.div>
@@ -949,12 +949,12 @@ export default function Home() {
               Share your drawings, elevations or early concept. Our specialists will help define the most effective aluminium architectural solution.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
-              <Button href="/request-quote" variant="primary" size="md" className="gold-glow hover:scale-105 transition-transform duration-300">
+              <Button href="/request-quote" variant="primary" size="md" className="gold-glow hover:scale-105 transition-transform duration-300 uppercase tracking-widest text-[10px] font-bold">
                 Get Free Consultation
               </Button>
               <button
                 onClick={() => openInquiryModal("General project consultation")}
-                className="px-6 py-2.5 rounded-full font-heading font-bold text-xs uppercase tracking-widest bg-primary hover:bg-primary-hover text-white border border-primary transition-all shadow-md hover:scale-105 duration-350"
+                className="px-6 py-2.5 rounded-full font-heading font-bold text-[10px] uppercase tracking-widest bg-transparent hover:bg-primary hover:text-white text-primary border border-primary/40 transition-all shadow-sm hover:scale-105 duration-300 cursor-pointer"
               >
                 Quick Inquiry
               </button>
