@@ -171,7 +171,7 @@ export default function Home() {
     let direction = 1;
     const interval = setInterval(() => {
       setSliderPosition((prev) => {
-        let next = prev + 0.4 * direction;
+        const next = prev + 0.4 * direction;
         if (next >= 92) {
           direction = -1;
           return 92;

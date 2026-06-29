@@ -534,7 +534,7 @@ export default function ServicesPage() {
               {/* Content Column */}
               <div className="w-full lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center space-y-5">
                 <span className="text-[#C28B45] font-heading font-bold uppercase tracking-widest text-xs md:text-sm">
-                  DIVISION 0{idx + 1} // {cat.label}
+                  DIVISION 0{idx + 1} {"//"} {cat.label}
                 </span>
                 
                 <h2 className="text-2xl md:text-4xl font-heading font-bold text-primary leading-tight tracking-tight">

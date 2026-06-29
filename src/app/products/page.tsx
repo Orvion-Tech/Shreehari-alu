@@ -22,7 +22,7 @@ const tabs = [
   { id: "doors", label: "Doors" },
   { id: "facades", label: "Facade systems" },
   { id: "architectural", label: "Architectural systems" }
-];
+] as const;
 
 const productData = {
   windows: {
@@ -194,7 +194,7 @@ export default function ProductsPage() {
             return (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id)}
                 className={`px-6 py-4 font-heading font-bold text-xs tracking-wider uppercase relative transition-colors duration-300 ${
                   isActive ? "text-accent font-bold" : "text-body/60 hover:text-heading"
                 }`}

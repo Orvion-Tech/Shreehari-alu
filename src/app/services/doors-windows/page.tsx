@@ -46,8 +46,12 @@ const systems: SystemItem[] = [
     features: ["Folds completely flat on bottom tracks", "Double weather seals to block storm drafts", "Low child-friendly floor thresholds available"],
     benefits: "Blends indoor rooms with outdoor gardens seamlessly.",
     apps: "Living Room Terraces · Patios · Garden Entrances",
-    img: "/services/brochure-img-4.jpg",
-    images: ["/services/brochure-img-4.jpg", "/services/brochure-img-3.jpg", "/services/brochure-img-2.jpg"],
+    img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-BF-70S",
     alloy: "Alloy 6063-T6 Structural Profile", thermalBreak: "24mm Fiber-reinforced Polyamide Strip",
     glassCap: "Double Tempered (6mm + 12Air + 6mm)"
@@ -60,8 +64,12 @@ const systems: SystemItem[] = [
     features: ["Swing open inside or outside structures", "Locks at multiple points for extreme security", "Accommodates mosquito mesh frames easily"],
     benefits: "Blocks heavy street noise and keeps driving rain out.",
     apps: "Bedrooms · Living Rooms · Main Frontages",
-    img: "/services/brochure-img-11.jpg",
-    images: ["/services/brochure-img-11.jpg", "/services/brochure-img-10.jpg", "/services/brochure-img-12.jpg"],
+    img: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-CS-50J",
     alloy: "Alloy 6063-T6 Standard Extrusion", thermalBreak: "20mm Polyamide Thermal Break",
     glassCap: "Double Insulation (5mm + 9Air + 5mm)"
@@ -74,8 +82,12 @@ const systems: SystemItem[] = [
     features: ["Extra wide shutters up to 3.6 meters tall", "Maintenance-free anodized premium finish", "High security multi-point vertical keys"],
     benefits: "Creates a bold, flush-fitting luxury main entrance statement.",
     apps: "Main Entrances · Luxury Villa Fronts",
-    img: "/services/brochure-img-9.jpg",
-    images: ["/services/brochure-img-9.jpg", "/services/brochure-img-8.jpg", "/services/brochure-img-10.jpg"],
+    img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-PT-42P",
     alloy: "Alloy 6082-T6 Heavy Duty Core", thermalBreak: "Reinforced Polyurethane Fill Insulation",
     glassCap: "Blast-Safe Decorative Panel (Solid 4mm Plate + Laminated Glass)"
@@ -88,8 +100,12 @@ const systems: SystemItem[] = [
     features: ["No corner column structure required", "Corner seals locking tight in high-rise wind loads", "Ultra-smooth steel tracking rollers"],
     benefits: "Offers stunning 90-degree panoramic views of your balcony.",
     apps: "High-Rise Apartments · Penthouses",
-    img: "/services/brochure-img-13.jpg",
-    images: ["/services/brochure-img-13.jpg", "/services/brochure-img-14.jpg", "/services/brochure-img-15.jpg"],
+    img: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-VN-40P",
     alloy: "Alloy 6063-T6 Profile System", thermalBreak: "22mm Polyamide Barrier",
     glassCap: "Heavy-Duty Low-E (6mm + 12Argon + 6mm)"
@@ -102,8 +118,12 @@ const systems: SystemItem[] = [
     features: ["Motorized remote vertical movement", "Safety stop sensors to prevent pinches", "Thick tempered safety glass sheets"],
     benefits: "Converts open terraces into draft-free sunrooms in seconds.",
     apps: "High-rise Balconies · Restaurant Frontages · Penthouses",
-    img: "/services/brochure-img-32.jpg",
-    images: ["/services/brochure-img-32.jpg", "/services/brochure-img-30.jpg", "/services/brochure-img-31.jpg"],
+    img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-GT-MOT",
     alloy: "Alloy 6063-T6 Balustrade Profile", thermalBreak: "Integrated Rubber EPDM Seal Blocks",
     glassCap: "Extra Clear Tempered Monolithic (10mm / 12mm)"
@@ -327,7 +347,7 @@ export default function DoorsWindowsPage() {
               <div className="w-full lg:w-1/2 relative h-[320px] lg:h-auto overflow-hidden group">
                 <ImageCarousel images={system.images} alt={system.consumerTitle} />
                 <div className="absolute top-6 left-6 font-mono text-[9px] text-white bg-primary/80 backdrop-blur-md px-3 py-1 rounded-full tracking-widest uppercase border border-white/10 z-30 pointer-events-none">
-                  PROFILE {system.num} // {system.dwgRef}
+                  PROFILE {system.num} {"//"} {system.dwgRef}
                 </div>
               </div>
 

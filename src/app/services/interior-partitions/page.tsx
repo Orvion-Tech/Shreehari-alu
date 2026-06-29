@@ -46,8 +46,12 @@ const systems: SystemItem[] = [
     features: ["Super slim track frames for minimal layout", "Acoustic gasket inserts inside glass tracks", "Available with custom logo frost film or clear glass"],
     benefits: "Brings daylight deep into workspaces while keeping meeting rooms private.",
     apps: "CEO Cabins · Conference Rooms · Shared Coworking spaces",
-    img: "/services/brochure-img-33.jpg",
-    images: ["/services/brochure-img-33.jpg", "/services/brochure-img-34.jpg", "/services/brochure-img-35.jpg"],
+    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-PT-OFF",
     alloy: "Alloy 6063-T5 Interior Grade", thermalBreak: "Acoustic Rubber Dampeners",
     glassCap: "Acoustic Laminated Glass (6mm + 1.52PVB Sound + 6mm)"
@@ -60,8 +64,12 @@ const systems: SystemItem[] = [
     features: ["Telescopic sliding rollers for ease", "Saves space by stacking together when open", "Whisper quiet roller hanger wheels"],
     benefits: "Splits or opens living spaces on demand without heavy doors.",
     apps: "Home Living Room Dividers · Office Meeting Rooms",
-    img: "/services/brochure-img-30.jpg",
-    images: ["/services/brochure-img-30.jpg", "/services/brochure-img-31.jpg", "/services/brochure-img-32.jpg"],
+    img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-PT-TELE",
     alloy: "Alloy 6063-T6 Top Hanger Track", thermalBreak: "Vibration Dampening Rubber Rings",
     glassCap: "Toughened Monolithic (10mm / 12mm)"
@@ -74,8 +82,12 @@ const systems: SystemItem[] = [
     features: ["Synchronized dual direction tracks", "Keeps floor flat and seamless (no bottom track)", "Anodized high durability hardware pulls"],
     benefits: "One-handed operation to slide open wide gaps without heavy load profiles.",
     apps: "Luxury Kitchen Entries · Master Bedroom Dividers",
-    img: "/services/brochure-img-31.jpg",
-    images: ["/services/brochure-img-31.jpg", "/services/brochure-img-30.jpg", "/services/brochure-img-32.jpg"],
+    img: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-PT-SYNC",
     alloy: "Alloy 6063-T6 Track Extrusion", thermalBreak: "Nylon Gasket Inserts",
     glassCap: "Clear Toughened Glass (10mm)"
@@ -298,7 +310,7 @@ export default function PartitionsPage() {
               <div className="w-full lg:w-1/2 relative h-[320px] lg:h-auto overflow-hidden group">
                 <ImageCarousel images={system.images} alt={system.consumerTitle} />
                 <div className="absolute top-6 left-6 font-mono text-[9px] text-white bg-primary/80 backdrop-blur-md px-3 py-1 rounded-full tracking-widest uppercase border border-white/10 z-30 pointer-events-none">
-                  PROFILE {system.num} // {system.dwgRef}
+                  PROFILE {system.num} {"//"} {system.dwgRef}
                 </div>
               </div>
 

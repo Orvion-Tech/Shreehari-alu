@@ -46,8 +46,12 @@ const systems: SystemItem[] = [
     features: ["Tilting louver panels via remote control", "Internal water drainage post paths", "Built-in perimeter LED spotlights"],
     benefits: "100% waterproof when closed, allowing year-round patio use.",
     apps: "Villa Gardens · Rooftop Patios · Poolside Lounge Decks",
-    img: "/services/brochure-img-19.jpg",
-    images: ["/services/brochure-img-19.jpg", "/services/brochure-img-20.jpg", "/services/brochure-img-21.jpg"],
+    img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-PG-MOT",
     alloy: "Alloy 6060-T6 Corrosion Resistant", thermalBreak: "Internal Rain Drainage Channels",
     glassCap: "Not Applicable (Heavy Solid Extruded Blades)"
@@ -60,8 +64,12 @@ const systems: SystemItem[] = [
     features: ["Retractable folding fabric tracks", "Weatherproof PVC tension canvas", "Automatic wind sensor retract shields"],
     benefits: "Provides instant shading or full open-air views on demand.",
     apps: "Hotel Restaurant Terraces · Open Villa Courtyards",
-    img: "/services/brochure-img-22.jpg",
-    images: ["/services/brochure-img-22.jpg", "/services/brochure-img-23.jpg", "/services/brochure-img-24.jpg"],
+    img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-RF-RET",
     alloy: "Alloy 6063-T6 Rail Guides & Supports", thermalBreak: "Anti-Corrosion Polyurethane Coatings",
     glassCap: "Not Applicable (Blackout PVC Waterproof Fabric)"
@@ -74,8 +82,12 @@ const systems: SystemItem[] = [
     features: ["High density pleated mosquito netting", "Ultra-slim side-mounting framework", "Tension line cables for wind resistance"],
     benefits: "Lets fresh breeze into your rooms while blocking all insects.",
     apps: "Villa Bedroom Windows · Large Balcony Sliding Doors",
-    img: "/services/brochure-img-12.jpg",
-    images: ["/services/brochure-img-12.jpg", "/services/brochure-img-11.jpg", "/services/brochure-img-13.jpg"],
+    img: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-MS-PLE",
     alloy: "Alloy 6063-T5 Screen Guide Profile", thermalBreak: "Zero Obstacle Bottom Guideline",
     glassCap: "Pleated Polyester Mesh (0.3mm High Durability)"
@@ -88,8 +100,12 @@ const systems: SystemItem[] = [
     features: ["Fixed or remote tilting exterior louvers", "Reduces heat gain on large glass windows", "Adds modern visual depth to facade walls"],
     benefits: "Lowers air conditioning bills significantly and increases privacy.",
     apps: "West-facing Villa Walls · Penthouse Windows",
-    img: "/services/brochure-img-20.jpg",
-    images: ["/services/brochure-img-20.jpg", "/services/brochure-img-19.jpg", "/services/brochure-img-21.jpg"],
+    img: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-SC-LVR",
     alloy: "Alloy 6063-T6 Sun-shield Louver profile", thermalBreak: "Facilitates natural airflow ventilation gap",
     glassCap: "Not Applicable (Anodized Architectural Aluminium)"
@@ -102,8 +118,12 @@ const systems: SystemItem[] = [
     features: ["Acoustic lining pads to absorb outdoor sounds", "Double insect and dust filter screens", "Rain-proof outer hood covers"],
     benefits: "Provides continuous clean air flow in bedrooms during sleep.",
     apps: "Bedrooms · Child Nursery Rooms · Home Offices",
-    img: "/services/brochure-img-11.jpg",
-    images: ["/services/brochure-img-11.jpg", "/services/brochure-img-10.jpg", "/services/brochure-img-12.jpg"],
+    img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-VT-AIR",
     alloy: "Alloy 6063-T5 Acoustic Vent frame", thermalBreak: "Sound-Absorbing Micro-Fibre Glands",
     glassCap: "Not Applicable (Frame Inset Device)"
@@ -116,8 +136,12 @@ const systems: SystemItem[] = [
     features: ["Custom metal profile extrusions", "Full structural safety review calculations", "Bespoke fittings casting design"],
     benefits: "Provides absolute visual freedom to execute unique designs.",
     apps: "Grand Villa Facades · Entrance Canopies",
-    img: "/services/brochure-img-24.jpg",
-    images: ["/services/brochure-img-24.jpg", "/services/brochure-img-23.jpg", "/services/brochure-img-25.jpg"],
+    img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-CS-BESP",
     alloy: "Bespoke Grade Custom Alloys (6061-T6 / 6063-T6)", thermalBreak: "Project-Specific Custom Insulation Gaskets",
     glassCap: "Engineered Glass Assemblies (up to 48mm Thickness)"
@@ -338,7 +362,7 @@ export default function OutdoorShadingPage() {
               <div className="w-full lg:w-1/2 relative h-[320px] lg:h-auto overflow-hidden group">
                 <ImageCarousel images={system.images} alt={system.consumerTitle} />
                 <div className="absolute top-6 left-6 font-mono text-[9px] text-white bg-primary/80 backdrop-blur-md px-3 py-1 rounded-full tracking-widest uppercase border border-white/10 z-30 pointer-events-none">
-                  PROFILE {system.num} // {system.dwgRef}
+                  PROFILE {system.num} {"//"} {system.dwgRef}
                 </div>
               </div>
 

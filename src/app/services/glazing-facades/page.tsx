@@ -46,8 +46,12 @@ const systems: SystemItem[] = [
     features: ["Super slim 18mm visible center frame", "Seamless hidden bottom floor track layout", "Extremely tall glass panels up to 4.5 meters"],
     benefits: "Blocks heat while giving a 98% unobstructed visual landscape.",
     apps: "Luxury Villas · Master Suites · Luxury Penthouses",
-    img: "/services/brochure-img-6.jpg",
-    images: ["/services/brochure-img-6.jpg", "/services/brochure-img-5.jpg", "/services/brochure-img-7.jpg"],
+    img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-SL-18UL",
     alloy: "Alloy 6063-T6 Premium Temper", thermalBreak: "24mm Polyamide Insulating Struts",
     glassCap: "Double Laminated (8mm + 12Argon + 8mm)"
@@ -60,8 +64,12 @@ const systems: SystemItem[] = [
     features: ["Slim 20mm visible center interlocks", "Built-in heavy storm track drainage blocks", "High thermal insulation double-glass design"],
     benefits: "Safe from rain and wind pressure while keeping borders minimal.",
     apps: "High-Wind Coasts · High-Rise Apartments · Hilltop Resorts",
-    img: "/services/brochure-img-7.jpg",
-    images: ["/services/brochure-img-7.jpg", "/services/brochure-img-6.jpg", "/services/brochure-img-8.jpg"],
+    img: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-FS-20UL",
     alloy: "Alloy 6063-T6 Structural Reinforcement", thermalBreak: "28mm Polyamide Thermal Barrier",
     glassCap: "Heavy Temp Laminated (10mm + 14Argon + 10mm)"
@@ -74,8 +82,12 @@ const systems: SystemItem[] = [
     features: ["Sleek 19mm minimal center divider", "Accommodates up to 26mm noise-proof glass", "Stainless steel track rails for silent glides"],
     benefits: "Keeps city bedrooms quiet and isolated from road noises.",
     apps: "Bedrooms facing main streets · City Apartments",
-    img: "/services/brochure-img-8.jpg",
-    images: ["/services/brochure-img-8.jpg", "/services/brochure-img-9.jpg", "/services/brochure-img-10.jpg"],
+    img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-MN-19L",
     alloy: "Alloy 6063-T6 Precision Profile", thermalBreak: "20mm Polyamide Insulating Gasket",
     glassCap: "Acoustic Double Pane (6mm Acoustic + 12Argon + 8mm)"
@@ -88,8 +100,12 @@ const systems: SystemItem[] = [
     features: ["Stick curtain wall capped profiles", "Integrated condensation water collection trays", "Concealed ventilation push-out slots"],
     benefits: "Ensures no water leaks in tall glass buildings.",
     apps: "Showrooms · Commercial Office Blocks · Entrance Towers",
-    img: "/services/brochure-img-16.jpg",
-    images: ["/services/brochure-img-16.jpg", "/services/brochure-img-15.jpg", "/services/brochure-img-17.jpg"],
+    img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-CW-CAP",
     alloy: "Alloy 6082-T6 Structural Grade", thermalBreak: "Triple EPDM Gasket Cavity Girdle",
     glassCap: "Toughened Laminated (8mm Clear + 1.52PVB + 8mm Low-E)"
@@ -102,8 +118,12 @@ const systems: SystemItem[] = [
     features: ["Seamless flush exterior glass finish", "Wind-load certified brackets for safety", "Custom color silicone seal lines"],
     benefits: "Accelerates construction speed and looks like a clean mirror wall.",
     apps: "Car Dealerships · Glass Corporate Headquarters",
-    img: "/services/brochure-img-18.jpg",
-    images: ["/services/brochure-img-18.jpg", "/services/brochure-img-16.jpg", "/services/brochure-img-17.jpg"],
+    img: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-CW-SEMU",
     alloy: "Alloy 6063-T6 Toggle Rail extrusion", thermalBreak: "Custom Silicone Isolation Padding",
     glassCap: "Double Reflective Low-E (6mm Ref + 14Argon + 6mm Toughened)"
@@ -116,8 +136,12 @@ const systems: SystemItem[] = [
     features: ["Galvanized steel interior subframe structural strength", "Integrated collector channels for absolute waterproofing", "Solar heat protection Laminated glass options"],
     benefits: "Provides direct sky daylight without rain leakage worries.",
     apps: "Villa Atriums · Shopping Malls · Swimming Pools",
-    img: "/services/brochure-img-21.jpg",
-    images: ["/services/brochure-img-21.jpg", "/services/brochure-img-22.jpg", "/services/brochure-img-23.jpg"],
+    img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80"
+    ],
     dwgRef: "DWG-SK-FAC",
     alloy: "Galvanized Subframe & Alloy 6063-T6 Caps", thermalBreak: "Double-Gutter Leak Proof Drainage System",
     glassCap: "Heat Shield Laminated (8mm Solar + 12Argon + 6.6PVB)"
@@ -360,7 +384,7 @@ export default function GlazingPage() {
               <div className="w-full lg:w-1/2 relative h-[320px] lg:h-auto overflow-hidden group">
                 <ImageCarousel images={system.images} alt={system.consumerTitle} />
                 <div className="absolute top-6 left-6 font-mono text-[9px] text-white bg-primary/80 backdrop-blur-md px-3 py-1 rounded-full tracking-widest uppercase border border-white/10 z-30 pointer-events-none">
-                  PROFILE {system.num} // {system.dwgRef}
+                  PROFILE {system.num} {"//"} {system.dwgRef}
                 </div>
               </div>
 

@@ -69,10 +69,21 @@ const companyLinks = [
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [rawIsMobileMenuOpen, _setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isCompanyOpen, setIsCompanyOpen] = useState(false);
   const [mobileMenuView, setMobileMenuView] = useState<"main" | "services" | "company">("main");
+
+  const isMobileMenuOpen = rawIsMobileMenuOpen;
+  const setIsMobileMenuOpen = (open: boolean | ((prev: boolean) => boolean)) => {
+    _setIsMobileMenuOpen((prev) => {
+      const nextVal = typeof open === "function" ? open(prev) : open;
+      if (!nextVal) {
+        setMobileMenuView("main");
+      }
+      return nextVal;
+    });
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,7 +99,6 @@ export default function Header() {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
-      setMobileMenuView("main"); // Reset back to main list view when closed
     }
     return () => {
       document.body.style.overflow = "unset";

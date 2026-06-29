@@ -36,12 +36,6 @@ const deliverySteps = [
 ];
 
 export default function WhyChooseUsPage() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <>
       {/* Page Hero */}

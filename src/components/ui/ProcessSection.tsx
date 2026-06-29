@@ -289,7 +289,7 @@ export default function ProcessSection() {
                   <div className="flex items-center gap-2 mb-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                     <span className="text-[8px] font-mono tracking-[0.25em] text-accent uppercase font-bold">
-                      Phase {currentStep.num} // Engineering Cycle
+                      Phase {currentStep.num} {"//"} Engineering Cycle
                     </span>
                   </div>
                   <h3 className="text-2xl md:text-3xl font-heading font-extrabold text-primary tracking-tight">
