@@ -231,14 +231,14 @@ export default function Home() {
           {/* Light horizontal vignette gradient for text readability */}
           <div className="absolute inset-y-0 left-0 w-full lg:w-2/3 bg-gradient-to-r from-[#FCFBFA] via-[#FCFBFA]/90 to-transparent z-10 pointer-events-none" />
           {/* Fallback bottom vignette for mobile devices where screen width is narrow */}
-          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#FCFBFA] via-[#FCFBFA]/40 to-transparent lg:hidden z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-[#FCFBFA]/75 lg:hidden z-10 pointer-events-none" />
 
           {/* Very subtle grid lines to keep the architectural draftsman texture */}
           <div className="absolute inset-0 z-10 cad-grid opacity-[0.04] pointer-events-none" />
         </div>
 
         {/* Content Container (Overlay) */}
-        <div className="container mx-auto px-4 md:px-8 relative z-20 pt-28 pb-20 h-full flex flex-col justify-center">
+        <div className="container mx-auto px-4 md:px-8 relative z-20 pt-20 pb-12 lg:pt-28 lg:pb-20 h-full flex flex-col justify-center">
           <div className="max-w-2xl space-y-10 text-left">
             <AnimatePresence mode="wait">
               <motion.div
@@ -318,14 +318,6 @@ export default function Home() {
             );
           })}
         </div>
-
-        {/* Scroll Cue Line */}
-        <div className="absolute bottom-8 left-8 md:left-12 z-20 flex items-center gap-3 cursor-pointer">
-          <div className="w-[1px] h-10 bg-gradient-to-b from-accent to-transparent relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1/2 bg-accent animate-bounce"></div>
-          </div>
-          <span className="text-[9px] text-gray-400 font-heading font-bold uppercase tracking-widest">Scroll</span>
-        </div>
       </section>
 
       {/* Asymmetrical Who We Are / Intro Section */}
@@ -333,7 +325,7 @@ export default function Home() {
         {/* Glow Element */}
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2"></div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center relative z-10">
           {/* Asymmetrical visual framing */}
           <div className="lg:col-span-6 relative">
             <div className="relative h-[300px] sm:h-[400px] md:h-[480px] w-full rounded-3xl overflow-hidden shadow-2xl premium-border gold-glow">
@@ -361,10 +353,10 @@ export default function Home() {
                 Crafting the <span className="text-gradient-dark">Future</span> of Architecture.
               </h2>
             </div>
-            <p className="text-body text-base leading-relaxed font-light">
+            <p className="text-body/90 text-sm sm:text-base leading-relaxed font-light">
               At Shree Hari Alu, we specialize in delivering world-class aluminium architectural systems that combine exceptional quality, cutting-edge innovation, and breathtaking aesthetics.
             </p>
-            <p className="text-body/80 leading-relaxed text-sm">
+            <p className="text-body/90 text-sm sm:text-base leading-relaxed font-light">
               Whether you are an architect designing a modern skyscraper, a developer building luxury villas, or a homeowner looking for premium window and door solutions, we have the expertise to bring your vision to life.
             </p>
 
@@ -395,7 +387,7 @@ export default function Home() {
 
       {/* Services summary with custom premium overlay cards */}
       <Section id="services" background="main">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-20 gap-6">
           <div className="max-w-xl space-y-3">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Our Capability</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading leading-tight">What We Do</h2>
@@ -405,7 +397,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {[
             {
               title: "Windows & Doors",
@@ -508,7 +500,7 @@ export default function Home() {
         {/* Ambient Glow */}
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
 
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6 relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-20 gap-6 relative z-10">
           <div className="max-w-xl space-y-3">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Featured Products</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-white leading-tight">
@@ -520,7 +512,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 relative z-10">
           {[
             { category: "Windows", title: "Slimline Sliding", desc: "Expansive views with discreet interlocks and smooth multi-track movement.", img: IMAGES.slidingWindow },
             { category: "Doors", title: "Statement Pivot", desc: "Generous proportions, concealed hardware and an exceptional arrival experience.", img: "/product_statement_pivot.png" },
@@ -611,7 +603,7 @@ export default function Home() {
       </section>
 
       {/* Stats Band Section - Glowing gold counts */}
-      <section className="bg-section py-20 border-t border-border border-b border-border">
+      <section className="bg-section py-12 md:py-20 border-t border-border border-b border-border">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-heading">
             {[
@@ -631,7 +623,7 @@ export default function Home() {
 
       {/* Selected Work Section (Cream Background) */}
       <Section id="portfolio-featured" background="section" className="">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-20 gap-6">
           <div className="max-w-xl space-y-3">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Selected Work</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading leading-tight">
@@ -643,7 +635,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
           {[
             {
               title: "The Courtyard Villa",
@@ -687,13 +679,13 @@ export default function Home() {
       </Section>
 
       {/* Client Perspectives Testimonial Section */}
-      <Section id="testimonials" background="section" className="relative overflow-hidden py-24">
+      <Section id="testimonials" background="section" className="relative overflow-hidden py-12 md:py-24">
         {/* Decorative background details */}
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
         <div className="absolute inset-0 cad-grid opacity-[0.03] pointer-events-none" />
 
         <div className="container mx-auto px-4 md:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
 
             {/* Left Column (7 cols): Editorial Quote & Navigation */}
             <div className="lg:col-span-7 space-y-10 text-left relative">
@@ -825,7 +817,7 @@ export default function Home() {
           <div className="text-center mb-10">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs">Trusted system ecosystem</span>
           </div>
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4">
             {[
               "Premium Profiles",
               "Architectural Glass",
@@ -834,7 +826,7 @@ export default function Home() {
               "Quality Coatings",
               "Smart Automation"
             ].map((chip, idx) => (
-              <div key={idx} className="bg-card text-heading font-heading font-bold text-xs tracking-widest uppercase px-6 py-3.5 rounded-full border border-border shadow-md">
+              <div key={idx} className="bg-card text-heading font-heading font-bold text-[9px] md:text-xs tracking-widest uppercase px-4 py-2.5 md:px-6 md:py-3.5 rounded-full border border-border shadow-md">
                 {chip}
               </div>
             ))}
@@ -854,7 +846,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {[
             {
               category: "Design guide · 6 min",
@@ -921,7 +913,7 @@ export default function Home() {
                   className="w-full text-left p-6 md:p-8 font-heading font-bold text-heading flex justify-between items-center hover:text-accent transition-colors"
                 >
                   <span className="text-base md:text-lg">{faq.q}</span>
-                  <ChevronRight className={`w-5 h-5 text-accent transform transition-transform duration-300 ${openFaq === idx ? "rotate-90" : ""}`} />
+                  <ChevronRight className={`w-5 h-5 text-accent transform transition-transform duration-300 flex-shrink-0 ${openFaq === idx ? "rotate-90" : ""}`} />
                 </button>
                 <AnimatePresence initial={false}>
                   {openFaq === idx && (

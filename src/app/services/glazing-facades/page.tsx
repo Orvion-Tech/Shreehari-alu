@@ -299,7 +299,7 @@ export default function GlazingPage() {
     <div className="bg-[#FAF9F5] min-h-screen text-[#1F2937] antialiased">
       
       {/* Hero Section */}
-      <section ref={heroRef} className="relative overflow-hidden bg-[#FAF9F5] pt-24 pb-28 border-b border-primary/5">
+      <section ref={heroRef} className="relative overflow-hidden bg-[#FAF9F5] pt-16 pb-16 md:pt-24 md:pb-28 border-b border-primary/5">
         {/* CAD Grid Backdrop */}
         <div className="absolute inset-0 z-0 bg-[radial-gradient(rgba(194,139,69,0.04)_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-75 pointer-events-none" />
 

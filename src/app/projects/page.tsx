@@ -109,7 +109,7 @@ export default function ProjectsPage() {
   return (
     <>
       {/* Page Hero */}
-      <section className="relative py-20 md:py-24 bg-section overflow-hidden border-b border-border">
+      <section className="relative py-12 md:py-24 bg-section overflow-hidden border-b border-border">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-section/90 z-10" />
           <Image 
