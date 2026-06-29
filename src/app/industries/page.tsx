@@ -169,7 +169,7 @@ export default function IndustriesPage() {
 
       {/* CTA Section */}
       <Section id="cta" background="section">
-        <div className="luxury-glass-light rounded-[32px] p-8 md:p-16 shadow-xl relative overflow-hidden text-center max-w-5xl mx-auto border border-accent/30">
+        <div className="luxury-glass-light rounded-[32px] p-8 md:p-16 shadow-xl relative overflow-hidden text-center w-full border border-accent/30">
           <div className="absolute inset-0 opacity-5 bg-[url('https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center"></div>
           <div className="absolute inset-0 z-0 cad-grid-light opacity-30 pointer-events-none" />
           <div className="relative z-10 space-y-6">

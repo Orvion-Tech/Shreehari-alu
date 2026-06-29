@@ -10,11 +10,11 @@ import Button from "@/components/ui/Button";
 import ProductVisualizer from "@/components/ui/ProductVisualizer";
 
 const IMAGES = {
-  hero: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
-  windows: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1200&auto=format&fit=crop",
-  doors: "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200&auto=format&fit=crop",
-  facades: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop",
-  architectural: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1200&auto=format&fit=crop"
+  hero: "/villa_modern_glazing.png",
+  windows: "/overview_windows.png",
+  doors: "/overview_doors.png",
+  facades: "/service_structural_glazing.png",
+  architectural: "/service_architectural_systems.png"
 };
 
 const tabs = [
@@ -27,12 +27,12 @@ const tabs = [
 const productData = {
   windows: {
     cards: [
-      { title: "Sliding Windows", desc: "Two, three and four-track systems for effortless, space-saving ventilation.", img: IMAGES.windows },
-      { title: "Casement Windows", desc: "Compression-sealed performance with broad opening and controlled air flow.", img: IMAGES.hero },
-      { title: "Fixed Windows", desc: "Clean, economical daylight openings with minimal frames and no moving hardware.", img: IMAGES.facades },
-      { title: "Combination Windows", desc: "Fixed, sliding and casement modules composed into one coordinated opening.", img: IMAGES.windows }
+      { title: "Sliding Windows", desc: "Two, three and four-track systems for effortless, space-saving ventilation.", img: "/services_windows_doors.png" },
+      { title: "Casement Windows", desc: "Compression-sealed performance with broad opening and controlled air flow.", img: "/minimal_sliding_window.png" },
+      { title: "Fixed Windows", desc: "Clean, economical daylight openings with minimal frames and no moving hardware.", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=600&auto=format&fit=crop" },
+      { title: "Combination Windows", desc: "Fixed, sliding and casement modules composed into one coordinated opening.", img: "/hero_courtyard_villa.png" }
     ],
-    overviewImg: IMAGES.windows,
+    overviewImg: "/overview_windows.png",
     specs: [
       { label: "System formats", value: "Sliding · Casement · Fixed · Combination" },
       { label: "Glass range", value: "Single / DGU / Laminated" },
@@ -43,13 +43,13 @@ const productData = {
   },
   doors: {
     cards: [
-      { title: "Sliding Doors", desc: "Large panels, quiet rollers and optional low thresholds for easy connection.", img: IMAGES.hero },
-      { title: "Casement Doors", desc: "Secure hinged doors with strong sealing and flexible glass or panel infill.", img: IMAGES.doors },
-      { title: "French Doors", desc: "Balanced double-leaf openings with elegant symmetry and generous access.", img: IMAGES.hero },
-      { title: "Folding Doors", desc: "Stacking panels that open entire walls for hospitality and outdoor living.", img: IMAGES.doors },
-      { title: "Pivot Doors", desc: "Statement entrances with generous scale, concealed pivots and bespoke finishes.", img: IMAGES.windows }
+      { title: "Sliding Doors", desc: "Large panels, quiet rollers and optional low thresholds for easy connection.", img: "/about_intro_villa.png" },
+      { title: "Casement Doors", desc: "Secure hinged doors with strong sealing and flexible glass or panel infill.", img: "/villa_modern_glazing.png" },
+      { title: "French Doors", desc: "Balanced double-leaf openings with elegant symmetry and generous access.", img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=600&auto=format&fit=crop" },
+      { title: "Folding Doors", desc: "Stacking panels that open entire walls for hospitality and outdoor living.", img: "/louvered_pergola_villa.png" },
+      { title: "Pivot Doors", desc: "Statement entrances with generous scale, concealed pivots and bespoke finishes.", img: "/product_statement_pivot.png" }
     ],
-    overviewImg: IMAGES.doors,
+    overviewImg: "/overview_doors.png",
     specs: [
       { label: "System formats", value: "Sliding · Hinged · Folding · Pivot" },
       { label: "Panel options", value: "Glass · Solid · Mixed" },
@@ -60,12 +60,12 @@ const productData = {
   },
   facades: {
     cards: [
-      { title: "Curtain Wall", desc: "Stick and unitised envelopes with pressure-equalised water management.", img: IMAGES.facades },
-      { title: "Structural Glazing", desc: "Silicone-glazed facades for clean, uninterrupted exterior surfaces.", img: IMAGES.facades },
-      { title: "ACP Facades", desc: "Lightweight cassette cladding with crisp joints and durable finishes.", img: IMAGES.facades },
-      { title: "Glass Facades", desc: "Integrated transparent envelopes, canopies, fins and feature glazing.", img: IMAGES.facades }
+      { title: "Curtain Wall", desc: "Stick and unitised envelopes with pressure-equalised water management.", img: "/commercial_glass_facade.png" },
+      { title: "Structural Glazing", desc: "Silicone-glazed facades for clean, uninterrupted exterior surfaces.", img: "/service_structural_glazing.png" },
+      { title: "ACP Facades", desc: "Lightweight cassette cladding with crisp joints and durable finishes.", img: "/blog_facade_compare.png" },
+      { title: "Glass Facades", desc: "Integrated transparent envelopes, canopies, fins and feature glazing.", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop" }
     ],
-    overviewImg: IMAGES.facades,
+    overviewImg: "/service_structural_glazing.png",
     specs: [
       { label: "System formats", value: "Stick · Unitised · Structural glazed" },
       { label: "Infill options", value: "Vision glass · Spandrel · ACP · Stone" },
@@ -76,13 +76,13 @@ const productData = {
   },
   architectural: {
     cards: [
-      { title: "Skylights", desc: "Engineered roof glazing for controlled daylight and weather protection.", img: IMAGES.architectural },
-      { title: "Pergolas", desc: "Fixed or motorised louvered roofs with drainage and lighting integration.", img: IMAGES.architectural },
-      { title: "Railings", desc: "Minimal glass or aluminium guards designed for safety and uninterrupted views.", img: IMAGES.hero },
-      { title: "Partitions", desc: "Slim glazed modules for bright, flexible and acoustically considered interiors.", img: IMAGES.facades },
-      { title: "Screens", desc: "Solar shading, privacy and insect protection integrated with the architecture.", img: IMAGES.facades }
+      { title: "Skylights", desc: "Engineered roof glazing for controlled daylight and weather protection.", img: "/service_architectural_systems.png" },
+      { title: "Pergolas", desc: "Fixed or motorised louvered roofs with drainage and lighting integration.", img: "/product_louvered_pergola.png" },
+      { title: "Railings", desc: "Minimal glass or aluminium guards designed for safety and uninterrupted views.", img: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=600&auto=format&fit=crop" },
+      { title: "Partitions", desc: "Slim glazed modules for bright, flexible and acoustically considered interiors.", img: "/why_shreehari_details.png" },
+      { title: "Screens", desc: "Solar shading, privacy and insect protection integrated with the architecture.", img: "/blog_pergola_weather.png" }
     ],
-    overviewImg: IMAGES.architectural,
+    overviewImg: "/service_architectural_systems.png",
     specs: [
       { label: "System families", value: "Skylights · Pergolas · Railings" },
       { label: "Interior systems", value: "Partitions · Screens" },
@@ -319,10 +319,10 @@ export default function ProductsPage() {
       {/* Product Inquiry Form */}
       <section ref={formRef} className="py-16 bg-main border-b border-border scroll-mt-24">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start w-full">
             
             {/* Left Side: Info */}
-            <aside className="lg:col-span-5 space-y-4">
+            <aside className="lg:col-span-5 lg:sticky lg:top-28 space-y-4">
               <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Product inquiry</span>
               <h2 className="text-2xl md:text-4xl font-heading font-bold text-heading leading-tight tracking-tight">
                 Need a precise recommendation?

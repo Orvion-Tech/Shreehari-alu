@@ -599,7 +599,7 @@ export default function ServicesPage() {
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C28B45]/40 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C28B45]/40 to-transparent" />
 
-        <div className="container mx-auto px-6 md:px-12 max-w-5xl relative z-10">
+        <div className="container mx-auto px-6 md:px-12 w-full relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}

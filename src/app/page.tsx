@@ -9,16 +9,16 @@ import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import ProcessSection from "@/components/ui/ProcessSection";
 
-// Premium Unsplash images matching the architecture theme
+// Premium custom generated images matching the brand theme
 const IMAGES = {
-  hero: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
-  commercial: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
-  pergola: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop",
-  villa: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2070&auto=format&fit=crop",
-  slidingWindow: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1200&auto=format&fit=crop",
-  servicesWin: "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&q=80&w=600",
-  servicesGlazing: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600",
-  servicesArch: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=600"
+  hero: "/hero_courtyard_villa.png",
+  commercial: "/commercial_glass_facade.png",
+  pergola: "/louvered_pergola_villa.png",
+  villa: "/villa_modern_glazing.png",
+  slidingWindow: "/minimal_sliding_window.png",
+  servicesWin: "/services_windows_doors.png",
+  servicesGlazing: "/service_structural_glazing.png",
+  servicesArch: "/service_architectural_systems.png"
 };
 
 const testimonials = [
@@ -59,7 +59,7 @@ const HERO_SLIDES = [
   {
     project: "The Courtyard Villa, Ahmedabad",
     scope: "Minimal Slim Sliding Windows",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
+    image: IMAGES.hero,
     tagline: "01 // MINIMAL GLIDING",
     titlePart1: "Engineering",
     titlePart2: "Elegance",
@@ -87,7 +87,7 @@ const HERO_SLIDES = [
   {
     project: "Meridian Business House, Surat",
     scope: "Structural Glazing & Curtain Walls",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
+    image: IMAGES.commercial,
     tagline: "02 // FACADE ENGINEERING",
     titlePart1: "Sculpting",
     titlePart2: "Light & Space",
@@ -113,7 +113,7 @@ const HERO_SLIDES = [
   {
     project: "Private Villa Shading, Vadodara",
     scope: "Motorized Louvered Pergolas",
-    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop",
+    image: IMAGES.pergola,
     tagline: "03 // CLIMATE CONTROL",
     titlePart1: "Redefining",
     titlePart2: "Outdoor Living",
@@ -167,7 +167,7 @@ export default function Home() {
   // Auto scanning sweep when not hovered
   useEffect(() => {
     if (isScannerHovered) return;
-    
+
     let direction = 1;
     const interval = setInterval(() => {
       setSliderPosition((prev) => {
@@ -183,7 +183,7 @@ export default function Home() {
         return next;
       });
     }, 20); // ~50fps
-    
+
     return () => clearInterval(interval);
   }, [isScannerHovered]);
 
@@ -206,7 +206,7 @@ export default function Home() {
     <>
       {/* Panoramic Fullscreen Visual Hero Section (Minimalist Image-First Edition) */}
       <section className="relative min-h-screen w-full flex items-center justify-start overflow-hidden bg-[#FCFBFA] text-body">
-        
+
         {/* Fullscreen Slideshow Background */}
         <div className="absolute inset-0 z-0">
           <AnimatePresence mode="wait">
@@ -227,12 +227,12 @@ export default function Home() {
               />
             </motion.div>
           </AnimatePresence>
-          
+
           {/* Light horizontal vignette gradient for text readability */}
           <div className="absolute inset-y-0 left-0 w-full lg:w-2/3 bg-gradient-to-r from-[#FCFBFA] via-[#FCFBFA]/90 to-transparent z-10 pointer-events-none" />
           {/* Fallback bottom vignette for mobile devices where screen width is narrow */}
           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#FCFBFA] via-[#FCFBFA]/40 to-transparent lg:hidden z-10 pointer-events-none" />
-          
+
           {/* Very subtle grid lines to keep the architectural draftsman texture */}
           <div className="absolute inset-0 z-10 cad-grid opacity-[0.04] pointer-events-none" />
         </div>
@@ -338,7 +338,7 @@ export default function Home() {
           <div className="lg:col-span-6 relative">
             <div className="relative h-[300px] sm:h-[400px] md:h-[480px] w-full rounded-3xl overflow-hidden shadow-2xl premium-border gold-glow">
               <Image
-                src={IMAGES.commercial}
+                src="/about_intro_villa.png"
                 alt="Modern corporate building facade"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-700"
@@ -522,10 +522,10 @@ export default function Home() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
           {[
-            { category: "Windows", title: "Slimline Sliding", desc: "Expansive views with discreet interlocks and smooth multi-track movement.", img: IMAGES.hero },
-            { category: "Doors", title: "Statement Pivot", desc: "Generous proportions, concealed hardware and an exceptional arrival experience.", img: IMAGES.villa },
-            { category: "Facades", title: "Curtain Wall", desc: "Integrated pressure equalisation, crisp grids and dependable water management.", img: IMAGES.commercial },
-            { category: "Outdoor", title: "Louvered Pergola", desc: "Motorised light, shade and rain control in one elegant aluminium structure.", img: IMAGES.pergola }
+            { category: "Windows", title: "Slimline Sliding", desc: "Expansive views with discreet interlocks and smooth multi-track movement.", img: IMAGES.slidingWindow },
+            { category: "Doors", title: "Statement Pivot", desc: "Generous proportions, concealed hardware and an exceptional arrival experience.", img: "/product_statement_pivot.png" },
+            { category: "Facades", title: "Curtain Wall", desc: "Integrated pressure equalisation, crisp grids and dependable water management.", img: IMAGES.servicesGlazing },
+            { category: "Outdoor", title: "Louvered Pergola", desc: "Motorised light, shade and rain control in one elegant aluminium structure.", img: "/product_louvered_pergola.png" }
           ].map((prod, i) => (
             <div key={i} className="bg-[#0a2327] rounded-2xl overflow-hidden border border-accent/15 hover:border-accent/40 transition-all duration-500 group flex flex-col justify-between shadow-2xl">
               <div className="relative h-60 w-full overflow-hidden">
@@ -555,29 +555,25 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section id="process" background="section" className="border-t border-[#C28B45]/15 !py-8 md:!py-16">
-        <div className="container mx-auto max-w-7xl">
-          
-          <div className="text-center max-w-3xl mx-auto mb-6 md:mb-10 space-y-3">
-            <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">How We Work</span>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading">
-              Our Facade Engineering Process
-            </h2>
-            <p className="text-body max-w-xl mx-auto text-xs md:text-sm leading-relaxed mt-2.5 font-light">
-              From initial blueprints to after-sales maintenance support, we check every millimeter of your custom glazing.
-            </p>
-          </div>
-
-          <ProcessSection />
-
+      <Section id="process" background="section" className="border-t border-[#C28B45]/15">
+        <div className="text-center max-w-3xl mx-auto mb-6 md:mb-10 space-y-3">
+          <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">How We Work</span>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading">
+            Our Facade Engineering Process
+          </h2>
+          <p className="text-body max-w-xl mx-auto text-xs md:text-sm leading-relaxed mt-2.5 font-light">
+            From initial blueprints to after-sales maintenance support, we check every millimeter of your custom glazing.
+          </p>
         </div>
+
+        <ProcessSection />
       </Section>
 
       {/* Why Shree Hari Alu (Split Feature, Dark background) */}
       <section className="relative flex flex-col lg:flex-row bg-primary text-white min-h-[580px] border-t border-accent/15">
         <div className="w-full lg:w-1/2 relative h-[380px] lg:h-auto">
           <Image
-            src={IMAGES.commercial}
+            src="/why_shreehari_details.png"
             alt="Precision building facade details"
             fill
             className="object-cover"
@@ -698,7 +694,7 @@ export default function Home() {
 
         <div className="container mx-auto px-4 md:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            
+
             {/* Left Column (7 cols): Editorial Quote & Navigation */}
             <div className="lg:col-span-7 space-y-10 text-left relative">
               <div className="space-y-4">
@@ -780,8 +776,8 @@ export default function Home() {
                       <Image
                         src={
                           activeTestimonial === 0 ? IMAGES.hero :
-                          activeTestimonial === 1 ? IMAGES.commercial :
-                          IMAGES.villa
+                            activeTestimonial === 1 ? IMAGES.commercial :
+                              IMAGES.villa
                         }
                         alt="Project showcase"
                         fill
@@ -803,16 +799,16 @@ export default function Home() {
                     <span className="text-[7px] font-mono text-accent uppercase tracking-widest block">System Installed</span>
                     <h5 className="text-[10px] font-heading font-extrabold uppercase text-heading tracking-wider mt-0.5">
                       {activeTestimonial === 0 ? "Minimal Sliding System" :
-                       activeTestimonial === 1 ? "Unitized Curtain Wall" :
-                       "Slim Gliding Door"}
+                        activeTestimonial === 1 ? "Unitized Curtain Wall" :
+                          "Slim Gliding Door"}
                     </h5>
                   </div>
                   <div className="border-l border-gray-200 pl-4 text-left">
                     <span className="text-[7px] font-mono text-gray-400 uppercase tracking-widest block">Performance</span>
                     <span className="text-[9px] font-heading font-extrabold text-accent uppercase tracking-wider block mt-0.5">
                       {activeTestimonial === 0 ? "Class A4 Sealing" :
-                       activeTestimonial === 1 ? "3.5 kPa Windload" :
-                       "Silent Roller Tech"}
+                        activeTestimonial === 1 ? "3.5 kPa Windload" :
+                          "Silent Roller Tech"}
                     </span>
                   </div>
                 </div>
@@ -864,21 +860,21 @@ export default function Home() {
               category: "Design guide · 6 min",
               title: "How slim can a sliding window really be?",
               desc: "A clear guide to sightlines, glass loads, wind pressure and panel sizes.",
-              img: IMAGES.hero,
+              img: "/blog_slim_window.png",
               link: "/products#windows"
             },
             {
               category: "Facade guide · 8 min",
               title: "Curtain wall vs structural glazing",
               desc: "Understand the visual, technical and maintenance differences before specifying.",
-              img: IMAGES.commercial,
+              img: "/blog_facade_compare.png",
               link: "/products#facades"
             },
             {
               category: "Outdoor living · 5 min",
               title: "Planning a pergola for Indian weather",
               desc: "Drainage, shade, wind and automation considerations for a better outdoor room.",
-              img: IMAGES.pergola,
+              img: "/blog_pergola_weather.png",
               link: "/products#architectural"
             }
           ].map((blog, idx) => (
@@ -908,9 +904,8 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Frequently Asked Questions */}
       <Section id="faqs" background="section" className="">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center mb-20">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">Frequently asked</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading">
@@ -950,23 +945,24 @@ export default function Home() {
 
       {/* CTA Banner Section */}
       <Section id="cta" background="main" className="">
-        <div className="bg-primary text-white rounded-[32px] p-8 md:p-20 shadow-2xl relative overflow-hidden text-center max-w-5xl mx-auto border border-accent/25">
-          <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center"></div>
-          <div className="relative z-10 space-y-8">
+        <div className="luxury-glass-light rounded-[32px] p-8 md:p-16 shadow-xl relative overflow-hidden text-center w-full border border-accent/30">
+          <div className="absolute inset-0 opacity-5 bg-[url('https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center"></div>
+          <div className="absolute inset-0 z-0 cad-grid-light opacity-30 pointer-events-none" />
+          <div className="relative z-10 space-y-6">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm">Plan with confidence</span>
-            <h2 className="text-3xl md:text-6xl font-heading font-bold text-white leading-tight max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-4xl font-heading font-bold text-heading leading-tight max-w-2xl mx-auto">
               Bring engineering precision to your design.
             </h2>
-            <p className="text-gray-300 text-sm md:text-xl max-w-3xl mx-auto leading-relaxed font-light">
+            <p className="text-body/80 text-sm md:text-base max-w-xl mx-auto leading-relaxed font-light">
               Share your drawings, elevations or early concept. Our specialists will help define the most effective aluminium architectural solution.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button href="/request-quote" variant="accent" size="lg" className="gold-glow hover:scale-105 transition-transform duration-300">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
+              <Button href="/request-quote" variant="primary" size="md" className="gold-glow hover:scale-105 transition-transform duration-300">
                 Get Free Consultation
               </Button>
               <button
                 onClick={() => openInquiryModal("General project consultation")}
-                className="px-8 py-4 rounded-full font-heading font-bold text-xs uppercase tracking-widest bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/50 transition-all shadow-lg hover:scale-105 duration-350"
+                className="px-6 py-2.5 rounded-full font-heading font-bold text-xs uppercase tracking-widest bg-primary hover:bg-primary-hover text-white border border-primary transition-all shadow-md hover:scale-105 duration-350"
               >
                 Quick Inquiry
               </button>

@@ -71,7 +71,7 @@ export default function QuoteForm() {
       )}
 
       {/* Interactive Specifications Calculator */}
-      <div className="mb-14 max-w-5xl mx-auto">
+      <div className="mb-14 w-full">
         <div className="text-center max-w-2xl mx-auto mb-8">
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Interactive Configurator</span>
           <h2 className="text-2xl md:text-3xl font-heading font-bold text-heading tracking-tight mt-1">Estimate Your Specifications</h2>
@@ -87,10 +87,10 @@ export default function QuoteForm() {
         }} />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start w-full">
         
         {/* Left Column: Benefits Aside */}
-        <aside className="lg:col-span-5 bg-card p-8 md:p-10 rounded-3xl border border-border hover:border-accent/40 transition-all duration-500 shadow-xl space-y-5">
+        <aside className="lg:col-span-5 lg:sticky lg:top-28 bg-card p-8 md:p-10 rounded-3xl border border-border hover:border-accent/40 transition-all duration-500 shadow-xl space-y-5">
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-[10px] block border-b border-border pb-2">What happens next</span>
           <h3 className="text-xl font-heading font-bold text-heading leading-snug tracking-tight">A practical first review, with no obligation.</h3>
           

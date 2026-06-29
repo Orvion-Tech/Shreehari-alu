@@ -16,9 +16,9 @@ export default function Footer() {
               <Image 
                 src="/shreehari-alu-corporation-logo.svg" 
                 alt="Shree Hari Alu Corporation Logo" 
-                width={200} 
-                height={62} 
-                className="h-10 w-auto brightness-0 invert"
+                width={280} 
+                height={87} 
+                className="h-14 w-auto brightness-0 invert"
               />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-sm">

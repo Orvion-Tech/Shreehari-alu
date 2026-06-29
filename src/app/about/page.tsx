@@ -200,7 +200,7 @@ export default function AboutPage() {
 
       {/* Quality Standards Section */}
       <Section background="section" className="">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start w-full">
           <div className="lg:col-span-5 space-y-4">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Quality standards</span>
             <h2 className="text-2xl md:text-3xl font-heading font-bold text-heading leading-tight tracking-tight">
@@ -227,7 +227,7 @@ export default function AboutPage() {
 
       {/* CTA Section */}
       <Section id="cta" background="main" className="">
-        <div className="luxury-glass-light rounded-[32px] p-8 md:p-16 shadow-xl relative overflow-hidden text-center max-w-5xl mx-auto border border-accent/30">
+        <div className="luxury-glass-light rounded-[32px] p-8 md:p-16 shadow-xl relative overflow-hidden text-center w-full border border-accent/30">
           <div className="absolute inset-0 opacity-5 bg-[url('https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center"></div>
           <div className="absolute inset-0 z-0 cad-grid-light opacity-30 pointer-events-none" />
           <div className="relative z-10 space-y-6">

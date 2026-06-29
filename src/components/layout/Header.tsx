@@ -106,16 +106,16 @@ export default function Header() {
             : "bg-[#FCFBFA]/60 backdrop-blur-md py-3 border-b border-accent/10"
         }`}
       >
-      <div className="container mx-auto px-4 md:px-8 max-w-7xl relative">
+      <div className="container mx-auto px-4 md:px-8 relative">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <LinkNext href="/" className="flex-shrink-0 flex items-center">
             <Image 
               src="/shreehari-alu-corporation-logo.svg" 
               alt="Shree Hari Alu Corporation Logo" 
-              width={160} 
-              height={50} 
-              className="w-auto h-8 xl:h-9.5 transition-all duration-500"
+              width={240} 
+              height={75} 
+              className="w-auto h-11 xl:h-13 2xl:h-15 transition-all duration-500"
               priority
               loading="eager"
             />

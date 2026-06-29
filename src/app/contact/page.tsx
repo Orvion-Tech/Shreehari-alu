@@ -74,9 +74,9 @@ export default function ContactPage() {
 
       {/* Contact Layout Section */}
       <Section background="main">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-5xl mx-auto items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 w-full items-start">
           {/* Left Column: Contact Card Aside */}
-          <aside className="lg:col-span-5 bg-card p-8 md:p-10 rounded-3xl border border-border hover:border-accent/40 transition-all duration-500 shadow-xl space-y-6">
+          <aside className="lg:col-span-5 lg:sticky lg:top-28 bg-card p-8 md:p-10 rounded-3xl border border-border hover:border-accent/40 transition-all duration-500 shadow-xl space-y-6">
             <div>
               <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs mb-2 block">Contact studio</span>
               <h3 className="text-xl md:text-2xl font-heading font-bold text-heading tracking-tight">Speak with our project team.</h3>
