@@ -424,7 +424,7 @@ export default function ServicesPage() {
     <div className="bg-[#FAFAF8] min-h-screen">
 
       {/* Page Hero */}
-      <section className="relative pt-28 pb-24 md:pb-28 bg-section overflow-hidden border-b border-border">
+      <section className="relative pt-28 pb-16 md:pb-28 bg-section overflow-hidden border-b border-border">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-section/90 z-10" />
           <Image
@@ -475,7 +475,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ===================== FLOATING STAT COUNTERS ===================== */}
-      <section className="relative z-20 -mt-12 md:-mt-16 mb-12 md:mb-20">
+      <section className="relative z-20 mt-8 md:-mt-16 mb-12 md:mb-20">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
