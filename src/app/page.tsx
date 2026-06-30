@@ -500,7 +500,7 @@ export default function Home() {
         {/* Ambient Glow */}
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
 
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-20 gap-6 relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-14 gap-6 relative z-10">
           <div className="max-w-xl space-y-3">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Featured Products</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-white leading-tight">
