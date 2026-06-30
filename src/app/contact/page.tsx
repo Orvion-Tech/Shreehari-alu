@@ -18,7 +18,7 @@ export default function ContactPage() {
     name: "",
     phone: "",
     email: "",
-    city: "",
+    address: "",
     service: "Premium aluminium windows",
     message: ""
   });
@@ -33,7 +33,7 @@ export default function ContactPage() {
         name: "",
         phone: "",
         email: "",
-        city: "",
+        address: "",
         service: "Premium aluminium windows",
         message: ""
       });
@@ -113,8 +113,8 @@ export default function ContactPage() {
             )}
 
             <form onSubmit={handleFormSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-1 md:col-span-2">
-                <label htmlFor="contact-name" className="text-[10px] uppercase tracking-wider font-semibold text-heading">Name *</label>
+              <div className="space-y-1">
+                <label htmlFor="contact-name" className="text-[10px] uppercase tracking-wider font-semibold text-heading">Full Name *</label>
                 <input
                   type="text"
                   id="contact-name"
@@ -123,6 +123,18 @@ export default function ContactPage() {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all font-medium"
                   placeholder="Enter your full name"
+                />
+              </div>
+              <div className="space-y-1">
+                <label htmlFor="contact-address" className="text-[10px] uppercase tracking-wider font-semibold text-heading">Address *</label>
+                <input
+                  type="text"
+                  id="contact-address"
+                  required
+                  value={formData.address}
+                  onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all font-medium"
+                  placeholder="Enter your address"
                 />
               </div>
               <div className="space-y-1">
@@ -147,18 +159,6 @@ export default function ContactPage() {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all font-medium"
                   placeholder="name@example.com"
-                />
-              </div>
-              <div className="space-y-1 md:col-span-2">
-                <label htmlFor="contact-city" className="text-[10px] uppercase tracking-wider font-semibold text-heading">City *</label>
-                <input
-                  type="text"
-                  id="contact-city"
-                  required
-                  value={formData.city}
-                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all font-medium"
-                  placeholder="e.g. Ahmedabad"
                 />
               </div>
               <div className="space-y-1 md:col-span-2">
@@ -208,7 +208,7 @@ export default function ContactPage() {
 
       {/* Google Map Section */}
       <section className="py-12 bg-section border-t border-b border-border">
-        <div className="container mx-auto px-4 md:px-8 max-w-5xl">
+        <div className="container mx-auto px-4 md:px-8">
           <div className="rounded-3xl overflow-hidden shadow-2xl border border-accent/15 h-[360px] relative bg-card gold-glow">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.6979262104523!2d72.54045861542452!3d23.034856372332356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84e5482390a7%3A0x6bfe76e0cd673a38!2sAhmedabad%2C%20Gujarat%2C%20India!5e0!3m2!1sen!2sin!4v1625050000000!5m2!1sen!2sin"
