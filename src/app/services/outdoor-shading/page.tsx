@@ -281,7 +281,7 @@ export default function OutdoorShadingPage() {
         {/* CAD Grid Backdrop */}
         <div className="absolute inset-0 z-0 bg-[radial-gradient(rgba(194,139,69,0.04)_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-75 pointer-events-none" />
 
-        <div className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
+        <div className="container mx-auto px-4 md:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-center">
             
             {/* Left Column: Text content */}
@@ -337,7 +337,7 @@ export default function OutdoorShadingPage() {
       <span id="outdoor-catalog" className="block scroll-mt-24" />
 
       {/* Breadcrumb navigator */}
-      <div className="container mx-auto px-6 md:px-12 max-w-7xl pt-10 font-sans">
+      <div className="container mx-auto px-4 md:px-8 pt-10 font-sans">
         <div className="flex items-center gap-2 text-xs text-primary/50">
           <Link href="/" className="hover:text-[#C28B45] transition-colors">Home</Link>
           <ChevronRight className="w-3.5 h-3.5" />

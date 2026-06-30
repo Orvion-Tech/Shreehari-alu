@@ -19,6 +19,7 @@ export default function Footer() {
                 width={280} 
                 height={87} 
                 className="h-14 w-auto brightness-0 invert"
+                loading="eager"
               />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-sm">

@@ -424,7 +424,7 @@ export default function ServicesPage() {
     <div className="bg-[#FAFAF8] min-h-screen">
 
       {/* Page Hero */}
-      <section className="relative pt-28 pb-12 md:py-24 bg-section overflow-hidden border-b border-border">
+      <section className="relative pt-28 pb-24 md:pb-28 bg-section overflow-hidden border-b border-border">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-section/90 z-10" />
           <Image
@@ -437,7 +437,7 @@ export default function ServicesPage() {
             loading="eager"
           />
         </div>
-        <div className="container mx-auto px-6 md:px-12 relative z-20 max-w-7xl">
+        <div className="container mx-auto px-4 md:px-8 relative z-20">
           <div className="breadcrumbs text-xs text-body/70 mb-4 flex items-center gap-2 font-heading uppercase tracking-widest font-bold">
             <Link href="/" className="hover:text-accent transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3 text-accent" />
@@ -475,8 +475,8 @@ export default function ServicesPage() {
       </section>
 
       {/* ===================== FLOATING STAT COUNTERS ===================== */}
-      <section className="relative z-20 -mt-16">
-        <div className="container mx-auto px-6 md:px-12 max-w-6xl">
+      <section className="relative z-20 -mt-12 md:-mt-16 mb-12 md:mb-20">
+        <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { value: 20, suffix: "+", label: "System Profiles" },
@@ -572,7 +572,7 @@ export default function ServicesPage() {
 
       {/* ===================== OUR PROCESS SECTION ===================== */}
       <section id="process" className="py-8 md:py-16 border-t border-primary/5 bg-[#FAF9F5]/40">
-        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
+        <div className="container mx-auto px-4 md:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-6 md:mb-10 space-y-3">
             <span className="text-[10px] font-mono font-bold tracking-[0.25em] text-[#C28B45] uppercase block mb-4">How We Work</span>
@@ -590,7 +590,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ===================== PREMIUM CONSULTATION CTA ===================== */}
-      <section className="py-28 relative overflow-hidden">
+      <section className="py-16 md:py-28 bg-primary text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-primary" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(194,139,69,0.15),transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(194,139,69,0.1),transparent_50%)]" />
@@ -599,7 +599,7 @@ export default function ServicesPage() {
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C28B45]/40 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C28B45]/40 to-transparent" />
 
-        <div className="container mx-auto px-6 md:px-12 w-full relative z-10">
+        <div className="container mx-auto px-4 md:px-8 w-full relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
