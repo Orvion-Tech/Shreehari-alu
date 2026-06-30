@@ -188,14 +188,14 @@ export default function ProductsPage() {
         </div>
 
         {/* Product Tabs Navigation */}
-        <div className="flex flex-wrap justify-center border-b border-border mb-12 gap-2 relative">
+        <div className="flex overflow-x-auto md:overflow-visible whitespace-nowrap border-b border-border mb-12 relative scrollbar-none md:justify-center">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-4 font-heading font-bold text-xs tracking-wider uppercase relative transition-colors duration-300 ${
+                className={`flex-shrink-0 px-6 py-4 font-heading font-bold text-xs tracking-wider uppercase relative transition-colors duration-300 ${
                   isActive ? "text-accent font-bold" : "text-body/60 hover:text-heading"
                 }`}
               >
