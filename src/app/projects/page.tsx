@@ -3,16 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { ChevronRight, Maximize2, Eye, X } from "lucide-react";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 
 const IMAGES = {
-  hero: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
-  villa: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
-  pergola: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop",
-  commercial: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+  hero: "/commercial_glass_facade.png",
+  villa: "/villa_modern_glazing.png",
+  pergola: "/louvered_pergola_villa.png",
+  commercial: "/commercial_glass_facade.png",
+  slidingWindow: "/minimal_sliding_window.png"
 };
 
 const filterCategories = [
@@ -24,7 +25,20 @@ const filterCategories = [
   { id: "industrial", label: "Industrial" }
 ];
 
-const projects = [
+type Project = {
+  id: number;
+  category: string;
+  eyebrow: string;
+  title: string;
+  desc: string;
+  location: string;
+  scope: string;
+  product: string;
+  type: string;
+  img: string;
+};
+
+const projects: Project[] = [
   {
     id: 1,
     category: "residential",
@@ -71,7 +85,7 @@ const projects = [
     scope: "420 apartment openings",
     product: "Sliding · Fixed · Screens",
     type: "Residential development",
-    img: IMAGES.villa
+    img: IMAGES.slidingWindow
   },
   {
     id: 5,
@@ -101,6 +115,9 @@ const projects = [
 
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; label: string } | null>(null);
+  const [detailProject, setDetailProject] = useState<Project | null>(null);
+  const [activeTile, setActiveTile] = useState<number | null>(null);
 
   const filteredProjects = activeFilter === "all"
     ? projects
@@ -112,11 +129,11 @@ export default function ProjectsPage() {
       <section className="relative pt-28 pb-12 md:py-24 bg-section overflow-hidden border-b border-border">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-section/90 z-10" />
-          <Image 
-            src={IMAGES.hero} 
-            alt="Premium aluminium architectural projects" 
-            fill 
-            className="object-cover" 
+          <Image
+            src={IMAGES.hero}
+            alt="Premium aluminium architectural projects"
+            fill
+            className="object-cover"
             sizes="100vw"
             priority
           />
@@ -137,10 +154,9 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Projects Directory List Section */}
-      <Section background="main">
-        {/* Section Heading */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+      {/* Project Gallery Grid */}
+      <Section id="gallery" background="main" className="scroll-mt-28">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
           <div className="max-w-xl">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">Project showcase</span>
             <h2 className="text-2xl md:text-3xl font-heading font-bold text-heading leading-tight tracking-tight">
@@ -148,11 +164,11 @@ export default function ProjectsPage() {
             </h2>
           </div>
           <p className="text-body max-w-md text-sm leading-relaxed font-light">
-            Each project is shown with its setting, aluminium scope and primary system selection.
+            Tap <span className="font-semibold text-heading">Large view</span> to enlarge an image, or <span className="font-semibold text-heading">Project detail</span> to see its full scope.
           </p>
         </div>
 
-        {/* Filter Bar Navigation */}
+        {/* Filter Bar */}
         <div className="flex flex-wrap justify-center border-b border-border mb-12 gap-2 relative">
           {filterCategories.map((cat) => {
             const isActive = activeFilter === cat.id;
@@ -177,73 +193,63 @@ export default function ProjectsPage() {
           })}
         </div>
 
-        {/* Horizontal Row Projects List */}
-        <div className="space-y-12 w-full">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, idx) => (
-              <motion.article 
+        {/* Gallery Grid */}
+        <div key={activeFilter} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            {filteredProjects.map((project) => (
+              <article
                 key={project.id}
-                layout
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.4 }}
-                className={`flex flex-col lg:flex-row gap-8 items-stretch bg-card p-5 md:p-6 rounded-3xl border border-border hover:border-accent/40 transition-all duration-500 shadow-lg hover:shadow-2xl ${
-                  idx % 2 !== 0 ? "lg:flex-row-reverse" : ""
-                }`}
+                className="group relative rounded-2xl overflow-hidden border border-border bg-card shadow-lg hover:shadow-2xl hover:border-accent/40 transition-all duration-500"
               >
-                {/* Visual */}
-                <div className="w-full lg:w-1/2 relative min-h-[250px] lg:min-h-auto rounded-2xl overflow-hidden shadow-lg group">
-                  <Image 
-                    src={project.img} 
-                    alt={project.title} 
-                    fill 
-                    className="object-cover group-hover:scale-105 transition-transform duration-700" 
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                <div
+                  className="relative aspect-[4/3] w-full overflow-hidden cursor-pointer"
+                  onClick={() => setActiveTile(activeTile === project.id ? null : project.id)}
+                >
+                  <Image
+                    src={project.img}
+                    alt={project.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-[#001518]/5 group-hover:bg-transparent transition-colors duration-500" />
-                </div>
 
-                {/* Details */}
-                <div className="w-full lg:w-1/2 flex flex-col justify-between space-y-5 py-1">
-                  <div className="space-y-2">
-                    <span className="text-accent text-[10px] font-bold tracking-widest font-heading uppercase block">{project.eyebrow}</span>
-                    <h3 className="text-xl md:text-2xl font-heading font-bold text-heading leading-snug">{project.title}</h3>
-                    <p className="text-body text-xs md:text-sm leading-relaxed font-light">{project.desc}</p>
-                  </div>
+                  {/* Overlay — image only by default; name + actions reveal on hover (desktop) or tap (mobile) */}
+                  <div
+                    className={`absolute inset-0 bg-[#001518]/85 text-white flex flex-col items-center justify-center gap-4 p-5 text-center transition-opacity duration-300 ${
+                      activeTile === project.id
+                        ? "opacity-100 pointer-events-auto"
+                        : "opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto"
+                    }`}
+                  >
+                    <div className="space-y-1">
+                      <span className="text-accent text-[10px] font-heading font-bold uppercase tracking-widest block">{project.eyebrow}</span>
+                      <h3 className="text-white font-heading font-bold text-lg leading-snug tracking-tight">{project.title}</h3>
+                      <p className="text-white/70 text-xs">{project.location}</p>
+                    </div>
 
-                  {/* Metadata Specs Table */}
-                  <div className="grid grid-cols-2 gap-4 bg-section/70 backdrop-blur-sm p-4 rounded-2xl border border-border">
-                    <div className="space-y-0.5">
-                      <span className="text-[9px] uppercase tracking-wider font-heading font-bold text-body/60 block">Location</span>
-                      <strong className="text-xs text-heading font-semibold">{project.location}</strong>
-                    </div>
-                    <div className="space-y-0.5">
-                      <span className="text-[9px] uppercase tracking-wider font-heading font-bold text-body/60 block">Scope</span>
-                      <strong className="text-xs text-heading font-semibold">{project.scope}</strong>
-                    </div>
-                    <div className="h-[1px] bg-border col-span-2"></div>
-                    <div className="space-y-0.5">
-                      <span className="text-[9px] uppercase tracking-wider font-heading font-bold text-body/60 block">Product used</span>
-                      <strong className="text-xs text-heading font-semibold">{project.product}</strong>
-                    </div>
-                    <div className="space-y-0.5">
-                      <span className="text-[9px] uppercase tracking-wider font-heading font-bold text-body/60 block">Project type</span>
-                      <strong className="text-xs text-heading font-semibold">{project.type}</strong>
+                    <div className="flex gap-2 w-full max-w-[240px]">
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: project.img, label: project.title }); }}
+                        className="flex-1 flex items-center justify-center gap-1.5 bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white text-[10px] font-heading font-bold uppercase tracking-widest py-2.5 rounded-lg border border-white/20 transition-colors cursor-pointer"
+                      >
+                        <Maximize2 className="w-3.5 h-3.5" /> Expand view
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setDetailProject(project); }}
+                        className="flex-1 flex items-center justify-center gap-1.5 bg-accent hover:bg-[#b59556] text-white text-[10px] font-heading font-bold uppercase tracking-widest py-2.5 rounded-lg transition-colors cursor-pointer"
+                      >
+                        <Eye className="w-3.5 h-3.5" /> Details
+                      </button>
                     </div>
                   </div>
                 </div>
-              </motion.article>
+              </article>
             ))}
-          </AnimatePresence>
         </div>
       </Section>
 
       {/* CTA Section */}
       <Section id="cta" background="section">
-        <div className="luxury-glass-light rounded-[32px] p-8 md:p-16 shadow-xl relative overflow-hidden text-center w-full border border-accent/30">
-          <div className="absolute inset-0 opacity-5 bg-[url('https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center"></div>
-          <div className="absolute inset-0 z-0 cad-grid-light opacity-30 pointer-events-none" />
+        <div className="bg-card rounded-2xl p-8 md:p-16 shadow-lg border border-border relative overflow-hidden text-center w-full">
           <div className="relative z-10 space-y-6">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm">Your project could be next</span>
             <h2 className="text-2xl md:text-4xl font-heading font-bold text-heading leading-tight max-w-2xl mx-auto">
@@ -253,13 +259,123 @@ export default function ProjectsPage() {
               We welcome residential, villa, apartment, commercial, hotel, healthcare, education and industrial enquiries.
             </p>
             <div className="pt-2">
-              <Button href="/request-quote" variant="primary" size="md" className="gold-glow hover:scale-105 transition-transform duration-300">
+              <Button href="/request-quote" variant="primary" size="md" className="hover:scale-105 transition-transform duration-300">
                 Submit a Project Brief
               </Button>
             </div>
           </div>
         </div>
       </Section>
+
+      {/* ===================== LARGE VIEW LIGHTBOX ===================== */}
+      {lightboxImage && (
+        <motion.div
+          key="lightbox"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-[100] bg-primary/95 flex items-center justify-center p-4 backdrop-blur-md"
+          onClick={() => setLightboxImage(null)}
+        >
+            <button
+              className="absolute top-6 right-6 text-white hover:text-accent transition-colors z-20 cursor-pointer"
+              onClick={() => setLightboxImage(null)}
+              aria-label="Close large view"
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <div className="relative w-full max-w-5xl h-[80vh] flex flex-col items-center justify-center space-y-4" onClick={(e) => e.stopPropagation()}>
+              <div className="relative w-full h-[70vh] rounded-2xl overflow-hidden border border-accent/20 shadow-2xl bg-black">
+                <Image
+                  src={lightboxImage.src}
+                  alt={lightboxImage.label}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1024px) 100vw, 1024px"
+                />
+              </div>
+              <span className="text-white font-heading font-bold text-xs tracking-widest uppercase bg-primary/50 px-4 py-2 rounded-full border border-accent/20 backdrop-blur-sm">
+                {lightboxImage.label}
+              </span>
+            </div>
+          </motion.div>
+      )}
+
+      {/* ===================== PROJECT DETAIL POPUP ===================== */}
+      {detailProject && (
+        <motion.div
+          key="project-detail"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+        >
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-primary/80 backdrop-blur-sm"
+              onClick={() => setDetailProject(null)}
+            />
+            {/* Showcase Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="relative z-10 bg-card w-full max-w-lg rounded-3xl overflow-hidden border border-accent/25 shadow-2xl max-h-[90vh] overflow-y-auto"
+            >
+              {/* Close */}
+              <button
+                onClick={() => setDetailProject(null)}
+                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-primary/60 hover:bg-accent text-white flex items-center justify-center transition-colors z-20 cursor-pointer backdrop-blur-sm"
+                aria-label="Close project detail"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Image */}
+              <div className="relative h-52 sm:h-64 w-full">
+                <Image
+                  src={detailProject.img}
+                  alt={detailProject.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, 512px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#001518]/70 to-transparent" />
+                <span className="absolute top-4 left-4 bg-primary/85 backdrop-blur-sm text-white text-[9px] font-heading font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-white/10">
+                  {detailProject.eyebrow}
+                </span>
+              </div>
+
+              {/* Body */}
+              <div className="p-6 md:p-8 space-y-5">
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-heading font-bold text-heading leading-snug tracking-tight">{detailProject.title}</h3>
+                  <p className="text-body text-sm leading-relaxed font-light">{detailProject.desc}</p>
+                </div>
+
+                {/* Metadata Specs Table */}
+                <div className="grid grid-cols-2 gap-4 bg-section/70 p-4 rounded-2xl border border-border">
+                  <div className="space-y-0.5">
+                    <span className="text-[9px] uppercase tracking-wider font-heading font-bold text-body/60 block">Location</span>
+                    <strong className="text-xs text-heading font-semibold">{detailProject.location}</strong>
+                  </div>
+                  <div className="space-y-0.5">
+                    <span className="text-[9px] uppercase tracking-wider font-heading font-bold text-body/60 block">Scope</span>
+                    <strong className="text-xs text-heading font-semibold">{detailProject.scope}</strong>
+                  </div>
+                  <div className="h-[1px] bg-border col-span-2"></div>
+                  <div className="space-y-0.5">
+                    <span className="text-[9px] uppercase tracking-wider font-heading font-bold text-body/60 block">Product used</span>
+                    <strong className="text-xs text-heading font-semibold">{detailProject.product}</strong>
+                  </div>
+                  <div className="space-y-0.5">
+                    <span className="text-[9px] uppercase tracking-wider font-heading font-bold text-body/60 block">Project type</span>
+                    <strong className="text-xs text-heading font-semibold">{detailProject.type}</strong>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+        </motion.div>
+      )}
     </>
   );
 }

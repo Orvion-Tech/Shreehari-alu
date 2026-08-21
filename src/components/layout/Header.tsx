@@ -49,30 +49,11 @@ const serviceDivisions = [
   },
 ];
 
-const companyLinks = [
-  { 
-    name: "Why Choose Us", 
-    href: "/why-choose-us", 
-    desc: "Our structural engineering focus and precision tolerances." 
-  },
-  { 
-    name: "Gallery", 
-    href: "/gallery", 
-    desc: "Explore completed private villas and commercial campuses." 
-  },
-  { 
-    name: "Industries", 
-    href: "/industries", 
-    desc: "Tailored glazing for corporate, residential, and factories." 
-  },
-];
-
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [rawIsMobileMenuOpen, _setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isCompanyOpen, setIsCompanyOpen] = useState(false);
-  const [mobileMenuView, setMobileMenuView] = useState<"main" | "services" | "company">("main");
+  const [mobileMenuView, setMobileMenuView] = useState<"main" | "services">("main");
 
   const isMobileMenuOpen = rawIsMobileMenuOpen;
   const setIsMobileMenuOpen = (open: boolean | ((prev: boolean) => boolean)) => {
@@ -111,9 +92,9 @@ export default function Header() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled 
-            ? "bg-[#FCFBFA]/95 backdrop-blur-md shadow-lg py-3 border-b border-accent/20" 
-            : "bg-[#FCFBFA]/60 backdrop-blur-md py-3 border-b border-accent/10"
+          isScrolled
+            ? "bg-[#FCFBFA]/95 backdrop-blur-md shadow-lg py-3 border-b border-accent/20"
+            : "bg-transparent py-4 border-b border-transparent"
         }`}
       >
       <div className="container mx-auto px-4 md:px-8 relative">
@@ -222,55 +203,7 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
-            <LinkNext href="/products" className={linkClass}>Products</LinkNext>
             <LinkNext href="/projects" className={linkClass}>Projects</LinkNext>
-            
-            {/* Company Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setIsCompanyOpen(true)}
-              onMouseLeave={() => setIsCompanyOpen(false)}
-            >
-              <button className={`flex items-center cursor-pointer gap-1 ${linkClass}`}>
-                Company <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isCompanyOpen ? "rotate-180" : ""}`} />
-              </button>
-              
-              <AnimatePresence>
-                {isCompanyOpen && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 12 }}
-                    transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 pt-3.5 w-64 z-50 text-left"
-                  >
-                    <div className="bg-white rounded-xl shadow-[0_20px_50px_rgba(0,37,42,0.15)] border border-accent/25 p-3 flex flex-col space-y-1.5">
-                      <div className="px-2 py-1.5 border-b border-primary/5">
-                        <span className="text-[8px] font-mono tracking-widest text-accent uppercase font-bold">
-                          Corporate Links
-                        </span>
-                      </div>
-
-                      {companyLinks.map((link, index) => (
-                        <LinkNext 
-                          key={index} 
-                          href={link.href}
-                          className="group p-2 rounded-lg hover:bg-accent-light/35 transition-all text-left block"
-                        >
-                          <span className="block text-[11px] font-heading font-extrabold uppercase tracking-wider text-primary group-hover:text-accent transition-colors">
-                            {link.name}
-                          </span>
-                          <span className="block text-[9px] text-body/70 font-light mt-0.5 leading-snug">
-                            {link.desc}
-                          </span>
-                        </LinkNext>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
             <LinkNext href="/contact" className={linkClass}>Contact</LinkNext>
           </nav>
 
@@ -370,23 +303,10 @@ export default function Header() {
                         <ChevronRight className="w-4 h-4 text-accent" />
                       </button>
 
-                      <LinkNext href="/products" className="text-primary hover:text-accent font-extrabold text-[14px] uppercase tracking-wider py-3 border-b border-primary/5 flex items-center justify-between" onClick={() => setIsMobileMenuOpen(false)}>
-                        <span>Products</span>
-                        <ChevronRight className="w-3.5 h-3.5 text-primary/30" />
-                      </LinkNext>
-
                       <LinkNext href="/projects" className="text-primary hover:text-accent font-extrabold text-[14px] uppercase tracking-wider py-3 border-b border-primary/5 flex items-center justify-between" onClick={() => setIsMobileMenuOpen(false)}>
                         <span>Projects</span>
                         <ChevronRight className="w-3.5 h-3.5 text-primary/30" />
                       </LinkNext>
-
-                      <button 
-                        onClick={() => setMobileMenuView("company")}
-                        className="w-full flex items-center justify-between text-primary hover:text-accent font-extrabold text-[14px] uppercase tracking-wider py-3 border-b border-primary/5 cursor-pointer text-left"
-                      >
-                        <span>Company</span>
-                        <ChevronRight className="w-4 h-4 text-accent" />
-                      </button>
 
                       <LinkNext href="/contact" className="text-primary hover:text-accent font-extrabold text-[14px] uppercase tracking-wider py-3 flex items-center justify-between" onClick={() => setIsMobileMenuOpen(false)}>
                         <span>Contact</span>
@@ -466,45 +386,6 @@ export default function Header() {
                     </motion.div>
                   )}
 
-                  {mobileMenuView === "company" && (
-                    <motion.div
-                      key="company"
-                      initial={{ opacity: 0, x: 15 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 15 }}
-                      transition={{ duration: 0.2 }}
-                      className="space-y-4"
-                    >
-                      <button 
-                        onClick={() => setMobileMenuView("main")}
-                        className="flex items-center gap-1.5 text-accent font-bold text-[10px] uppercase tracking-widest cursor-pointer hover:opacity-80 py-1"
-                      >
-                        <ArrowLeft className="w-3.5 h-3.5" /> Back to menu
-                      </button>
-
-                      <h3 className="text-lg font-heading font-bold text-primary uppercase tracking-wider border-b border-primary/5 pb-2">
-                        Company
-                      </h3>
-
-                      <div className="flex flex-col space-y-2">
-                        {companyLinks.map((link, index) => (
-                          <LinkNext 
-                            key={index}
-                            href={link.href} 
-                            className="group p-3 rounded-xl bg-primary/[0.02] hover:bg-accent-light/20 border border-primary/5 hover:border-accent/15 transition-all text-left block"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                          >
-                            <span className="block text-[12px] font-heading font-extrabold uppercase tracking-wider text-primary group-hover:text-accent transition-colors">
-                              {link.name}
-                            </span>
-                            <span className="block text-[10px] text-body font-light leading-relaxed mt-1">
-                              {link.desc}
-                            </span>
-                          </LinkNext>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
                 </AnimatePresence>
               </div>
 

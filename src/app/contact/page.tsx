@@ -3,12 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronRight, CheckCircle2, Phone } from "lucide-react";
+import { ChevronRight, CheckCircle2 } from "lucide-react";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 
 const IMAGES = {
-  hero: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
+  hero: "/commercial_glass_facade.png",
 };
 
 export default function ContactPage() {
@@ -121,7 +121,7 @@ export default function ContactPage() {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all font-medium"
+                  className="w-full px-4 py-3 rounded-xl border border-border bg-section text-sm text-heading focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all font-medium"
                   placeholder="Enter your full name"
                 />
               </div>
@@ -133,7 +133,7 @@ export default function ContactPage() {
                   required
                   value={formData.address}
                   onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all font-medium"
+                  className="w-full px-4 py-3 rounded-xl border border-border bg-section text-sm text-heading focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all font-medium"
                   placeholder="Enter your address"
                 />
               </div>
@@ -145,7 +145,7 @@ export default function ContactPage() {
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all font-medium"
+                  className="w-full px-4 py-3 rounded-xl border border-border bg-section text-sm text-heading focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all font-medium"
                   placeholder="+91 98765 43210"
                 />
               </div>
@@ -157,7 +157,7 @@ export default function ContactPage() {
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all font-medium"
+                  className="w-full px-4 py-3 rounded-xl border border-border bg-section text-sm text-heading focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all font-medium"
                   placeholder="name@example.com"
                 />
               </div>
@@ -168,7 +168,7 @@ export default function ContactPage() {
                     id="contact-service"
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all font-medium appearance-none"
+                    className="w-full px-4 py-3 rounded-xl border border-border bg-section text-sm text-heading focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all font-medium appearance-none"
                   >
                     <option className="bg-white text-heading">Premium aluminium windows</option>
                     <option className="bg-white text-heading">Aluminium doors</option>
@@ -187,7 +187,7 @@ export default function ContactPage() {
                   rows={3}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl input-glass text-sm focus:outline-none transition-all resize-none font-medium text-heading"
+                  className="w-full px-4 py-3 rounded-xl border border-border bg-section text-sm text-heading focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all resize-none font-medium text-heading"
                   placeholder="Tell us about your project, stage and timeline"
                 />
               </div>

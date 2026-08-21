@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, CheckCircle2, ArrowUpRight, HelpCircle, X, Phone, ChevronRight, Home as HomeIcon, Building2, Factory } from "lucide-react";
+import { CheckCircle2, X, ChevronRight } from "lucide-react";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import ProcessSection from "@/components/ui/ProcessSection";
@@ -139,14 +139,13 @@ const HERO_SLIDES = [
 ];
 
 export default function Home() {
+  // homepage
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
   const [inquiryProduct, setInquiryProduct] = useState("");
   const [inquirySubmitted, setInquirySubmitted] = useState(false);
-  const [sliderPosition, setSliderPosition] = useState(50);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [isScannerHovered, setIsScannerHovered] = useState(false);
 
   // Auto slider for testimonials
   useEffect(() => {
@@ -163,29 +162,6 @@ export default function Home() {
     }, 6000);
     return () => clearInterval(timer);
   }, []);
-
-  // Auto scanning sweep when not hovered
-  useEffect(() => {
-    if (isScannerHovered) return;
-
-    let direction = 1;
-    const interval = setInterval(() => {
-      setSliderPosition((prev) => {
-        const next = prev + 0.4 * direction;
-        if (next >= 92) {
-          direction = -1;
-          return 92;
-        }
-        if (next <= 8) {
-          direction = 1;
-          return 8;
-        }
-        return next;
-      });
-    }, 20); // ~50fps
-
-    return () => clearInterval(interval);
-  }, [isScannerHovered]);
 
   const openInquiryModal = (product: string) => {
     setInquiryProduct(product);
@@ -204,17 +180,51 @@ export default function Home() {
 
   return (
     <>
-      {/* Panoramic Fullscreen Visual Hero Section (Minimalist Image-First Edition) */}
-      <section className="relative min-h-screen w-full flex items-center justify-start overflow-hidden bg-[#FCFBFA] text-body">
+      {/* ===================== HERO (heading on top · image below · mirrored stats) ===================== */}
+      <section className="relative w-full overflow-hidden bg-background">
+        {/* Top — heading + tagline + actions */}
+        <div className="relative container mx-auto px-4 md:px-8 pt-32 md:pt-40 pb-8 md:pb-12 text-center">
+          <div className="max-w-3xl mx-auto flex flex-col items-center">
+            <AnimatePresence mode="wait">
+              <motion.h1
+                key={activeSlide}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-[1.12] tracking-tight"
+              >
+                {HERO_SLIDES[activeSlide].titlePart1}{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+                  {HERO_SLIDES[activeSlide].titlePart2}
+                </span>{" "}
+                {HERO_SLIDES[activeSlide].titlePart3}
+              </motion.h1>
+            </AnimatePresence>
 
-        {/* Fullscreen Slideshow Background */}
-        <div className="absolute inset-0 z-0">
+            <p className="mt-4 text-base md:text-lg text-body font-light">
+              Premium aluminium doors, windows, façades &amp; glazing.
+            </p>
+
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button href="/contact" variant="primary" size="lg" className="hover:scale-[1.02] transition-transform duration-300">
+                Contact Us
+              </Button>
+              <Button href="/projects" variant="outline" size="lg">
+                View Portfolio
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Middle — full-width image band */}
+        <div className="relative w-full h-[60vh] min-h-[420px] md:h-[78vh] mt-4 md:mt-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeSlide}
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 1.2, ease: "easeInOut" }}
               className="absolute inset-0"
             >
@@ -227,96 +237,48 @@ export default function Home() {
               />
             </motion.div>
           </AnimatePresence>
+          {/* top of the image melts into the light heading area — seamless blend */}
+          <div className="absolute inset-x-0 top-0 h-32 md:h-40 bg-gradient-to-b from-background via-background/55 to-transparent pointer-events-none" />
 
-          {/* Light horizontal vignette gradient for text readability */}
-          <div className="absolute inset-y-0 left-0 w-full lg:w-2/3 bg-gradient-to-r from-[#FCFBFA] via-[#FCFBFA]/90 to-transparent z-10 pointer-events-none" />
-          {/* Fallback bottom vignette for mobile devices where screen width is narrow */}
-          <div className="absolute inset-0 bg-[#FCFBFA]/75 lg:hidden z-10 pointer-events-none" />
-
-          {/* Very subtle grid lines to keep the architectural draftsman texture */}
-          <div className="absolute inset-0 z-10 cad-grid opacity-[0.04] pointer-events-none" />
-        </div>
-
-        {/* Content Container (Overlay) */}
-        <div className="container mx-auto px-4 md:px-8 relative z-20 pt-20 pb-12 lg:pt-28 lg:pb-20 h-full flex flex-col justify-center">
-          <div className="max-w-2xl space-y-10 text-left">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeSlide}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="space-y-6"
-              >
-                {/* Tagline */}
-                <div className="flex items-center space-x-3 text-accent font-heading font-extrabold text-[10px] md:text-xs uppercase tracking-[0.25em]">
-                  <span className="w-8 h-[1.5px] bg-accent" />
-                  <span>{HERO_SLIDES[activeSlide].tagline}</span>
-                </div>
-
-                {/* Heading */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7.5xl font-heading font-extrabold text-heading tracking-tight leading-[1.08]">
-                  {HERO_SLIDES[activeSlide].titlePart1}{" "}
-                  <span className="text-gradient-gold">{HERO_SLIDES[activeSlide].titlePart2}</span>{" "}
-                  {HERO_SLIDES[activeSlide].titlePart3}
-                </h1>
-
-                {/* Description */}
-                <p className="text-sm sm:text-base text-body font-sans font-light max-w-xl leading-relaxed">
-                  {HERO_SLIDES[activeSlide].description}
-                </p>
-
-                {/* Subtle spec details list */}
-                <div className="flex flex-wrap gap-x-8 gap-y-3 pt-4 border-t border-gray-200/60 max-w-lg">
-                  <div>
-                    <span className="text-[7px] font-mono text-gray-400 uppercase tracking-widest block">Project scope</span>
-                    <span className="text-[10px] font-extrabold text-heading uppercase tracking-wide">{HERO_SLIDES[activeSlide].project}</span>
-                  </div>
-                  {HERO_SLIDES[activeSlide].specs.slice(0, 2).map((spec, sIdx) => (
-                    <div key={sIdx}>
-                      <span className="text-[7px] font-mono text-gray-400 uppercase tracking-widest block">{spec.label}</span>
-                      <span className="text-[10px] font-extrabold text-accent uppercase tracking-wider">{spec.value}</span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-4">
-              <Button href="/request-quote" variant="accent" size="md" className="gold-glow hover:scale-[1.03] transition-transform duration-300" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
-                Free Consultation
-              </Button>
-              <Button href="/projects" variant="outline" size="md" className="hover:scale-[1.03] transition-transform duration-300 border-gray-300 hover:border-primary/50 text-primary bg-transparent">
-                View Our Portfolio
-              </Button>
-            </div>
+          {/* slide indicators — kept clear of the centered glass card */}
+          <div className="absolute bottom-6 right-8 flex items-center gap-3">
+            {HERO_SLIDES.map((_, idx) => (
+              <button key={idx} onClick={() => setActiveSlide(idx)} aria-label={`Slide ${idx + 1}`} className="group py-2">
+                <span
+                  className={`block h-[3px] rounded-full transition-all duration-500 ${
+                    activeSlide === idx ? "w-10 bg-accent" : "w-5 bg-white/70 group-hover:bg-white"
+                  }`}
+                />
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Floating Navigation Pill (Bottom Right Corner) */}
-        <div className="absolute bottom-8 right-8 md:right-12 z-30 flex items-center space-x-4 bg-white/80 backdrop-blur-md py-3 px-6 rounded-full border border-gray-200/50 shadow-2xl">
-          {HERO_SLIDES.map((slide, idx) => {
-            const isActive = activeSlide === idx;
-            return (
-              <button
-                key={idx}
-                onClick={() => setActiveSlide(idx)}
-                className="flex items-center space-x-2 group focus:outline-none cursor-pointer"
-              >
-                <span className={`text-[10px] font-mono transition-colors duration-300 ${isActive ? "text-accent font-extrabold" : "text-gray-400 group-hover:text-gray-600"}`}>
-                  0{idx + 1}
-                </span>
-                <span className={`text-[9px] font-heading font-extrabold uppercase tracking-widest transition-colors duration-300 ${isActive ? "text-heading scale-102" : "text-gray-400 group-hover:text-gray-600"}`}>
-                  {idx === 0 ? "Sliding" : idx === 1 ? "Facades" : "Louvers"}
-                </span>
-                {isActive && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                )}
-              </button>
-            );
-          })}
+        {/* Bottom — stats on a frosted glass panel overlapping the image */}
+        <div className="relative z-10 container mx-auto px-4 md:px-8 -mt-20 md:-mt-24 pb-16 md:pb-24">
+          <div className="max-w-5xl mx-auto rounded-[22px] border border-accent/30 bg-card/80 backdrop-blur-2xl ring-1 ring-inset ring-white/50 shadow-[0_30px_80px_-30px_rgba(0,55,62,0.4)] overflow-hidden">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-border/70">
+              {[
+                { count: "650+", label: "Projects delivered" },
+                { count: "18+", label: "Years expertise" },
+                { count: "42+", label: "Cities served" },
+                { count: "96%", label: "Referral-led" },
+              ].map((s, i) => (
+                <div
+                  key={i}
+                  className="group relative px-4 md:px-6 py-8 md:py-11 text-center transition-colors duration-300 hover:bg-accent/[0.06]"
+                >
+                  <div className="text-4xl md:text-5xl font-heading font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary via-primary to-accent leading-none">
+                    {s.count}
+                  </div>
+                  <span className="block mx-auto mt-4 h-px w-8 bg-accent/70 transition-all duration-300 group-hover:w-12" />
+                  <div className="mt-4 text-[11px] md:text-xs text-heading font-heading font-semibold uppercase tracking-[0.16em] leading-tight">
+                    {s.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -404,66 +366,33 @@ export default function Home() {
               desc: "Premium sliding, casement, and bi-fold systems for residential and commercial spaces.",
               img: IMAGES.servicesWin,
               href: "/services",
-              specs: ["28mm - 45mm Interlock", "Up to 48dB Sound Reduction", "Class A4 Water Sealing"],
-              blueprint: (
-                <svg className="absolute inset-0 w-full h-full p-8 text-accent/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[#FCFBFA]/95 backdrop-blur-[2px]" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.75">
-                  <rect x="20" y="20" width="60" height="60" />
-                  <line x1="50" y1="20" x2="50" y2="80" />
-                  <rect x="25" y="25" width="20" height="50" strokeDasharray="2,2" />
-                  <rect x="55" y="25" width="20" height="50" strokeDasharray="2,2" />
-                  <text x="50" y="15" textAnchor="middle" fontSize="4" fill="currentColor" stroke="none" className="font-heading font-bold uppercase tracking-wider">Elevation A</text>
-                </svg>
-              )
+              specs: ["Slim 28–45mm Interlock", "Up to 48dB Acoustic", "Class A4 Water Sealing"]
             },
             {
               title: "Structural Glazing",
               desc: "State-of-the-art structural glazing and glass facades for modern architectural masterpieces.",
               img: IMAGES.servicesGlazing,
               href: "/services#structural-glazing",
-              specs: ["Pressure Equalized Drainage", "Concealed Sash Integration", "Wind Load Class A4 Max"],
-              blueprint: (
-                <svg className="absolute inset-0 w-full h-full p-8 text-accent/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[#FCFBFA]/95 backdrop-blur-[2px]" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.75">
-                  <rect x="15" y="15" width="70" height="70" />
-                  <line x1="15" y1="50" x2="85" y2="50" />
-                  <line x1="50" y1="15" x2="50" y2="85" />
-                  <circle cx="50" cy="50" r="10" />
-                  <text x="50" y="10" textAnchor="middle" fontSize="4" fill="currentColor" stroke="none" className="font-heading font-bold uppercase tracking-wider">Facade Section</text>
-                </svg>
-              )
+              specs: ["Pressure-Equalised Drainage", "Concealed Sash", "Wind Load Class A4"]
             },
             {
               title: "Architectural Systems",
               desc: "Skylights, pergolas, glass railings, and office partitions customized to your needs.",
               img: IMAGES.servicesArch,
               href: "/services#pergolas",
-              specs: ["Motorized Louver Rotation", "Concealed Perimeter Guttering", "Stainless Steel Anchor Fixings"],
-              blueprint: (
-                <svg className="absolute inset-0 w-full h-full p-8 text-accent/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[#FCFBFA]/95 backdrop-blur-[2px]" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.75">
-                  <rect x="10" y="30" width="80" height="40" rx="3" />
-                  <line x1="20" y1="35" x2="30" y2="65" />
-                  <line x1="35" y1="35" x2="45" y2="65" />
-                  <line x1="50" y1="35" x2="60" y2="65" />
-                  <line x1="65" y1="35" x2="75" y2="65" />
-                  <text x="50" y="22" textAnchor="middle" fontSize="4" fill="currentColor" stroke="none" className="font-heading font-bold uppercase tracking-wider">Roof Section</text>
-                </svg>
-              )
+              specs: ["Motorised Louvres", "Concealed Guttering", "Stainless Anchors"]
             }
           ].map((service, i) => (
-            <div key={i} className="bg-card rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:border-accent/40 border border-border transition-all duration-500 group flex flex-col justify-between luxury-ticks">
+            <div key={i} className="bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:border-accent/40 border border-border transition-all duration-500 group flex flex-col justify-between">
               <div>
-                <div className="relative h-64 w-full overflow-hidden bg-section">
-                  {/* Subtle mask gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10 opacity-70" />
+                <div className="relative h-60 w-full overflow-hidden bg-section">
                   <Image
                     src={service.img}
                     alt={service.title}
                     fill
-                    className="object-cover group-hover:scale-110 group-hover:opacity-20 transition-all duration-700"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
-
-                  {/* Interactive CAD drawing on hover */}
-                  {service.blueprint}
                 </div>
                 <div className="p-5 md:p-6 space-y-4">
                   <div className="space-y-2">
@@ -472,9 +401,9 @@ export default function Home() {
                   </div>
 
                   {/* Specification tags */}
-                  <div className="flex flex-wrap gap-1.5 pt-2 border-t border-border opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="flex flex-wrap gap-1.5 pt-3 border-t border-border">
                     {service.specs.map((spec, sIdx) => (
-                      <span key={sIdx} className="text-[9px] uppercase tracking-wider font-heading font-bold bg-section px-2.5 py-1 rounded text-body border border-border/50">
+                      <span key={sIdx} className="text-[10px] tracking-wide font-heading font-semibold bg-section px-2.5 py-1 rounded-full text-body border border-border/60">
                         {spec}
                       </span>
                     ))}
@@ -495,65 +424,13 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Featured Products Section - styled like an luxury product catalogue */}
-      <Section id="featured-products" background="primary" className="text-white relative overflow-hidden">
-        {/* Ambient Glow */}
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
-
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-14 gap-6 relative z-10">
-          <div className="max-w-xl space-y-3">
-            <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Featured Products</span>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-white leading-tight">
-              Quietly sophisticated. Technically exact.
-            </h2>
-          </div>
-          <p className="text-gray-300 max-w-md text-sm md:text-base leading-relaxed font-light">
-            Our signature product families balance slender profiles with structural strength, thermal efficiency and daily ease.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 relative z-10">
-          {[
-            { category: "Windows", title: "Slimline Sliding", desc: "Expansive views with discreet interlocks and smooth multi-track movement.", img: IMAGES.slidingWindow },
-            { category: "Doors", title: "Statement Pivot", desc: "Generous proportions, concealed hardware and an exceptional arrival experience.", img: "/product_statement_pivot.png" },
-            { category: "Facades", title: "Curtain Wall", desc: "Integrated pressure equalisation, crisp grids and dependable water management.", img: IMAGES.servicesGlazing },
-            { category: "Outdoor", title: "Louvered Pergola", desc: "Motorised light, shade and rain control in one elegant aluminium structure.", img: "/product_louvered_pergola.png" }
-          ].map((prod, i) => (
-            <div key={i} className="bg-[#0a2327] rounded-2xl overflow-hidden border border-accent/15 hover:border-accent/40 transition-all duration-500 group flex flex-col justify-between shadow-2xl">
-              <div className="relative h-60 w-full overflow-hidden">
-                <div className="absolute inset-0 bg-primary/20 z-10" />
-                <Image
-                  src={prod.img}
-                  alt={prod.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                />
-                <button
-                  onClick={() => openInquiryModal(prod.title)}
-                  className="absolute top-4 right-4 bg-primary/80 backdrop-blur-md text-white hover:bg-accent hover:text-white w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 shadow-2xl border border-accent/30 z-20"
-                  aria-label={`Inquire about ${prod.title}`}
-                >
-                  <ArrowUpRight className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="p-6 space-y-3 flex-grow">
-                <span className="text-accent text-[10px] uppercase tracking-widest font-heading font-bold block">{prod.category}</span>
-                <h3 className="text-xl font-heading font-bold text-white tracking-tight">{prod.title}</h3>
-                <p className="text-gray-300 text-xs leading-relaxed font-light">{prod.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <Section id="process" background="section" className="border-t border-[#C28B45]/15">
-        <div className="text-center max-w-3xl mx-auto mb-6 md:mb-10 space-y-3">
-          <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">How We Work</span>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading">
+      <Section id="process" background="section" className="relative overflow-hidden">
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16 space-y-4">
+          <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">How We Work</span>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading leading-tight">
             Our Facade Engineering Process
           </h2>
-          <p className="text-body max-w-xl mx-auto text-xs md:text-sm leading-relaxed mt-2.5 font-light">
+          <p className="text-body max-w-xl mx-auto text-sm md:text-base leading-relaxed font-light">
             From initial blueprints to after-sales maintenance support, we check every millimeter of your custom glazing.
           </p>
         </div>
@@ -561,8 +438,8 @@ export default function Home() {
         <ProcessSection />
       </Section>
 
-      {/* Why Shree Hari Alu (Split Feature, Dark background) */}
-      <section className="relative flex flex-col lg:flex-row bg-primary text-white min-h-[580px] border-t border-accent/15">
+      {/* Why Shree Hari Alu (Split Feature, light) */}
+      <section className="relative flex flex-col lg:flex-row bg-section min-h-[580px] border-t border-border">
         <div className="w-full lg:w-1/2 relative h-[380px] lg:h-auto">
           <Image
             src="/why_shreehari_details.png"
@@ -571,14 +448,13 @@ export default function Home() {
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
-          <div className="absolute inset-0 bg-primary/20" />
         </div>
         <div className="w-full lg:w-1/2 p-8 md:p-16 lg:p-24 flex flex-col justify-center space-y-6">
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm">Why Shree Hari Alu</span>
-          <h2 className="text-3xl md:text-5xl font-heading font-bold text-white leading-tight">
+          <h2 className="text-3xl md:text-5xl font-heading font-bold text-heading leading-tight">
             Performance lives in the details.
           </h2>
-          <p className="text-gray-300 leading-relaxed text-sm md:text-base font-light">
+          <p className="text-body leading-relaxed text-sm md:text-base font-light">
             Premium materials matter. So do correct drainage paths, tolerances, anchors, sealants, interfaces and installation discipline. We take ownership of all of it.
           </p>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -588,35 +464,16 @@ export default function Home() {
               "Trained project installation teams",
               "Clear documentation & after-care"
             ].map((item, idx) => (
-              <li key={idx} className="flex items-center text-sm font-medium text-white/90">
+              <li key={idx} className="flex items-center text-sm font-medium text-heading">
                 <CheckCircle2 className="w-5 h-5 text-accent mr-3 flex-shrink-0" />
                 {item}
               </li>
             ))}
           </ul>
           <div className="pt-4">
-            <Button href="/why-choose-us" variant="accent" className="hover:scale-105 transition-transform">
+            <Button href="/about#why-choose-us" variant="primary" className="hover:scale-105 transition-transform">
               Explore Our Standards
             </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Band Section - Glowing gold counts */}
-      <section className="bg-section py-12 md:py-20 border-t border-border border-b border-border">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-heading">
-            {[
-              { count: "650+", label: "Projects delivered" },
-              { count: "18+", label: "Years combined expertise" },
-              { count: "42+", label: "Cities served" },
-              { count: "96%", label: "Referral-led enquiries" }
-            ].map((stat, idx) => (
-              <div key={idx} className="space-y-3">
-                <div className="text-4xl md:text-6xl font-heading font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">{stat.count}</div>
-                <div className="text-xs text-body font-heading font-bold uppercase tracking-widest">{stat.label}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -652,7 +509,7 @@ export default function Home() {
               img: IMAGES.commercial
             }
           ].map((project, i) => (
-            <div key={i} className="bg-card rounded-2xl overflow-hidden group shadow-2xl hover:shadow-3xl hover:border-accent/40 border border-border transition-all duration-500 flex flex-col justify-between luxury-ticks">
+            <div key={i} className="bg-card rounded-2xl overflow-hidden group shadow-lg hover:shadow-2xl hover:border-accent/40 border border-border transition-all duration-500 flex flex-col justify-between">
               <div>
                 <div className="relative h-64 sm:h-96 md:h-[480px] w-full overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent z-10 opacity-70" />
@@ -682,7 +539,6 @@ export default function Home() {
       <Section id="testimonials" background="section" className="relative overflow-hidden py-8 md:py-14">
         {/* Decorative background details */}
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
-        <div className="absolute inset-0 cad-grid opacity-[0.03] pointer-events-none" />
 
         <div className="container mx-auto px-4 md:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
@@ -729,22 +585,22 @@ export default function Home() {
               </div>
 
               {/* Location tabs switcher at bottom of left column */}
-              <div className="pt-4 md:pt-6 border-t border-gray-200/80 flex flex-wrap gap-x-6 gap-y-3">
+              <div className="pt-4 md:pt-6 border-t border-border flex flex-wrap gap-x-7 gap-y-3">
                 {testimonials.map((testimonial, idx) => {
                   const locationFull = testimonial.author.split(" · ")[1] || "India";
-                  const cityName = locationFull.split(", ").pop()?.toUpperCase() || "PROJECT";
+                  const cityName = locationFull.split(", ").pop() || "Project";
                   const isActive = activeTestimonial === idx;
                   return (
                     <button
                       key={idx}
                       onClick={() => setActiveTestimonial(idx)}
-                      className="flex items-center space-x-2 focus:outline-none group cursor-pointer"
+                      className="flex items-center gap-2 focus:outline-none group cursor-pointer"
                     >
-                      <span className={`text-[10px] font-mono transition-colors duration-300 ${isActive ? "text-accent font-extrabold" : "text-gray-400 group-hover:text-gray-600"}`}>
-                        [ {cityName} ]
+                      <span className={`text-xs font-heading font-semibold uppercase tracking-widest transition-colors duration-300 ${isActive ? "text-accent" : "text-body/60 group-hover:text-heading"}`}>
+                        {cityName}
                       </span>
                       {isActive && (
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                       )}
                     </button>
                   );
@@ -783,21 +639,20 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Specification Sheet */}
-              <div className="w-full mt-6 bg-white/70 border border-gray-100 rounded-2xl p-4 shadow-lg relative overflow-hidden">
-                <div className="absolute inset-0 cad-grid opacity-[0.02] pointer-events-none" />
-                <div className="relative z-10 flex justify-between items-center text-left">
+              {/* System caption */}
+              <div className="w-full mt-6 bg-card border border-border rounded-2xl px-5 py-4 shadow-md">
+                <div className="flex justify-between items-center text-left">
                   <div>
-                    <span className="text-[7px] font-mono text-accent uppercase tracking-widest block">System Installed</span>
-                    <h5 className="text-[10px] font-heading font-extrabold uppercase text-heading tracking-wider mt-0.5">
+                    <span className="text-[10px] text-accent font-heading font-semibold uppercase tracking-widest block">System Installed</span>
+                    <h5 className="text-sm font-heading font-bold text-heading mt-1">
                       {activeTestimonial === 0 ? "Minimal Sliding System" :
                         activeTestimonial === 1 ? "Unitized Curtain Wall" :
                           "Slim Gliding Door"}
                     </h5>
                   </div>
-                  <div className="border-l border-gray-200 pl-4 text-left">
-                    <span className="text-[7px] font-mono text-gray-400 uppercase tracking-widest block">Performance</span>
-                    <span className="text-[9px] font-heading font-extrabold text-accent uppercase tracking-wider block mt-0.5">
+                  <div className="border-l border-border pl-5 text-left">
+                    <span className="text-[10px] text-body/60 font-heading font-semibold uppercase tracking-widest block">Performance</span>
+                    <span className="text-sm font-heading font-bold text-accent block mt-1">
                       {activeTestimonial === 0 ? "Class A4 Sealing" :
                         activeTestimonial === 1 ? "3.5 kPa Windload" :
                           "Silent Roller Tech"}
@@ -808,91 +663,6 @@ export default function Home() {
             </div>
 
           </div>
-        </div>
-      </Section>
-
-      {/* Trusted System Ecosystem Strip */}
-      <section className="bg-section py-16 border-t border-b border-border">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="text-center mb-10">
-            <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs">Trusted system ecosystem</span>
-          </div>
-          <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-            {[
-              "Premium Profiles",
-              "Architectural Glass",
-              "German Hardware",
-              "Performance Sealants",
-              "Quality Coatings",
-              "Smart Automation"
-            ].map((chip, idx) => (
-              <div key={idx} className="bg-card text-heading font-heading font-bold text-[9px] md:text-xs tracking-widest uppercase px-4 py-2.5 md:px-6 md:py-3.5 rounded-full border border-border shadow-md">
-                {chip}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Insights / Blog Section */}
-      <Section id="insights" background="main" className="">
-        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-14">
-          <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">Insights</span>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading">
-            Better decisions begin with better detail.
-          </h2>
-          <p className="text-body max-w-xl mx-auto text-sm leading-relaxed mt-4 font-light">
-            Practical guidance for architects, developers and homeowners planning high-performance aluminium systems.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {[
-            {
-              category: "Design guide · 6 min",
-              title: "How slim can a sliding window really be?",
-              desc: "A clear guide to sightlines, glass loads, wind pressure and panel sizes.",
-              img: "/blog_slim_window.png",
-              link: "/products#windows"
-            },
-            {
-              category: "Facade guide · 8 min",
-              title: "Curtain wall vs structural glazing",
-              desc: "Understand the visual, technical and maintenance differences before specifying.",
-              img: "/blog_facade_compare.png",
-              link: "/products#facades"
-            },
-            {
-              category: "Outdoor living · 5 min",
-              title: "Planning a pergola for Indian weather",
-              desc: "Drainage, shade, wind and automation considerations for a better outdoor room.",
-              img: "/blog_pergola_weather.png",
-              link: "/products#architectural"
-            }
-          ].map((blog, idx) => (
-            <div key={idx} className="bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-border flex flex-col justify-between group">
-              <div className="relative w-full aspect-[3/2] overflow-hidden">
-                <Image
-                  src={blog.img}
-                  alt={blog.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-black/10" />
-              </div>
-              <div className="p-5 md:p-6 space-y-1.5 md:space-y-2 flex-grow">
-                <span className="text-accent text-[10px] font-bold tracking-widest uppercase font-heading block">{blog.category}</span>
-                <h3 className="text-xl font-heading font-bold text-heading leading-snug tracking-tight">{blog.title}</h3>
-                <p className="text-body text-xs leading-relaxed font-light">{blog.desc}</p>
-              </div>
-              <div className="py-4 px-5 md:py-4.5 md:px-6 border-t border-border">
-                <Link href={blog.link} className="text-primary hover:text-accent font-bold text-xs uppercase tracking-widest font-heading inline-block">
-                  Read Insight &rarr;
-                </Link>
-              </div>
-            </div>
-          ))}
         </div>
       </Section>
 
@@ -938,8 +708,8 @@ export default function Home() {
       {/* CTA Banner Section */}
       <Section id="cta" background="main" className="">
         <div className="luxury-glass-light rounded-[32px] p-8 md:p-16 shadow-xl relative overflow-hidden text-center w-full border border-accent/30">
-          <div className="absolute inset-0 opacity-5 bg-[url('https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center"></div>
-          <div className="absolute inset-0 z-0 cad-grid-light opacity-30 pointer-events-none" />
+          <div aria-hidden className="absolute -top-24 -right-16 w-80 h-80 rounded-full bg-accent/10 blur-3xl pointer-events-none" />
+          <div aria-hidden className="absolute -bottom-24 -left-16 w-80 h-80 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
           <div className="relative z-10 space-y-6">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm">Plan with confidence</span>
             <h2 className="text-2xl md:text-4xl font-heading font-bold text-heading leading-tight max-w-2xl mx-auto">
@@ -949,8 +719,8 @@ export default function Home() {
               Share your drawings, elevations or early concept. Our specialists will help define the most effective aluminium architectural solution.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
-              <Button href="/request-quote" variant="primary" size="md" className="gold-glow hover:scale-105 transition-transform duration-300 uppercase tracking-widest text-[10px] font-bold">
-                Get Free Consultation
+              <Button href="/contact" variant="primary" size="md" className="gold-glow hover:scale-105 transition-transform duration-300 uppercase tracking-widest text-[10px] font-bold">
+                Contact Us
               </Button>
               <button
                 onClick={() => openInquiryModal("General project consultation")}

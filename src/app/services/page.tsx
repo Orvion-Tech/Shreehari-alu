@@ -2,10 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import {
-  X,
   CheckCircle2,
   ArrowRight,
   ChevronRight,
@@ -13,20 +12,8 @@ import {
   DoorOpen,
   LayoutGrid,
   Sun,
-  Sparkles,
-  Shield,
-  Ruler,
-  Thermometer,
-  Eye,
-  MessageSquare,
-  Maximize2,
-  Compass,
-  Cpu,
-  CheckSquare,
-  Wrench,
-  Award,
-  Phone,
 } from "lucide-react";
+import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import ProcessSection from "@/components/ui/ProcessSection";
 
@@ -334,26 +321,6 @@ const allSystems: Record<string, SystemItem[]> = {
   ],
 };
 
-
-
-/* ----------------------------- ANIMATION VARIANTS --------------------------- */
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i: number) => ({
-    opacity: 1, y: 0,
-    transition: { duration: 0.6, delay: i * 0.08, ease: "easeOut" as const },
-  }),
-};
-
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.92 },
-  visible: {
-    opacity: 1, scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" as const },
-  },
-};
-
 /* ------------------------------- STAT COUNTER ------------------------------- */
 
 function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
@@ -395,7 +362,6 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
 
 export default function ServicesPage() {
 
-
   // Hash routing support for scrolling to categories on mount or hash changes
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -421,52 +387,35 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <div className="bg-[#FAFAF8] min-h-screen">
-
-      {/* Page Hero */}
-      <section className="relative pt-28 pb-16 md:pb-28 bg-section overflow-hidden border-b border-border">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-section/90 z-10" />
-          <Image
-            src="/services/brochure-img-2.jpg"
-            alt="Premium architectural systems catalog"
-            fill
-            className="object-cover animate-[pulse-slow]"
-            sizes="100vw"
-            priority
-            loading="eager"
-          />
-        </div>
-        <div className="container mx-auto px-4 md:px-8 relative z-20">
-          <div className="breadcrumbs text-xs text-body/70 mb-4 flex items-center gap-2 font-heading uppercase tracking-widest font-bold">
+    <>
+      {/* ===================== PAGE HERO (light band) ===================== */}
+      <section className="bg-section pt-28 pb-16 border-b border-border">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="breadcrumbs text-xs text-body mb-5 flex items-center gap-2 font-heading uppercase tracking-widest font-bold">
             <Link href="/" className="hover:text-accent transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3 text-accent" />
             <span className="text-heading">Services</span>
           </div>
-          
-          <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">
+
+          <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block mb-3">
             System Catalog
           </span>
-          
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold text-heading mb-4 leading-[1.1] max-w-4xl tracking-tight">
+
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-heading mb-5 leading-tight max-w-4xl">
             Precision Crafted Aluminium Systems.
           </h1>
-          
-          <p className="text-base md:text-lg text-body/90 max-w-2xl leading-relaxed font-light mb-8">
+
+          <p className="text-base md:text-lg text-body max-w-2xl leading-relaxed font-light mb-8">
             From panoramic glass facades to motorized pergolas, explore our comprehensive collection of custom-engineered architectural solutions.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button
-              href="/request-quote"
-              variant="accent"
-              className="shadow-xl shadow-[#C28B45]/20 hover:scale-105 transition-transform duration-300"
-            >
+            <Button href="/request-quote" variant="primary" className="hover:scale-105 transition-transform duration-300">
               Request Project Quote
             </Button>
             <button
-              onClick={() => document.getElementById("services-catalog")?.scrollIntoView({ behavior: "smooth" })}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-primary/20 text-primary text-sm font-semibold hover:bg-primary/5 transition-all cursor-pointer bg-white/50 backdrop-blur-sm"
+              onClick={() => document.getElementById("services-grid")?.scrollIntoView({ behavior: "smooth" })}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-primary/25 text-primary text-sm font-semibold hover:bg-primary/5 transition-all cursor-pointer"
             >
               Explore Systems <ChevronRight className="w-4 h-4" />
             </button>
@@ -474,177 +423,161 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ===================== FLOATING STAT COUNTERS ===================== */}
-      <section className="relative z-20 mt-8 md:-mt-16 mb-12 md:mb-20">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { value: 20, suffix: "+", label: "System Profiles" },
-              { value: 48, suffix: "mm", label: "Max Glass Capacity" },
-              { value: 4, suffix: "", label: "Product Categories" },
-              { value: 15, suffix: "+", label: "Years Expertise" },
-            ].map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-white rounded-2xl p-6 text-center shadow-xl shadow-black/5 border border-[#C28B45]/10 hover:border-[#C28B45]/30 transition-all group"
-              >
-                <div className="text-3xl md:text-4xl font-heading font-bold text-primary mb-1">
-                  <AnimatedCounter target={stat.value} suffix={stat.suffix} />
-                </div>
-                <span className="text-[10px] font-mono tracking-wider text-secondary/60 uppercase">{stat.label}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===================== DIVISION CATALOGUE (SPLIT-FEATURE SECTIONS) ===================== */}
-      <div id="services-grid" className="scroll-mt-32">
-        {categories.map((cat, idx) => {
-          const isEven = idx % 2 === 0;
-          const systems = allSystems[cat.id] || [];
-          
-          // Image selected for this division
-          const divisionImage = systems[0]?.img || "/services/brochure-img-2.jpg";
-
-          return (
-            <section
-              key={cat.id}
-              id={cat.id}
-              className={`relative flex flex-col min-h-[480px] border-b border-primary/5 scroll-mt-28 ${
-                isEven ? "lg:flex-row bg-white" : "lg:flex-row-reverse bg-[#FAF9F5]"
-              }`}
+      {/* ===================== STAT COUNTERS ===================== */}
+      <Section background="main">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          {[
+            { value: 20, suffix: "+", label: "System Profiles" },
+            { value: 48, suffix: "mm", label: "Max Glass Capacity" },
+            { value: 4, suffix: "", label: "Product Categories" },
+            { value: 15, suffix: "+", label: "Years Expertise" },
+          ].map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="bg-card rounded-2xl p-6 text-center border border-border shadow-lg hover:shadow-2xl transition-all duration-500"
             >
-              {/* Image Column */}
-              <div className="w-full lg:w-1/2 relative h-[320px] lg:h-auto">
-                <Image
-                  src={divisionImage}
-                  alt={cat.label}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-                <div className="absolute inset-0 bg-[#001518]/5 pointer-events-none" />
+              <div className="text-3xl md:text-4xl font-heading font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-1.5">
+                <AnimatedCounter target={stat.value} suffix={stat.suffix} />
               </div>
+              <span className="text-[10px] md:text-[11px] font-heading font-semibold uppercase tracking-widest text-body">
+                {stat.label}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
 
-              {/* Content Column */}
-              <div className="w-full lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center space-y-5">
-                <span className="text-[#C28B45] font-heading font-bold uppercase tracking-widest text-xs md:text-sm">
-                  DIVISION 0{idx + 1} {"//"} {cat.label}
-                </span>
-                
-                <h2 className="text-2xl md:text-4xl font-heading font-bold text-primary leading-tight tracking-tight">
-                  {cat.label}
-                </h2>
-                
-                <p className="text-secondary/80 leading-relaxed text-xs md:text-sm font-light">
-                  {cat.description}
-                </p>
+      {/* ===================== DIVISION CATALOGUE (light premium cards) ===================== */}
+      <Section id="services-grid" background="section" className="scroll-mt-28">
+        <div className="max-w-2xl space-y-3 mb-10 md:mb-14">
+          <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">
+            Our Divisions
+          </span>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading leading-tight">
+            Four capabilities, one standard of craft.
+          </h2>
+          <p className="text-body text-sm md:text-base leading-relaxed font-light">
+            Explore each division to see the full range of engineered systems, finishes and applications.
+          </p>
+        </div>
 
-                {/* Systems checklist */}
-                <ul className="space-y-2">
-                  {systems.map((system) => (
-                    <li key={system.id} className="flex items-center text-xs md:text-sm font-semibold text-primary">
-                      <CheckCircle2 className="w-4.5 h-4.5 text-[#C28B45] mr-3 flex-shrink-0" />
-                      {system.title}
-                    </li>
-                  ))}
-                </ul>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+          {categories.map((cat, idx) => {
+            const systems = allSystems[cat.id] || [];
+            const divisionImage = systems[0]?.img || "/services/brochure-img-2.jpg";
+            const Icon = cat.icon;
 
-                <div className="pt-2">
-                  <Button 
-                    href={cat.href} 
-                    variant="accent" 
-                    className="gold-glow hover:scale-105 transition-transform duration-300"
-                  >
-                    Explore Division Systems &rarr;
-                  </Button>
+            return (
+              <div
+                key={cat.id}
+                id={cat.id}
+                className="scroll-mt-28 bg-card rounded-2xl overflow-hidden border border-border shadow-lg hover:shadow-2xl transition-all duration-500 group flex flex-col"
+              >
+                <div className="relative h-56 md:h-64 w-full overflow-hidden">
+                  <Image
+                    src={divisionImage}
+                    alt={cat.label}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
+
+                <div className="p-6 md:p-8 flex flex-col flex-grow space-y-5">
+                  <div className="flex items-center gap-3">
+                    <span
+                      className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: `${cat.color}1A`, color: cat.color }}
+                    >
+                      <Icon className="w-5 h-5" />
+                    </span>
+                    <div>
+                      <span className="text-accent font-heading font-bold uppercase tracking-widest text-[10px] block">
+                        Division 0{idx + 1}
+                      </span>
+                      <h3 className="text-xl md:text-2xl font-heading font-bold text-heading leading-tight">
+                        {cat.label}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <p className="text-body text-sm leading-relaxed font-light">
+                    {cat.description}
+                  </p>
+
+                  <ul className="space-y-2.5 flex-grow">
+                    {systems.map((system) => (
+                      <li key={system.id} className="flex items-start text-sm text-heading font-medium">
+                        <CheckCircle2 className="w-4.5 h-4.5 text-accent mr-3 mt-0.5 flex-shrink-0" />
+                        {system.title}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="pt-2">
+                    <Button href={cat.href} variant="primary" className="hover:scale-105 transition-transform duration-300" icon={<ChevronRight className="w-4 h-4" />} iconPosition="right">
+                      Explore Division Systems
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </section>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      </Section>
 
       {/* ===================== OUR PROCESS SECTION ===================== */}
-      <section id="process" className="py-8 md:py-16 border-t border-primary/5 bg-[#FAF9F5]/40">
-        <div className="container mx-auto px-4 md:px-8">
-          
-          <div className="text-center max-w-3xl mx-auto mb-6 md:mb-10 space-y-3">
-            <span className="text-[10px] font-mono font-bold tracking-[0.25em] text-[#C28B45] uppercase block mb-4">How We Work</span>
-            <h2 className="text-3xl md:text-5xl font-bold font-heading text-primary leading-tight mb-4">
-              Our Facade Engineering <span className="italic font-light">Process</span>
-            </h2>
-            <p className="text-xs md:text-sm text-secondary/70 font-light max-w-lg mx-auto">
-              From initial blueprints to after-sales maintenance support, we check every millimeter of your custom glazing.
-            </p>
-          </div>
-
-          <ProcessSection />
-
+      <Section id="process" background="main" className="scroll-mt-28">
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16 space-y-4">
+          <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">
+            How We Work
+          </span>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading leading-tight">
+            Our Facade Engineering Process
+          </h2>
+          <p className="text-body max-w-xl mx-auto text-sm md:text-base leading-relaxed font-light">
+            From initial blueprints to after-sales maintenance support, we check every millimeter of your custom glazing.
+          </p>
         </div>
-      </section>
 
-      {/* ===================== PREMIUM CONSULTATION CTA ===================== */}
-      <section className="py-16 md:py-28 bg-primary text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(194,139,69,0.15),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(194,139,69,0.1),transparent_50%)]" />
+        <ProcessSection />
+      </Section>
 
-        {/* Decorative border lines */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C28B45]/40 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C28B45]/40 to-transparent" />
+      {/* ===================== CONSULTATION CTA (light) ===================== */}
+      <Section background="section">
+        <div className="bg-card rounded-[32px] p-8 md:p-16 shadow-lg border border-accent/30 text-center">
+          <div className="max-w-2xl mx-auto space-y-6">
+            <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">
+              Complimentary Facade Consulting
+            </span>
 
-        <div className="container mx-auto px-4 md:px-8 w-full relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm px-5 py-2 rounded-full border border-[#C28B45]/20 mb-8">
-              <Sparkles className="w-3.5 h-3.5 text-[#C28B45]" />
-              <span className="text-[10px] font-mono tracking-[0.2em] text-[#C28B45] uppercase font-bold">
-                Complimentary Facade Consulting
-              </span>
-            </div>
-
-            <h2 className="text-3xl md:text-5xl font-bold font-heading text-white leading-tight mb-6">
-              Have architectural blueprints?
-              <br />
-              <span className="italic font-light text-[#C28B45]">Let us engineer the perfect match.</span>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading leading-tight">
+              Have architectural blueprints? Let us engineer the perfect match.
             </h2>
 
-            <p className="text-base text-white/50 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
-              Upload your elevation drawings or hand-sketches. Our facade engineering team will analyze 
+            <p className="text-body text-sm md:text-base font-light leading-relaxed max-w-xl mx-auto">
+              Upload your elevation drawings or hand-sketches. Our facade engineering team will analyze
               structural wind-loads, thermal criteria, and aesthetic requirements to recommend the ideal system profiles.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button
-                href="/request-quote"
-                variant="accent"
-                size="lg"
-                className="shadow-xl shadow-[#C28B45]/30 hover:scale-105 transition-transform"
-              >
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+              <Button href="/request-quote" variant="primary" size="lg" className="hover:scale-105 transition-transform duration-300">
                 Upload Elevation Blueprints
               </Button>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-[#C28B45] transition-colors font-medium py-3 px-5"
+                className="inline-flex items-center gap-2 text-sm text-primary hover:text-accent transition-colors font-semibold py-3 px-5"
               >
                 Speak with Lead Engineer <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </section>
-
-    </div>
+      </Section>
+    </>
   );
 }
