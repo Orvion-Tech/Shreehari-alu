@@ -4,88 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  X,
-  CheckCircle2,
-  ArrowRight,
-  ChevronRight,
-  ChevronLeft,
-} from "lucide-react";
+import { X, CheckCircle2, ArrowRight, ChevronRight, ChevronLeft } from "lucide-react";
 import Button from "@/components/ui/Button";
-
-interface SystemItem {
-  num: string;
-  id: string;
-  title: string;
-  consumerTitle: string;
-  simpleDesc: string;
-  features: string[];
-  benefits: string;
-  apps: string;
-  img: string;
-  images: string[];
-  dwgRef: string;
-  alloy: string;
-  thermalBreak: string;
-  glassCap: string;
-}
-
-const systems: SystemItem[] = [
-  {
-    num: "12", id: "office-partitions",
-    title: "Alcom Office Partition System",
-    consumerTitle: "Soundproof Office Glass Partition Walls",
-    simpleDesc: "Slim aluminum and glass walls to divide office rooms, providing sound insulation and visual connection.",
-    features: ["Super slim track frames for minimal layout", "Acoustic gasket inserts inside glass tracks", "Available with custom logo frost film or clear glass"],
-    benefits: "Brings daylight deep into workspaces while keeping meeting rooms private.",
-    apps: "CEO Cabins · Conference Rooms · Shared Coworking spaces",
-    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80"
-    ],
-    dwgRef: "DWG-PT-OFF",
-    alloy: "Alloy 6063-T5 Interior Grade", thermalBreak: "Acoustic Rubber Dampeners",
-    glassCap: "Acoustic Laminated Glass (6mm + 1.52PVB Sound + 6mm)"
-  },
-  {
-    num: "13", id: "glass-railings",
-    title: "Alcom Telescopic Sliding Partition",
-    consumerTitle: "Sliding Stackable Glass Dividers",
-    simpleDesc: "Overlapping glass panels that slide and stack neatly against the wall, allowing you to instantly partition a large room.",
-    features: ["Telescopic sliding rollers for ease", "Saves space by stacking together when open", "Whisper quiet roller hanger wheels"],
-    benefits: "Splits or opens living spaces on demand without heavy doors.",
-    apps: "Home Living Room Dividers · Office Meeting Rooms",
-    img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80"
-    ],
-    dwgRef: "DWG-PT-TELE",
-    alloy: "Alloy 6063-T6 Top Hanger Track", thermalBreak: "Vibration Dampening Rubber Rings",
-    glassCap: "Toughened Monolithic (10mm / 12mm)"
-  },
-  {
-    num: "14", id: "balustrades",
-    title: "Alcom Synchro Sliding Glass Partition",
-    consumerTitle: "Synchronized Sliding Room Dividers",
-    simpleDesc: "Advanced sliding partition where sliding one glass panel automatically slides the remaining panels in sync.",
-    features: ["Synchronized dual direction tracks", "Keeps floor flat and seamless (no bottom track)", "Anodized high durability hardware pulls"],
-    benefits: "One-handed operation to slide open wide gaps without heavy load profiles.",
-    apps: "Luxury Kitchen Entries · Master Bedroom Dividers",
-    img: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80"
-    ],
-    dwgRef: "DWG-PT-SYNC",
-    alloy: "Alloy 6063-T6 Track Extrusion", thermalBreak: "Nylon Gasket Inserts",
-    glassCap: "Clear Toughened Glass (10mm)"
-  },
-];
+import { getServiceCategory, type ServiceSystem } from "@/data/services";
 
 interface ImageCarouselProps {
   images: string[];
@@ -168,16 +89,30 @@ function ImageCarousel({ images, alt }: ImageCarouselProps) {
   );
 }
 
-export default function PartitionsPage() {
-  const [selectedSystem, setSelectedSystem] = useState<SystemItem | null>(null);
+/** Spec rows are only rendered once the client supplies verified values. */
+function specRows(system: ServiceSystem) {
+  return [
+    { label: "Aluminium Profile Alloy", value: system.alloy },
+    { label: "Thermal Insulation Barrier", value: system.thermalBreak },
+    { label: "Glazing Capacity", value: system.glassCap },
+    { label: "Drawing Reference", value: system.dwgRef },
+  ].filter((row): row is { label: string; value: string } => Boolean(row.value));
+}
+
+export default function ServiceCategoryPage({ slug }: { slug: string }) {
+  const category = getServiceCategory(slug);
+
+  const [selectedSystem, setSelectedSystem] = useState<ServiceSystem | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = isDrawerOpen ? "hidden" : "unset";
-    return () => { document.body.style.overflow = "unset"; };
+    return () => {
+      document.body.style.overflow = "unset";
+    };
   }, [isDrawerOpen]);
 
-  const openDrawer = useCallback((system: SystemItem) => {
+  const openDrawer = useCallback((system: ServiceSystem) => {
     setSelectedSystem(system);
     setIsDrawerOpen(true);
   }, []);
@@ -185,6 +120,10 @@ export default function PartitionsPage() {
   const closeDrawer = useCallback(() => {
     setIsDrawerOpen(false);
   }, []);
+
+  if (!category) return null;
+
+  const catalogId = `${category.slug}-catalog`;
 
   return (
     <div className="bg-background min-h-screen text-body antialiased">
@@ -198,27 +137,27 @@ export default function PartitionsPage() {
             <ChevronRight className="w-3.5 h-3.5 text-body/60" />
             <Link href="/services" className="hover:text-accent transition-colors">Services</Link>
             <ChevronRight className="w-3.5 h-3.5 text-body/60" />
-            <span className="text-heading font-semibold">Interior Partitions</span>
+            <span className="text-heading font-semibold">{category.label}</span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             {/* Left: text */}
             <div className="lg:col-span-7 space-y-6 text-left">
               <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">
-                Interior &amp; Partition Systems
+                {category.label}
               </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-heading leading-[1.08] tracking-tight">
-                Interior &amp;{" "}
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-heading leading-[1.08] tracking-tight">
+                {category.heroTitle.lead}{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                  Partitions
+                  {category.heroTitle.accent}
                 </span>
                 .
               </h1>
               <p className="text-body text-base md:text-lg font-light max-w-xl leading-relaxed">
-                Ultra-slim boundary tracks, acoustic dampening cabins, and stackable telescopic dividers designed to organize environments with luxury visual transparency.
+                {category.heroIntro}
               </p>
               <div className="pt-2 flex flex-wrap gap-4">
-                <Button href="#partitions-catalog" variant="primary" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
+                <Button href={`#${catalogId}`} variant="primary" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
                   Explore Catalog
                 </Button>
                 <Button href="/request-quote" variant="outline">
@@ -229,15 +168,14 @@ export default function PartitionsPage() {
 
             {/* Right: visual */}
             <div className="lg:col-span-5 flex justify-center w-full">
-              <div className="relative w-full max-w-[440px] aspect-[4/5] rounded-3xl overflow-hidden border border-border shadow-lg bg-card">
+              <div className="relative w-full max-w-[440px] aspect-[4/5] rounded-2xl overflow-hidden border border-border shadow-lg bg-card">
                 <Image
-                  src="/services/brochure-img-33.jpg"
-                  alt="Interior Partitions showcase"
+                  src={category.heroImage}
+                  alt={`${category.label} showcase`}
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-[1.5s]"
                   sizes="440px"
                   priority
-                  loading="eager"
                 />
               </div>
             </div>
@@ -246,24 +184,25 @@ export default function PartitionsPage() {
       </section>
 
       {/* Catalog anchor */}
-      <span id="partitions-catalog" className="block scroll-mt-28" />
+      <span id={catalogId} className="block scroll-mt-28" />
 
       {/* ===================== SYSTEMS DIRECTORY ===================== */}
       <section>
-        {systems.map((system, idx) => {
+        {category.systems.map((system, idx) => {
           const isEven = idx % 2 === 0;
           return (
             <div
               key={system.id}
-              className={`relative flex flex-col lg:flex-row ${isEven ? "" : "lg:flex-row-reverse"} ${
+              id={system.id}
+              className={`relative flex flex-col lg:flex-row scroll-mt-24 ${isEven ? "" : "lg:flex-row-reverse"} ${
                 isEven ? "bg-background" : "bg-section"
               } min-h-[480px] border-b border-border`}
             >
               {/* Image half */}
               <div className="w-full lg:w-1/2 relative h-[320px] lg:h-auto overflow-hidden">
-                <ImageCarousel images={system.images} alt={system.consumerTitle} />
+                <ImageCarousel images={system.images} alt={system.title} />
                 <div className="absolute top-5 left-5 z-30 bg-card/95 backdrop-blur-sm text-heading text-[11px] font-heading font-bold uppercase tracking-wider px-3 py-1.5 rounded-full border border-border shadow-sm pointer-events-none">
-                  {system.dwgRef}
+                  {category.label}
                 </div>
               </div>
 
@@ -273,11 +212,11 @@ export default function PartitionsPage() {
                   <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs block">
                     System {system.num}
                   </span>
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-heading leading-tight">
-                    {system.consumerTitle}
-                  </h3>
-                  <span className="text-sm text-body font-light block">
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight">
                     {system.title}
+                  </h2>
+                  <span className="text-sm text-body font-light block">
+                    {system.tagline}
                   </span>
                   <p className="text-body text-sm md:text-base font-light leading-relaxed">
                     {system.simpleDesc}
@@ -294,18 +233,14 @@ export default function PartitionsPage() {
                   ))}
                 </ul>
 
-                {/* Spec summary */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-4 border-t border-border pt-5">
-                  {[
-                    { label: "Alloy", value: system.alloy },
-                    { label: "Acoustic Barrier", value: system.thermalBreak },
-                    { label: "Glazing", value: system.glassCap },
-                  ].map((spec) => (
-                    <div key={spec.label}>
-                      <span className="text-[11px] uppercase tracking-wider text-body block mb-1">{spec.label}</span>
-                      <span className="text-sm text-heading font-medium leading-snug block">{spec.value}</span>
-                    </div>
-                  ))}
+                {/* Applications */}
+                <div className="border-t border-border pt-5">
+                  <span className="text-[11px] uppercase tracking-wider text-body block mb-1">
+                    Typical applications
+                  </span>
+                  <span className="text-sm text-heading font-medium leading-snug block">
+                    {system.apps}
+                  </span>
                 </div>
 
                 {/* CTAs */}
@@ -316,10 +251,10 @@ export default function PartitionsPage() {
                     size="sm"
                     className="cursor-pointer"
                   >
-                    View Specifications
+                    View Details
                   </Button>
                   <Button
-                    href={`/request-quote?system=${encodeURIComponent(system.consumerTitle)}`}
+                    href={`/request-quote?service=${encodeURIComponent(system.title)}`}
                     variant="outline"
                     size="sm"
                     className="cursor-pointer"
@@ -333,7 +268,7 @@ export default function PartitionsPage() {
         })}
       </section>
 
-      {/* ===================== SPEC DRAWER ===================== */}
+      {/* ===================== DETAIL DRAWER ===================== */}
       <AnimatePresence>
         {isDrawerOpen && selectedSystem && (
           <>
@@ -345,10 +280,10 @@ export default function PartitionsPage() {
             >
               <div className="p-6 border-b border-border bg-section flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-white font-heading font-bold text-sm">{selectedSystem.num}</div>
+                  <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white font-heading font-bold text-sm">{selectedSystem.num}</div>
                   <div>
-                    <span className="text-[10px] font-heading font-bold uppercase tracking-widest text-accent block">System Specification</span>
-                    <h3 className="text-lg font-heading font-bold text-heading tracking-tight leading-tight">{selectedSystem.consumerTitle}</h3>
+                    <span className="text-[12px] font-heading font-bold uppercase tracking-widest text-accent block">{category.label}</span>
+                    <h3 className="text-lg font-heading font-bold text-heading tracking-tight leading-tight">{selectedSystem.title}</h3>
                   </div>
                 </div>
                 <button onClick={closeDrawer} aria-label="Close" className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-heading hover:text-accent hover:border-accent transition-all cursor-pointer bg-card shadow-sm"><X className="w-5 h-5" /></button>
@@ -357,20 +292,20 @@ export default function PartitionsPage() {
               <div className="flex-grow overflow-y-auto p-6 md:p-8 space-y-8">
                 {/* Photography */}
                 <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-border bg-section">
-                  <ImageCarousel images={selectedSystem.images} alt={selectedSystem.consumerTitle} />
+                  <ImageCarousel images={selectedSystem.images} alt={selectedSystem.title} />
                 </div>
 
                 {/* Summary */}
                 <div className="space-y-3">
-                  <span className="text-[10px] font-heading font-bold uppercase tracking-widest text-accent block">System Overview</span>
-                  <h4 className="text-base font-heading font-bold text-heading">{selectedSystem.title}</h4>
+                  <span className="text-[12px] font-heading font-bold uppercase tracking-widest text-accent block">System Overview</span>
+                  <h4 className="text-base font-heading font-bold text-heading">{selectedSystem.tagline}</h4>
                   <p className="text-sm text-body leading-relaxed font-light">{selectedSystem.simpleDesc}</p>
                   <p className="text-sm text-accent font-medium leading-relaxed">{selectedSystem.benefits}</p>
                 </div>
 
                 {/* Features */}
                 <div className="space-y-4">
-                  <span className="text-[10px] font-heading font-bold uppercase tracking-widest text-accent block">Key Features</span>
+                  <span className="text-[12px] font-heading font-bold uppercase tracking-widest text-accent block">Key Features</span>
                   <div className="grid grid-cols-1 gap-2.5">
                     {selectedSystem.features.map((feat, i) => (
                       <div key={i} className="flex items-start gap-3">
@@ -381,16 +316,13 @@ export default function PartitionsPage() {
                   </div>
                 </div>
 
-                {/* Technical Specifications */}
+                {/* Applications and any verified specifications */}
                 <div className="space-y-4">
-                  <span className="text-[10px] font-heading font-bold uppercase tracking-widest text-accent block">Technical Specifications</span>
+                  <span className="text-[12px] font-heading font-bold uppercase tracking-widest text-accent block">Details</span>
                   <div className="divide-y divide-border border-y border-border">
                     {[
-                      { label: "Aluminium Profile Alloy", value: selectedSystem.alloy },
-                      { label: "Acoustic / Insulation Barrier", value: selectedSystem.thermalBreak },
-                      { label: "Sash Glazing Capacity", value: selectedSystem.glassCap },
-                      { label: "Drawing Reference", value: selectedSystem.dwgRef },
                       { label: "Recommended Applications", value: selectedSystem.apps },
+                      ...specRows(selectedSystem),
                     ].map((spec) => (
                       <div key={spec.label} className="flex items-start justify-between gap-6 py-3.5">
                         <span className="text-sm text-body font-light flex-shrink-0 max-w-[45%]">{spec.label}</span>
@@ -402,7 +334,7 @@ export default function PartitionsPage() {
               </div>
 
               <div className="p-6 border-t border-border bg-section flex flex-col sm:flex-row gap-3">
-                <Button href={`/request-quote?system=${encodeURIComponent(selectedSystem.consumerTitle)}`} variant="primary" className="flex-1">Request a Quote</Button>
+                <Button href={`/request-quote?service=${encodeURIComponent(selectedSystem.title)}`} variant="primary" className="flex-1">Request a Quote</Button>
                 <Button href="/contact" variant="outline" className="flex-1">Talk to an Engineer</Button>
               </div>
             </motion.div>

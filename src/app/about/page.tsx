@@ -64,7 +64,7 @@ export default function AboutPage() {
             <span className="text-heading">About us</span>
           </div>
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-4 block">Our story</span>
-          <h1 className="text-4xl md:text-6xl font-heading font-bold text-heading mb-6 leading-[1.05] max-w-3xl tracking-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gradient mb-6 leading-[1.05] max-w-3xl tracking-tight">
             Built on precision.<br />Driven by possibility.
           </h1>
           <p className="text-base md:text-lg text-body max-w-xl leading-relaxed font-light">
@@ -88,13 +88,13 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           <aside className="lg:col-span-5 space-y-4">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Company overview</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading leading-tight tracking-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight tracking-tight">
               Every view deserves a better frame.
             </h2>
           </aside>
           <div className="lg:col-span-7 space-y-4 md:space-y-6">
             <p className="text-body text-sm md:text-base leading-relaxed font-light">
-              Shree Hari Alu was founded around a simple conviction: architectural aluminium should feel as considered as the spaces it defines.
+              Shreehari Alu was founded around a simple conviction: architectural aluminium should feel as considered as the spaces it defines.
             </p>
             <p className="text-body text-sm md:text-base leading-relaxed font-light">
               We work across residential, commercial, hospitality, institutional and industrial projects, supporting teams from early product selection through fabrication, site coordination, installation and handover. Our role is not merely to supply a window, door or facade. It is to resolve the complete interface between structure, glass, hardware, weather and daily use.
@@ -113,7 +113,7 @@ export default function AboutPage() {
       <Section background="section" className="border-t border-border">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           <div className="bg-card p-6 md:p-10 rounded-2xl border border-border shadow-lg hover:shadow-2xl transition-all duration-500">
-            <span className="text-accent text-[10px] uppercase tracking-widest font-heading font-bold block mb-2.5">Our mission</span>
+            <span className="text-accent text-[12px] uppercase tracking-widest font-heading font-bold block mb-2.5">Our mission</span>
             <h3 className="text-xl md:text-2xl font-heading font-bold text-heading mb-3.5 leading-snug tracking-tight">
               Deliver world-class aluminium architectural systems with exceptional quality and innovation.
             </h3>
@@ -122,7 +122,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="bg-card p-6 md:p-10 rounded-2xl border border-border shadow-lg hover:shadow-2xl transition-all duration-500">
-            <span className="text-accent text-[10px] uppercase tracking-widest font-heading font-bold block mb-2.5">Our vision</span>
+            <span className="text-accent text-[12px] uppercase tracking-widest font-heading font-bold block mb-2.5">Our vision</span>
             <h3 className="text-xl md:text-2xl font-heading font-bold text-heading mb-3.5 leading-snug tracking-tight">
               Become India’s most trusted aluminium architectural solutions provider.
             </h3>
@@ -137,7 +137,7 @@ export default function AboutPage() {
       <Section background="main">
         <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14 space-y-4">
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">What guides us</span>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading leading-tight">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight">
             Values you can see in the finished work.
           </h2>
           <p className="text-body max-w-xl mx-auto text-sm md:text-base leading-relaxed font-light">
@@ -171,7 +171,7 @@ export default function AboutPage() {
         </div>
         <div className="w-full lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center space-y-5">
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm">Manufacturing excellence</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading leading-tight tracking-tight">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight tracking-tight">
             Precision begins before the site.
           </h2>
           <p className="text-body leading-relaxed text-sm md:text-base font-light">
@@ -198,7 +198,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start w-full">
           <div className="lg:col-span-5 space-y-4">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Quality standards</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading leading-tight tracking-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight tracking-tight">
               Measured against the demands of the building.
             </h2>
             <p className="text-body leading-relaxed text-sm md:text-base pt-2 font-light">
@@ -226,7 +226,7 @@ export default function AboutPage() {
       <Section id="why-choose-us" background="section" className="scroll-mt-28 border-t border-border">
         <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14 space-y-4">
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Why choose us</span>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading leading-tight">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight">
             Eleven reasons. One accountable partner.
           </h2>
           <p className="text-body max-w-xl mx-auto text-sm md:text-base leading-relaxed font-light">
@@ -261,7 +261,7 @@ export default function AboutPage() {
             ].map((stat, idx) => (
               <div key={idx} className="space-y-1.5 md:border-r border-border last:border-0">
                 <div className="text-3xl md:text-4xl font-heading font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">{stat.count}</div>
-                <div className="text-[10px] text-body font-heading font-semibold uppercase tracking-wider">{stat.label}</div>
+                <div className="text-[12px] text-body font-heading font-semibold uppercase tracking-wider">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -274,7 +274,7 @@ export default function AboutPage() {
       <Section id="industries" background="main" className="scroll-mt-28">
         <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14 space-y-4">
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Industries we serve</span>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading leading-tight">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight">
             Nine sectors. One exacting standard.
           </h2>
           <p className="text-body max-w-xl mx-auto text-sm md:text-base leading-relaxed font-light">
@@ -312,7 +312,7 @@ export default function AboutPage() {
         </div>
         <div className="w-full lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center space-y-5">
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm">Residential focus</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading leading-tight tracking-tight">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight tracking-tight">
             Comfort that is felt, not seen.
           </h2>
           <p className="text-body leading-relaxed text-sm md:text-base font-light">
@@ -352,7 +352,7 @@ export default function AboutPage() {
         </div>
         <div className="w-full lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center space-y-5">
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm">Commercial focus</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading leading-tight tracking-tight">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight tracking-tight">
             Facade performance at building scale.
           </h2>
           <p className="text-body leading-relaxed text-sm md:text-base font-light">
@@ -384,7 +384,7 @@ export default function AboutPage() {
         <div className="bg-card rounded-2xl p-8 md:p-16 shadow-lg border border-border relative overflow-hidden text-center w-full">
           <div className="relative z-10 space-y-6">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Work with us</span>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading leading-tight max-w-2xl mx-auto">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight max-w-2xl mx-auto">
               Bring technical clarity to your next elevation.
             </h2>
             <p className="text-body text-sm md:text-lg max-w-xl mx-auto leading-relaxed font-light">

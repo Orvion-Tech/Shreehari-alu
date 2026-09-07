@@ -4,18 +4,23 @@
   --primary: #00373E;
   --primary-hover: #00515C;
   --secondary: #2F4A4E;
-  --accent: #C28B45;
-  --accent-light: rgba(194, 139, 69, 0.1);
+  /* Text-safe gold. The previous #C28B45 measured ~2.8:1 on light grounds —
+     roughly half the 4.5:1 needed — which made every section label read faded.
+     This deepened tone keeps the metallic character and passes AA. */
+  --accent: #7F6029;
+  /* Retained for gold on dark surfaces, where the deep tone would disappear. */
+  --accent-bright: #C9A961;
+  --accent-light: rgba(127, 96, 41, 0.1);
   
   --bg-main: #F8FAFC;
   --bg-section: #EEF2F4;
   --bg-card: #FFFFFF;
   
   --text-heading: #1F2937;
-  --text-body: #6B7280;
+  --text-body: #5C6470;
   
   --border: #D1D5DB;
-  --border-gold: rgba(194, 139, 69, 0.35);
+  --border-gold: rgba(127, 96, 41, 0.32);
   
   --success: #10B981;
   --warning: #F59E0B;
@@ -31,6 +36,7 @@
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-accent-light: var(--accent-light);
+  --color-accent-bright: var(--accent-bright);
   
   --color-background: var(--bg-main);
   --color-section: var(--bg-section);

@@ -145,7 +145,7 @@ export default function ProjectsPage() {
             <span className="text-heading">Projects</span>
           </div>
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">Selected work</span>
-          <h1 className="text-3xl md:text-5xl font-heading font-bold text-heading mb-4 leading-[1.1] max-w-3xl tracking-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gradient mb-4 leading-[1.1] max-w-3xl tracking-tight">
             Ideas delivered at building scale.
           </h1>
           <p className="text-base md:text-lg text-body/90 max-w-2xl leading-relaxed font-light">
@@ -159,7 +159,7 @@ export default function ProjectsPage() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
           <div className="max-w-xl">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">Project showcase</span>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold text-heading leading-tight tracking-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight tracking-tight">
               Different briefs. Distinct responses.
             </h2>
           </div>
@@ -221,7 +221,7 @@ export default function ProjectsPage() {
                     }`}
                   >
                     <div className="space-y-1">
-                      <span className="text-accent text-[10px] font-heading font-bold uppercase tracking-widest block">{project.eyebrow}</span>
+                      <span className="text-accent text-[12px] font-heading font-bold uppercase tracking-widest block">{project.eyebrow}</span>
                       <h3 className="text-white font-heading font-bold text-lg leading-snug tracking-tight">{project.title}</h3>
                       <p className="text-white/70 text-xs">{project.location}</p>
                     </div>
@@ -229,13 +229,13 @@ export default function ProjectsPage() {
                     <div className="flex gap-2 w-full max-w-[240px]">
                       <button
                         onClick={(e) => { e.stopPropagation(); setLightboxImage({ src: project.img, label: project.title }); }}
-                        className="flex-1 flex items-center justify-center gap-1.5 bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white text-[10px] font-heading font-bold uppercase tracking-widest py-2.5 rounded-lg border border-white/20 transition-colors cursor-pointer"
+                        className="flex-1 flex items-center justify-center gap-1.5 bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white text-[12px] font-heading font-bold uppercase tracking-widest py-2.5 rounded-lg border border-white/20 transition-colors cursor-pointer"
                       >
                         <Maximize2 className="w-3.5 h-3.5" /> Expand view
                       </button>
                       <button
                         onClick={(e) => { e.stopPropagation(); setDetailProject(project); }}
-                        className="flex-1 flex items-center justify-center gap-1.5 bg-accent hover:bg-[#b59556] text-white text-[10px] font-heading font-bold uppercase tracking-widest py-2.5 rounded-lg transition-colors cursor-pointer"
+                        className="flex-1 flex items-center justify-center gap-1.5 bg-accent hover:bg-[#b59556] text-white text-[12px] font-heading font-bold uppercase tracking-widest py-2.5 rounded-lg transition-colors cursor-pointer"
                       >
                         <Eye className="w-3.5 h-3.5" /> Details
                       </button>
@@ -252,7 +252,7 @@ export default function ProjectsPage() {
         <div className="bg-card rounded-2xl p-8 md:p-16 shadow-lg border border-border relative overflow-hidden text-center w-full">
           <div className="relative z-10 space-y-6">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm">Your project could be next</span>
-            <h2 className="text-2xl md:text-4xl font-heading font-bold text-heading leading-tight max-w-2xl mx-auto">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight max-w-2xl mx-auto">
               Share the elevation. Let’s define what it can become.
             </h2>
             <p className="text-body/80 text-sm md:text-base max-w-xl mx-auto leading-relaxed font-light">
@@ -319,7 +319,7 @@ export default function ProjectsPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-10 bg-card w-full max-w-lg rounded-3xl overflow-hidden border border-accent/25 shadow-2xl max-h-[90vh] overflow-y-auto"
+              className="relative z-10 bg-card w-full max-w-lg rounded-2xl overflow-hidden border border-accent/25 shadow-2xl max-h-[90vh] overflow-y-auto"
             >
               {/* Close */}
               <button
@@ -340,7 +340,7 @@ export default function ProjectsPage() {
                   sizes="(max-width: 640px) 100vw, 512px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#001518]/70 to-transparent" />
-                <span className="absolute top-4 left-4 bg-primary/85 backdrop-blur-sm text-white text-[9px] font-heading font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-white/10">
+                <span className="absolute top-4 left-4 bg-primary/85 backdrop-blur-sm text-white text-[11px] font-heading font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-white/10">
                   {detailProject.eyebrow}
                 </span>
               </div>
@@ -355,20 +355,20 @@ export default function ProjectsPage() {
                 {/* Metadata Specs Table */}
                 <div className="grid grid-cols-2 gap-4 bg-section/70 p-4 rounded-2xl border border-border">
                   <div className="space-y-0.5">
-                    <span className="text-[9px] uppercase tracking-wider font-heading font-bold text-body/60 block">Location</span>
+                    <span className="text-[11px] uppercase tracking-wider font-heading font-bold text-body/60 block">Location</span>
                     <strong className="text-xs text-heading font-semibold">{detailProject.location}</strong>
                   </div>
                   <div className="space-y-0.5">
-                    <span className="text-[9px] uppercase tracking-wider font-heading font-bold text-body/60 block">Scope</span>
+                    <span className="text-[11px] uppercase tracking-wider font-heading font-bold text-body/60 block">Scope</span>
                     <strong className="text-xs text-heading font-semibold">{detailProject.scope}</strong>
                   </div>
                   <div className="h-[1px] bg-border col-span-2"></div>
                   <div className="space-y-0.5">
-                    <span className="text-[9px] uppercase tracking-wider font-heading font-bold text-body/60 block">Product used</span>
+                    <span className="text-[11px] uppercase tracking-wider font-heading font-bold text-body/60 block">Product used</span>
                     <strong className="text-xs text-heading font-semibold">{detailProject.product}</strong>
                   </div>
                   <div className="space-y-0.5">
-                    <span className="text-[9px] uppercase tracking-wider font-heading font-bold text-body/60 block">Project type</span>
+                    <span className="text-[11px] uppercase tracking-wider font-heading font-bold text-body/60 block">Project type</span>
                     <strong className="text-xs text-heading font-semibold">{detailProject.type}</strong>
                   </div>
                 </div>

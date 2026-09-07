@@ -8,6 +8,7 @@ import { CheckCircle2, X, ChevronRight } from "lucide-react";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import ProcessSection from "@/components/ui/ProcessSection";
+import { SERVICE_CATEGORIES, serviceHref } from "@/data/services";
 
 // Premium custom generated images matching the brand theme
 const IMAGES = {
@@ -23,7 +24,7 @@ const IMAGES = {
 
 const testimonials = [
   {
-    quote: "Shree Hari Alu understood that the view was the hero. The slimline system is visually quiet, beautifully made and performs exactly as promised.",
+    quote: "Shreehari Alu understood that the view was the hero. The slimline system is visually quiet, beautifully made and performs exactly as promised.",
     author: "Project Architect · Luxury Residence, Ahmedabad"
   },
   {
@@ -183,34 +184,42 @@ export default function Home() {
       {/* ===================== HERO (heading on top · image below · mirrored stats) ===================== */}
       <section className="relative w-full overflow-hidden bg-background">
         {/* Top — heading + tagline + actions */}
-        <div className="relative container mx-auto px-4 md:px-8 pt-32 md:pt-40 pb-8 md:pb-12 text-center">
-          <div className="max-w-3xl mx-auto flex flex-col items-center">
-            <AnimatePresence mode="wait">
-              <motion.h1
+        <div className="relative container mx-auto px-4 md:px-8 pt-28 md:pt-32 pb-6 md:pb-8 text-center">
+          <div className="max-w-4xl mx-auto flex flex-col items-center">
+            {/* Fixed h1: the strongest on-page ranking signal, so it names what the
+                company actually sells and where. The rotating brand line below keeps
+                the hero's motion. */}
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold leading-[1.12] tracking-tight text-balance">
+              Aluminium Windows, Doors &amp;{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent whitespace-nowrap">
+                Facade Systems
+              </span>{" "}
+              in Ahmedabad.
+            </h1>
+
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.p
                 key={activeSlide}
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold leading-[1.12] tracking-tight"
+                className="mt-5 text-lg md:text-xl text-body font-light leading-snug"
               >
                 {HERO_SLIDES[activeSlide].titlePart1}{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+                <span className="text-accent font-medium">
                   {HERO_SLIDES[activeSlide].titlePart2}
                 </span>{" "}
                 {HERO_SLIDES[activeSlide].titlePart3}
-              </motion.h1>
+              </motion.p>
             </AnimatePresence>
 
-            <p className="mt-4 text-base md:text-lg text-body font-light">
-              Premium aluminium doors, windows, façades &amp; glazing.
-            </p>
-
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button href="/contact" variant="primary" size="lg" className="hover:scale-[1.02] transition-transform duration-300">
+            {/* Full-width on a phone — narrow centred buttons are harder to hit */}
+            <div className="mt-8 w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
+              <Button href="/contact" variant="primary" size="lg" className="w-full sm:w-auto">
                 Contact Us
               </Button>
-              <Button href="/projects" variant="outline" size="lg">
+              <Button href="/projects" variant="outline" size="lg" className="w-full sm:w-auto">
                 View Portfolio
               </Button>
             </div>
@@ -218,32 +227,42 @@ export default function Home() {
         </div>
 
         {/* Middle — full-width image band */}
-        <div className="relative w-full h-[60vh] min-h-[420px] md:h-[78vh] mt-4 md:mt-8">
-          <AnimatePresence mode="wait">
+        <div className="relative w-full h-[58vh] min-h-[400px] md:h-[68vh]">
+          {/* No entrance animation on first load: this is the LCP image, and a
+              zoom-in on arrival made the hero feel unstable. `initial={false}`
+              means it is simply there on load and only animates between slides.
+              Dropping `mode="wait"` is the important part — with it, the old image
+              finished fading out before the new one began, exposing the pale page
+              background through the gap. That flash was the "white cloud". The two
+              now cross-fade over one another instead. */}
+          <AnimatePresence initial={false}>
             <motion.div
               key={activeSlide}
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 1.2, ease: "easeInOut" }}
+              transition={{ duration: 0.9, ease: "easeInOut" }}
               className="absolute inset-0"
             >
+              {/* Full-bleed LCP image: sizes lets the browser pick a viewport-width
+                  candidate from the srcset instead of the largest one. */}
               <Image
                 src={HERO_SLIDES[activeSlide].image}
                 alt={HERO_SLIDES[activeSlide].project}
                 fill
                 className="object-cover"
+                sizes="100vw"
                 priority
               />
             </motion.div>
           </AnimatePresence>
           {/* top of the image melts into the light heading area — seamless blend */}
-          <div className="absolute inset-x-0 top-0 h-32 md:h-40 bg-gradient-to-b from-background via-background/55 to-transparent pointer-events-none" />
+          <div className="absolute inset-x-0 top-0 h-20 md:h-24 bg-gradient-to-b from-background via-background/45 to-transparent pointer-events-none" />
 
           {/* slide indicators — kept clear of the centered glass card */}
-          <div className="absolute bottom-6 right-8 flex items-center gap-3">
+          <div className="absolute bottom-28 md:bottom-32 right-6 md:right-10 flex items-center gap-3 z-20">
             {HERO_SLIDES.map((_, idx) => (
-              <button key={idx} onClick={() => setActiveSlide(idx)} aria-label={`Slide ${idx + 1}`} className="group py-2">
+              <button key={idx} onClick={() => setActiveSlide(idx)} aria-label={`Slide ${idx + 1}`} className="group flex items-center justify-center min-h-11 min-w-11 cursor-pointer">
                 <span
                   className={`block h-[3px] rounded-full transition-all duration-500 ${
                     activeSlide === idx ? "w-10 bg-accent" : "w-5 bg-white/70 group-hover:bg-white"
@@ -256,11 +275,11 @@ export default function Home() {
 
         {/* Bottom — stats on a frosted glass panel overlapping the image */}
         <div className="relative z-10 container mx-auto px-4 md:px-8 -mt-20 md:-mt-24 pb-16 md:pb-24">
-          <div className="max-w-5xl mx-auto rounded-[22px] border border-accent/30 bg-card/80 backdrop-blur-2xl ring-1 ring-inset ring-white/50 shadow-[0_30px_80px_-30px_rgba(0,55,62,0.4)] overflow-hidden">
+          <div className="max-w-5xl mx-auto rounded-2xl border border-accent/30 bg-card/80 backdrop-blur-2xl ring-1 ring-inset ring-white/50 shadow-[0_30px_80px_-30px_rgba(0,55,62,0.4)] overflow-hidden">
             <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-border/70">
               {[
                 { count: "650+", label: "Projects delivered" },
-                { count: "18+", label: "Years expertise" },
+                { count: "30+", label: "Years expertise" },
                 { count: "42+", label: "Cities served" },
                 { count: "96%", label: "Referral-led" },
               ].map((s, i) => (
@@ -290,7 +309,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center relative z-10">
           {/* Asymmetrical visual framing */}
           <div className="lg:col-span-6 relative">
-            <div className="relative h-[300px] sm:h-[400px] md:h-[480px] w-full rounded-3xl overflow-hidden shadow-2xl premium-border gold-glow">
+            <div className="relative h-[300px] sm:h-[400px] md:h-[480px] w-full rounded-2xl overflow-hidden shadow-2xl premium-border gold-glow">
               <Image
                 src="/about_intro_villa.png"
                 alt="Modern corporate building facade"
@@ -311,12 +330,12 @@ export default function Home() {
           <div className="lg:col-span-6 space-y-8">
             <div className="space-y-3">
               <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Who We Are</span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-heading leading-[1.15]">
-                Crafting the <span className="text-gradient-dark">Future</span> of Architecture.
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-[1.15]">
+                Crafting the Future of Architecture.
               </h2>
             </div>
             <p className="text-body/90 text-sm sm:text-base leading-relaxed font-light">
-              At Shree Hari Alu, we specialize in delivering world-class aluminium architectural systems that combine exceptional quality, cutting-edge innovation, and breathtaking aesthetics.
+              At Shreehari Alu, we specialize in delivering world-class aluminium architectural systems that combine exceptional quality, cutting-edge innovation, and breathtaking aesthetics.
             </p>
             <p className="text-body/90 text-sm sm:text-base leading-relaxed font-light">
               Whether you are an architect designing a modern skyscraper, a developer building luxury villas, or a homeowner looking for premium window and door solutions, we have the expertise to bring your vision to life.
@@ -330,7 +349,7 @@ export default function Home() {
                 { title: "Bespoke Customization", desc: "To preserve your design intent" },
                 { title: "Certified Installation", desc: "By trained in-house experts" }
               ].map((item, idx) => (
-                <div key={idx} className="flex items-start space-x-3 bg-white p-4 rounded-xl border border-border shadow-sm">
+                <div key={idx} className="flex items-start space-x-3 bg-white p-4 rounded-2xl border border-border shadow-sm">
                   <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
                   <div>
                     <h4 className="text-sm font-heading font-bold text-heading">{item.title}</h4>
@@ -352,7 +371,7 @@ export default function Home() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 md:mb-10 gap-6">
           <div className="max-w-xl space-y-3">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Our Capability</span>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-heading leading-tight">What We Do</h2>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight">What We Do</h2>
           </div>
           <p className="text-body max-w-md text-sm md:text-base leading-relaxed font-light">
             We offer a comprehensive range of aluminium architectural systems designed to meet the highest standards of performance and design.
@@ -360,29 +379,13 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {[
-            {
-              title: "Windows & Doors",
-              desc: "Premium sliding, casement, and bi-fold systems for residential and commercial spaces.",
-              img: IMAGES.servicesWin,
-              href: "/services",
-              specs: ["Slim 28–45mm Interlock", "Up to 48dB Acoustic", "Class A4 Water Sealing"]
-            },
-            {
-              title: "Structural Glazing",
-              desc: "State-of-the-art structural glazing and glass facades for modern architectural masterpieces.",
-              img: IMAGES.servicesGlazing,
-              href: "/services#structural-glazing",
-              specs: ["Pressure-Equalised Drainage", "Concealed Sash", "Wind Load Class A4"]
-            },
-            {
-              title: "Architectural Systems",
-              desc: "Skylights, pergolas, glass railings, and office partitions customized to your needs.",
-              img: IMAGES.servicesArch,
-              href: "/services#pergolas",
-              specs: ["Motorised Louvres", "Concealed Guttering", "Stainless Anchors"]
-            }
-          ].map((service, i) => (
+          {SERVICE_CATEGORIES.map((cat) => ({
+            title: cat.label,
+            desc: cat.description,
+            img: cat.heroImage,
+            href: serviceHref(cat.slug),
+            specs: cat.systems.slice(0, 3).map((s) => s.title)
+          })).map((service, i) => (
             <div key={i} className="bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:border-accent/40 border border-border transition-all duration-500 group flex flex-col justify-between">
               <div>
                 <div className="relative h-60 w-full overflow-hidden bg-section">
@@ -403,7 +406,7 @@ export default function Home() {
                   {/* Specification tags */}
                   <div className="flex flex-wrap gap-1.5 pt-3 border-t border-border">
                     {service.specs.map((spec, sIdx) => (
-                      <span key={sIdx} className="text-[10px] tracking-wide font-heading font-semibold bg-section px-2.5 py-1 rounded-full text-body border border-border/60">
+                      <span key={sIdx} className="text-[12px] tracking-wide font-heading font-semibold bg-section px-2.5 py-1 rounded-full text-body border border-border/60">
                         {spec}
                       </span>
                     ))}
@@ -411,7 +414,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="px-5 pb-5 md:px-6 md:pb-6">
-                <Link href={service.href} className="text-primary font-heading font-bold text-xs uppercase tracking-widest flex items-center hover:text-accent transition-colors group/link">
+                <Link href={service.href} className="text-primary font-heading font-bold text-xs uppercase tracking-widest inline-flex items-center min-h-11 -my-2 hover:text-accent transition-colors group/link">
                   Explore Systems <ChevronRight className="w-4 h-4 ml-1 transform group-hover/link:translate-x-1.5 transition-transform duration-300" />
                 </Link>
               </div>
@@ -427,7 +430,7 @@ export default function Home() {
       <Section id="process" background="section" className="relative overflow-hidden">
         <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16 space-y-4">
           <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">How We Work</span>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading leading-tight">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight">
             Our Facade Engineering Process
           </h2>
           <p className="text-body max-w-xl mx-auto text-sm md:text-base leading-relaxed font-light">
@@ -438,7 +441,7 @@ export default function Home() {
         <ProcessSection />
       </Section>
 
-      {/* Why Shree Hari Alu (Split Feature, light) */}
+      {/* Why Shreehari Alu (Split Feature, light) */}
       <section className="relative flex flex-col lg:flex-row bg-section min-h-[580px] border-t border-border">
         <div className="w-full lg:w-1/2 relative h-[380px] lg:h-auto">
           <Image
@@ -450,8 +453,8 @@ export default function Home() {
           />
         </div>
         <div className="w-full lg:w-1/2 p-8 md:p-16 lg:p-24 flex flex-col justify-center space-y-6">
-          <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm">Why Shree Hari Alu</span>
-          <h2 className="text-3xl md:text-5xl font-heading font-bold text-heading leading-tight">
+          <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm">Why Shreehari Alu</span>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight">
             Performance lives in the details.
           </h2>
           <p className="text-body leading-relaxed text-sm md:text-base font-light">
@@ -483,11 +486,11 @@ export default function Home() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-16 gap-6">
           <div className="max-w-xl space-y-3">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm block">Selected Work</span>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading leading-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient leading-tight">
               Architecture, beautifully resolved.
             </h2>
           </div>
-          <Link href="/projects" className="text-accent font-heading font-bold text-xs uppercase tracking-widest flex items-center hover:text-primary transition-colors group">
+          <Link href="/projects" className="text-accent font-heading font-bold text-xs uppercase tracking-widest inline-flex items-center min-h-11 hover:text-primary transition-colors group">
             Explore All Projects <ChevronRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1.5 transition-transform duration-300" />
           </Link>
         </div>
@@ -525,7 +528,7 @@ export default function Home() {
                   </span>
                 </div>
                 <div className="p-5 md:p-8 space-y-3">
-                  <span className="text-accent text-[10px] uppercase tracking-widest font-heading font-bold block">{project.meta}</span>
+                  <span className="text-accent text-[12px] uppercase tracking-widest font-heading font-bold block">{project.meta}</span>
                   <h3 className="text-3xl font-heading font-bold text-heading tracking-tight">{project.title}</h3>
                   <div className="text-sm text-body/80 font-medium">Scope: {project.scope}</div>
                 </div>
@@ -546,9 +549,9 @@ export default function Home() {
             {/* Left Column (7 cols): Editorial Quote & Navigation */}
             <div className="lg:col-span-7 space-y-6 md:space-y-10 text-left relative">
               <div className="space-y-4">
-                <span className="text-accent font-heading font-extrabold uppercase tracking-widest text-[10px] md:text-xs block">Client Perspectives</span>
-                <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-heading tracking-tight leading-[1.1]">
-                  Voices of <span className="text-gradient">Partnership</span>.
+                <span className="text-accent font-heading font-extrabold uppercase tracking-widest text-[12px] md:text-xs block">Client Perspectives</span>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-extrabold text-gradient tracking-tight leading-[1.1]">
+                  Voices of Partnership.
                 </h2>
               </div>
 
@@ -576,7 +579,7 @@ export default function Home() {
                       <cite className="block text-accent font-heading font-extrabold text-xs tracking-widest uppercase not-italic">
                         {testimonials[activeTestimonial].author.split(" · ")[0]}
                       </cite>
-                      <span className="block text-[10px] text-body font-sans font-light mt-0.5">
+                      <span className="block text-[12px] text-body font-sans font-light mt-0.5">
                         {testimonials[activeTestimonial].author.split(" · ")[1] || ""}
                       </span>
                     </div>
@@ -594,7 +597,7 @@ export default function Home() {
                     <button
                       key={idx}
                       onClick={() => setActiveTestimonial(idx)}
-                      className="flex items-center gap-2 focus:outline-none group cursor-pointer"
+                      className="inline-flex items-center gap-2 min-h-11 focus:outline-none group cursor-pointer"
                     >
                       <span className={`text-xs font-heading font-semibold uppercase tracking-widest transition-colors duration-300 ${isActive ? "text-accent" : "text-body/60 group-hover:text-heading"}`}>
                         {cityName}
@@ -643,7 +646,7 @@ export default function Home() {
               <div className="w-full mt-6 bg-card border border-border rounded-2xl px-5 py-4 shadow-md">
                 <div className="flex justify-between items-center text-left">
                   <div>
-                    <span className="text-[10px] text-accent font-heading font-semibold uppercase tracking-widest block">System Installed</span>
+                    <span className="text-[12px] text-accent font-heading font-semibold uppercase tracking-widest block">System Installed</span>
                     <h5 className="text-sm font-heading font-bold text-heading mt-1">
                       {activeTestimonial === 0 ? "Minimal Sliding System" :
                         activeTestimonial === 1 ? "Unitized Curtain Wall" :
@@ -651,7 +654,7 @@ export default function Home() {
                     </h5>
                   </div>
                   <div className="border-l border-border pl-5 text-left">
-                    <span className="text-[10px] text-body/60 font-heading font-semibold uppercase tracking-widest block">Performance</span>
+                    <span className="text-[12px] text-body/60 font-heading font-semibold uppercase tracking-widest block">Performance</span>
                     <span className="text-sm font-heading font-bold text-accent block mt-1">
                       {activeTestimonial === 0 ? "Class A4 Sealing" :
                         activeTestimonial === 1 ? "3.5 kPa Windload" :
@@ -670,7 +673,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8 md:mb-14">
             <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm mb-3 block">Frequently asked</span>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-heading">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gradient">
               Useful answers before we begin.
             </h2>
           </div>
@@ -705,33 +708,42 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* CTA Banner Section */}
-      <Section id="cta" background="main" className="">
-        <div className="luxury-glass-light rounded-[32px] p-8 md:p-16 shadow-xl relative overflow-hidden text-center w-full border border-accent/30">
-          <div aria-hidden className="absolute -top-24 -right-16 w-80 h-80 rounded-full bg-accent/10 blur-3xl pointer-events-none" />
-          <div aria-hidden className="absolute -bottom-24 -left-16 w-80 h-80 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
-          <div className="relative z-10 space-y-6">
-            <span className="text-accent font-heading font-bold uppercase tracking-widest text-xs md:text-sm">Plan with confidence</span>
-            <h2 className="text-2xl md:text-4xl font-heading font-bold text-heading leading-tight max-w-2xl mx-auto">
+      {/* CTA Banner Section
+          Rebuilt as the darkest block on the page. It previously sat as a pale
+          card on a pale ground with small centred text, giving the page's most
+          important moment less weight than the FAQ above it. No decorative
+          blur-blobs, no scale-on-hover — the contrast does the work. */}
+      <section id="cta" className="bg-primary text-white">
+        <div className="container mx-auto px-4 md:px-8 py-16 md:py-24">
+          <div className="max-w-2xl mx-auto text-center">
+            <span className="block text-accent-bright font-heading font-bold uppercase tracking-widest text-xs md:text-sm">
+              Plan with confidence
+            </span>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl mt-5 font-heading font-bold leading-[1.12] tracking-tight text-balance">
               Bring engineering precision to your design.
             </h2>
-            <p className="text-body/80 text-sm md:text-base max-w-xl mx-auto leading-relaxed font-light">
-              Share your drawings, elevations or early concept. Our specialists will help define the most effective aluminium architectural solution.
+            <p className="mt-5 text-white/75 text-base md:text-lg leading-relaxed font-light">
+              Share your drawings, elevations or early concept. Our specialists will
+              help define the most effective aluminium architectural solution.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
-              <Button href="/contact" variant="primary" size="md" className="gold-glow hover:scale-105 transition-transform duration-300 uppercase tracking-widest text-[10px] font-bold">
+            <div className="mt-9 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-primary font-heading font-bold text-xs uppercase tracking-widest hover:bg-accent-bright transition-colors duration-300"
+              >
                 Contact Us
-              </Button>
+              </Link>
               <button
+                type="button"
                 onClick={() => openInquiryModal("General project consultation")}
-                className="px-6 py-2.5 rounded-full font-heading font-bold text-[10px] uppercase tracking-widest bg-transparent hover:bg-primary hover:text-white text-primary border border-primary/40 transition-all shadow-sm hover:scale-105 duration-300 cursor-pointer"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-white/35 text-white font-heading font-bold text-xs uppercase tracking-widest hover:bg-white/10 hover:border-white/60 transition-colors duration-300 cursor-pointer"
               >
                 Quick Inquiry
               </button>
             </div>
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* Quick Inquiry Modal */}
       <AnimatePresence>

@@ -166,7 +166,7 @@ export default function ProcessSection() {
           className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0"
           style={{ left: `${(NODES[0].x / VBW) * 100}%`, top: `${(NODES[0].y / VBH) * 100}%` }}
         >
-          <span className="block w-3.5 h-3.5 rounded-full bg-[#ffcf87] ring-2 ring-accent shadow-[0_0_20px_7px_rgba(194,139,76,0.6)] animate-pulse" />
+          <span className="block w-3.5 h-3.5 rounded-full bg-accent-bright ring-2 ring-accent shadow-[0_0_20px_7px_rgba(138,106,47,0.6)] animate-pulse" />
         </div>
 
         {/* nodes + labels */}
@@ -184,13 +184,13 @@ export default function ProcessSection() {
               <div
                 className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-500 ${
                   lit
-                    ? "bg-accent border-accent text-white shadow-[0_0_20px_rgba(194,139,76,0.55)]"
+                    ? "bg-accent border-accent text-white shadow-[0_0_20px_rgba(138,106,47,0.55)]"
                     : "bg-primary border-white/25 text-white/70"
                 }`}
               >
                 <Icon className="w-5 h-5" />
                 <span
-                  className={`absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full text-[9px] font-heading font-bold flex items-center justify-center border-2 border-primary transition-colors duration-500 ${
+                  className={`absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full text-[11px] font-heading font-bold flex items-center justify-center border-2 border-primary transition-colors duration-500 ${
                     lit ? "bg-white text-primary" : "bg-white/20 text-white/80"
                   }`}
                 >
@@ -230,7 +230,7 @@ export default function ProcessSection() {
             className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
             style={{ top: "0%" }}
           >
-            <span className="block w-3 h-3 rounded-full bg-[#ffcf87] ring-2 ring-accent shadow-[0_0_16px_6px_rgba(194,139,76,0.55)] animate-pulse" />
+            <span className="block w-3 h-3 rounded-full bg-accent-bright ring-2 ring-accent shadow-[0_0_16px_6px_rgba(138,106,47,0.55)] animate-pulse" />
           </div>
         </div>
 
@@ -243,13 +243,13 @@ export default function ProcessSection() {
                 <div
                   className={`relative z-10 flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-500 ${
                     lit
-                      ? "bg-accent border-accent text-white shadow-[0_0_16px_rgba(194,139,76,0.5)]"
+                      ? "bg-accent border-accent text-white shadow-[0_0_16px_rgba(138,106,47,0.5)]"
                       : "bg-primary border-white/25 text-white/70"
                   }`}
                 >
                   <Icon className="w-5 h-5" />
                   <span
-                    className={`absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full text-[9px] font-heading font-bold flex items-center justify-center border-2 border-primary ${
+                    className={`absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full text-[11px] font-heading font-bold flex items-center justify-center border-2 border-primary ${
                       lit ? "bg-white text-primary" : "bg-white/20 text-white/80"
                     }`}
                   >
