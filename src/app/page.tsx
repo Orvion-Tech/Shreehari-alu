@@ -8,6 +8,7 @@ import { CheckCircle2, X, ChevronRight } from "lucide-react";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 import ProcessSection from "@/components/ui/ProcessSection";
+import HomeHero from "@/components/home/HomeHero";
 import { SERVICE_CATEGORIES, serviceHref } from "@/data/services";
 
 // Premium custom generated images matching the brand theme
@@ -56,89 +57,6 @@ const faqs = [
   }
 ];
 
-const HERO_SLIDES = [
-  {
-    project: "The Courtyard Villa, Ahmedabad",
-    scope: "Minimal Slim Sliding Windows",
-    image: IMAGES.hero,
-    tagline: "01 // MINIMAL GLIDING",
-    titlePart1: "Engineering",
-    titlePart2: "Elegance",
-    titlePart3: "in Every Opening.",
-    description: "Elevate your spaces with world-class aluminium windows, doors, and facade systems designed for uncompromised luxury and performance.",
-    specs: [
-      { label: "Sightline", value: "28mm Slim Profile" },
-      { label: "Water Sealing", value: "Class A4 (450 Pa)" },
-      { label: "Glass Tech", value: "Acoustic Double Glazed" }
-    ],
-    blueprintPath: (
-      <svg className="w-full h-full text-accent/60 opacity-80" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.85">
-        <rect x="10" y="10" width="80" height="80" rx="3" />
-        <rect x="14" y="14" width="72" height="72" rx="2" strokeDasharray="2,2" />
-        <line x1="50" y1="10" x2="50" y2="90" />
-        <circle cx="50" cy="50" r="1.5" fill="currentColor" />
-        <rect x="20" y="20" width="24" height="60" />
-        <rect x="56" y="20" width="24" height="60" />
-        <line x1="10" y1="5" x2="90" y2="5" stroke="currentColor" strokeWidth="0.5" />
-        <text x="50" y="4" textAnchor="middle" fontSize="3.5" fill="currentColor" stroke="none" className="font-heading tracking-widest font-bold">W: 3200mm</text>
-        <text x="7" y="50" textAnchor="middle" fontSize="3.5" transform="rotate(-90 7 50)" fill="currentColor" stroke="none" className="font-heading tracking-widest font-bold">H: 2400mm</text>
-      </svg>
-    )
-  },
-  {
-    project: "Meridian Business House, Surat",
-    scope: "Structural Glazing & Curtain Walls",
-    image: IMAGES.commercial,
-    tagline: "02 // FACADE ENGINEERING",
-    titlePart1: "Sculpting",
-    titlePart2: "Light & Space",
-    titlePart3: "with Facades.",
-    description: "State-of-the-art curtain walls and structural glazing systems that create iconic, energy-efficient commercial landmarks.",
-    specs: [
-      { label: "U-Value", value: "Thermal < 1.4 W/m²K" },
-      { label: "Wind Load", value: "A4 Max (3.5 kPa)" },
-      { label: "Concealed Sash", value: "Fully Integrated" }
-    ],
-    blueprintPath: (
-      <svg className="w-full h-full text-accent/60 opacity-80" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.85">
-        <rect x="15" y="15" width="70" height="70" />
-        <line x1="15" y1="50" x2="85" y2="50" />
-        <line x1="50" y1="15" x2="50" y2="85" />
-        <line x1="15" y1="15" x2="85" y2="85" strokeDasharray="2,2" />
-        <line x1="85" y1="15" x2="15" y2="85" strokeDasharray="2,2" />
-        <circle cx="50" cy="50" r="10" />
-        <text x="50" y="9" textAnchor="middle" fontSize="3.5" fill="currentColor" stroke="none" className="font-heading tracking-widest font-bold">GRID TYPE: UNITIZED</text>
-      </svg>
-    )
-  },
-  {
-    project: "Private Villa Shading, Vadodara",
-    scope: "Motorized Louvered Pergolas",
-    image: IMAGES.pergola,
-    tagline: "03 // CLIMATE CONTROL",
-    titlePart1: "Redefining",
-    titlePart2: "Outdoor Living",
-    titlePart3: "Seamlessly.",
-    description: "Motorized louver rotation and automated climate shielding systems that transform terraces into high-luxury outdoor living areas.",
-    specs: [
-      { label: "Louver Range", value: "0° - 135° Motorized" },
-      { label: "Drainage", value: "100% Concealed Gutter" },
-      { label: "System Smart", value: "Somfy Automation" }
-    ],
-    blueprintPath: (
-      <svg className="w-full h-full text-accent/60 opacity-80" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.85">
-        <rect x="10" y="30" width="80" height="40" rx="3" />
-        <line x1="20" y1="35" x2="30" y2="65" />
-        <line x1="35" y1="35" x2="45" y2="65" />
-        <line x1="50" y1="35" x2="60" y2="65" />
-        <line x1="65" y1="35" x2="75" y2="65" />
-        <rect x="15" y="32" width="70" height="36" strokeDasharray="2,2" />
-        <text x="50" y="24" textAnchor="middle" fontSize="3.5" fill="currentColor" stroke="none" className="font-heading tracking-widest font-bold">SPAN LIMIT: 6500mm</text>
-      </svg>
-    )
-  }
-];
-
 export default function Home() {
   // homepage
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -146,21 +64,12 @@ export default function Home() {
   const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
   const [inquiryProduct, setInquiryProduct] = useState("");
   const [inquirySubmitted, setInquirySubmitted] = useState(false);
-  const [activeSlide, setActiveSlide] = useState(0);
 
   // Auto slider for testimonials
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 8000);
-    return () => clearInterval(timer);
-  }, []);
-
-  // Auto slider for hero section
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 6000);
     return () => clearInterval(timer);
   }, []);
 
@@ -181,125 +90,7 @@ export default function Home() {
 
   return (
     <>
-      {/* ===================== HERO (heading on top · image below · mirrored stats) ===================== */}
-      <section className="relative w-full overflow-hidden bg-background">
-        {/* Top — heading + tagline + actions */}
-        <div className="relative container mx-auto px-4 md:px-8 pt-28 md:pt-32 pb-6 md:pb-8 text-center">
-          <div className="max-w-4xl mx-auto flex flex-col items-center">
-            {/* Fixed h1: the strongest on-page ranking signal, so it names what the
-                company actually sells and where. The rotating brand line below keeps
-                the hero's motion. */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold leading-[1.12] tracking-tight text-balance">
-              Aluminium Windows, Doors &amp;{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent whitespace-nowrap">
-                Facade Systems
-              </span>{" "}
-              in Ahmedabad.
-            </h1>
-
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.p
-                key={activeSlide}
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-5 text-lg md:text-xl text-body font-light leading-snug"
-              >
-                {HERO_SLIDES[activeSlide].titlePart1}{" "}
-                <span className="text-accent font-medium">
-                  {HERO_SLIDES[activeSlide].titlePart2}
-                </span>{" "}
-                {HERO_SLIDES[activeSlide].titlePart3}
-              </motion.p>
-            </AnimatePresence>
-
-            {/* Full-width on a phone — narrow centred buttons are harder to hit */}
-            <div className="mt-8 w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
-              <Button href="/contact" variant="primary" size="lg" className="w-full sm:w-auto">
-                Contact Us
-              </Button>
-              <Button href="/projects" variant="outline" size="lg" className="w-full sm:w-auto">
-                View Portfolio
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Middle — full-width image band */}
-        <div className="relative w-full h-[58vh] min-h-[400px] md:h-[68vh]">
-          {/* No entrance animation on first load: this is the LCP image, and a
-              zoom-in on arrival made the hero feel unstable. `initial={false}`
-              means it is simply there on load and only animates between slides.
-              Dropping `mode="wait"` is the important part — with it, the old image
-              finished fading out before the new one began, exposing the pale page
-              background through the gap. That flash was the "white cloud". The two
-              now cross-fade over one another instead. */}
-          <AnimatePresence initial={false}>
-            <motion.div
-              key={activeSlide}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.9, ease: "easeInOut" }}
-              className="absolute inset-0"
-            >
-              {/* Full-bleed LCP image: sizes lets the browser pick a viewport-width
-                  candidate from the srcset instead of the largest one. */}
-              <Image
-                src={HERO_SLIDES[activeSlide].image}
-                alt={HERO_SLIDES[activeSlide].project}
-                fill
-                className="object-cover"
-                sizes="100vw"
-                priority
-              />
-            </motion.div>
-          </AnimatePresence>
-          {/* top of the image melts into the light heading area — seamless blend */}
-          <div className="absolute inset-x-0 top-0 h-20 md:h-24 bg-gradient-to-b from-background via-background/45 to-transparent pointer-events-none" />
-
-          {/* slide indicators — kept clear of the centered glass card */}
-          <div className="absolute bottom-28 md:bottom-32 right-6 md:right-10 flex items-center gap-3 z-20">
-            {HERO_SLIDES.map((_, idx) => (
-              <button key={idx} onClick={() => setActiveSlide(idx)} aria-label={`Slide ${idx + 1}`} className="group flex items-center justify-center min-h-11 min-w-11 cursor-pointer">
-                <span
-                  className={`block h-[3px] rounded-full transition-all duration-500 ${
-                    activeSlide === idx ? "w-10 bg-accent" : "w-5 bg-white/70 group-hover:bg-white"
-                  }`}
-                />
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Bottom — stats on a frosted glass panel overlapping the image */}
-        <div className="relative z-10 container mx-auto px-4 md:px-8 -mt-20 md:-mt-24 pb-16 md:pb-24">
-          <div className="max-w-5xl mx-auto rounded-2xl border border-accent/30 bg-card/80 backdrop-blur-2xl ring-1 ring-inset ring-white/50 shadow-[0_30px_80px_-30px_rgba(0,55,62,0.4)] overflow-hidden">
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-border/70">
-              {[
-                { count: "650+", label: "Projects delivered" },
-                { count: "30+", label: "Years expertise" },
-                { count: "42+", label: "Cities served" },
-                { count: "96%", label: "Referral-led" },
-              ].map((s, i) => (
-                <div
-                  key={i}
-                  className="group relative px-4 md:px-6 py-8 md:py-11 text-center transition-colors duration-300 hover:bg-accent/[0.06]"
-                >
-                  <div className="text-4xl md:text-5xl font-heading font-bold text-transparent bg-clip-text bg-gradient-to-br from-primary via-primary to-accent leading-none">
-                    {s.count}
-                  </div>
-                  <span className="block mx-auto mt-4 h-px w-8 bg-accent/70 transition-all duration-300 group-hover:w-12" />
-                  <div className="mt-4 text-[11px] md:text-xs text-heading font-heading font-semibold uppercase tracking-[0.16em] leading-tight">
-                    {s.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomeHero />
 
       {/* Asymmetrical Who We Are / Intro Section */}
       <Section id="about-intro" background="section" className="relative overflow-hidden">

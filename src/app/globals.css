@@ -54,6 +54,7 @@
 
   --font-sans: var(--font-poppins), sans-serif;
   --font-heading: var(--font-montserrat), sans-serif;
+  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
 
   --animate-fade-in-up: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
@@ -84,6 +85,16 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-montserrat), sans-serif;
   letter-spacing: -0.025em;
   font-weight: 700;
+}
+
+/* Editorial serif for hero-scale display type. The base heading rule above is
+   unlayered, so Tailwind's (layered) `font-display` utility can never win
+   against it on an h1 — this unlayered rule is the escape hatch. Weight and
+   tracking are set here for the same reason. */
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.015em;
 }
 
 /* Ensure headings inside dark sections or light-text containers inherit light colors */

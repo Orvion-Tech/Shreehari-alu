@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Poppins } from "next/font/google";
+import { Cormorant_Garamond, Montserrat, Poppins } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
@@ -25,6 +25,17 @@ const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+  display: "swap",
+});
+
+// Editorial serif reserved for hero-scale display type. Montserrat carries
+// every other heading; pairing one high-contrast serif against it is what
+// gives the opening screen its "architectural magazine" register.
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -97,7 +108,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-IN"
-      className={`${montserrat.variable} ${poppins.variable} h-full antialiased scroll-smooth`}
+      className={`${montserrat.variable} ${poppins.variable} ${cormorant.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-background text-body font-sans">
         <OrganizationJsonLd />

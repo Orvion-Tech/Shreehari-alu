@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import LinkNext from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import {
   ChevronDown,
@@ -28,6 +29,10 @@ export default function Header() {
   const [rawIsMobileMenuOpen, _setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [mobileMenuView, setMobileMenuView] = useState<"main" | "services">("main");
+  const pathname = usePathname();
+  // The home hero is a deep-teal photograph; until the visitor scrolls, the
+  // header sits directly on it, so it swaps to a light-on-dark treatment.
+  const onDarkHero = pathname === "/" && !isScrolled && !rawIsMobileMenuOpen;
 
   const isMobileMenuOpen = rawIsMobileMenuOpen;
   const setIsMobileMenuOpen = (open: boolean | ((prev: boolean) => boolean)) => {
@@ -60,7 +65,9 @@ export default function Header() {
     };
   }, [isMobileMenuOpen]);
 
-  const linkClass = "text-[12px] xl:text-[11px] 2xl:text-[12px] uppercase tracking-[0.08em] xl:tracking-[0.12em] 2xl:tracking-[0.15em] font-heading font-extrabold text-heading hover:text-accent transition-colors luxury-underline py-2";
+  const linkClass = `text-[12px] xl:text-[11px] 2xl:text-[12px] uppercase tracking-[0.08em] xl:tracking-[0.12em] 2xl:tracking-[0.15em] font-heading font-extrabold transition-colors luxury-underline py-2 ${
+    onDarkHero ? "text-white/90 hover:text-accent-bright" : "text-heading hover:text-accent"
+  }`;
 
   return (
     <>
@@ -80,7 +87,9 @@ export default function Header() {
               alt="Shreehari Alu Corporation Logo" 
               width={240} 
               height={75} 
-              className="w-auto h-11 xl:h-13 2xl:h-15 transition-all duration-500"
+              className={`w-auto h-11 xl:h-13 2xl:h-15 transition-all duration-500 ${
+                onDarkHero ? "brightness-0 invert" : ""
+              }`}
               loading="eager"
             />
           </LinkNext>
@@ -184,15 +193,17 @@ export default function Header() {
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-3 xl:space-x-5">
             <a href="tel:+919876543210" className={`flex items-center transition-colors ${linkClass}`}>
-              <Phone className="w-3 h-3 xl:w-3.5 xl:h-3.5 mr-1 xl:mr-1.5 text-accent" />
+              <Phone className={`w-3 h-3 xl:w-3.5 xl:h-3.5 mr-1 xl:mr-1.5 ${onDarkHero ? "text-accent-bright" : "text-accent"}`} />
               <span className="hidden xl:inline">Inquiry</span>
             </a>
             <LinkNext 
               href="/request-quote" 
               className={`px-3.5 xl:px-5 py-2 xl:py-2.5 rounded-full font-heading font-extrabold text-[12px] xl:text-[11px] uppercase tracking-wider transition-all duration-300 border ${
-                isScrolled 
-                  ? "bg-accent hover:bg-[#b59556] text-white border-accent shadow-md shadow-accent/15 hover:scale-[1.01]" 
-                  : "bg-primary hover:bg-primary-hover text-white border-primary shadow-md hover:scale-[1.01]"
+                isScrolled
+                  ? "bg-accent hover:bg-[#b59556] text-white border-accent shadow-md shadow-accent/15 hover:scale-[1.01]"
+                  : onDarkHero
+                    ? "bg-white hover:bg-accent-bright text-primary hover:text-white border-white hover:border-accent-bright shadow-md hover:scale-[1.01]"
+                    : "bg-primary hover:bg-primary-hover text-white border-primary shadow-md hover:scale-[1.01]"
               }`}
             >
               Request Quote
@@ -201,14 +212,14 @@ export default function Header() {
 
           {/* Mobile Menu Toggle */}
           <button 
-            className="lg:hidden w-11 h-11 -mr-2 flex items-center justify-center text-primary cursor-pointer z-50 relative"
+            className={`lg:hidden w-11 h-11 -mr-2 flex items-center justify-center cursor-pointer z-50 relative transition-colors ${onDarkHero ? "text-white" : "text-primary"}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
-              <X className="text-primary w-6 h-6" />
+              <X className="w-6 h-6" />
             ) : (
-              <Menu className="text-primary w-6 h-6" />
+              <Menu className="w-6 h-6" />
             )}
           </button>
         </div>
